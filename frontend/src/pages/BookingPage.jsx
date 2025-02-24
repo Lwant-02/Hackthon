@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-import background from "../assets/image/booking-bg.jpg";
 import { CourseCard } from "../components/Booking/CourseCard";
 import { BookingSearchField } from "../components/Booking/BookingSearchField";
 import { Divider } from "../components/UI/Divider";
 import { Footer } from "../components/UI/Footer";
 import { Bot } from "../components/UI/Bot";
 import { ChatbotBox } from "../components/UI/ChatbotBox";
+import { images } from "../utils/constant";
 
 export const BookingPage = () => {
   const [showChat, setShowChat] = useState(false);
@@ -15,7 +15,7 @@ export const BookingPage = () => {
     <div className="relative w-full flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col">
       <motion.div
         className="relative w-full sm:h-[60vh] h-[45vh] bg-cover bg-center"
-        style={{ backgroundImage: `url(${background})` }}
+        style={{ backgroundImage: `url(${images.bookingLogo})` }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.2 }}

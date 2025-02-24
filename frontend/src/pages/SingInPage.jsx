@@ -1,15 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
-import background from "../assets/image/form-bg.jpg";
 import { SinginFrom } from "../components/signin/SinginFrom";
 import { FormThumbnail } from "../components/UI/FormThumbnail";
+import { images } from "../utils/constant";
 
 export const SingInPage = () => {
   return (
     <div className="relative w-full min-h-screen flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col">
       <div
         className="relative w-full min-h-screen bg-cover bg-center bg-red-500"
-        style={{ backgroundImage: `url(${background})` }}
+        style={{ backgroundImage: `url(${images.formLogo})` }}
       >
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="relative z-10 flex sm:flex-row flex-col items-center justify-center text-center h-full px-6 w-full gap-3 mt-12">

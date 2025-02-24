@@ -1,12 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import background from "../assets/image/booking-detail-bg.jpg";
 import { AboutCourseCard } from "../components/BookingDetail/AboutCourseCard";
 import { BookingContainer } from "../components/BookingDetail/BookingContainer";
 import { useAuthStore } from "../store/useAuthStore";
 import { CustomStatus } from "../components/UI/CustomStatus";
 import { Packages } from "../components/UI/Packages";
-import { packages } from "../utils/constant";
+import { images, packages } from "../utils/constant";
 
 export const BookingDetailPage = () => {
   const { authUser } = useAuthStore();
@@ -14,7 +13,7 @@ export const BookingDetailPage = () => {
     <div className="relative w-full flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col">
       <motion.div
         className="relative w-full sm:h-[60vh] h-[45vh] bg-cover bg-center"
-        style={{ backgroundImage: `url(${background})` }}
+        style={{ backgroundImage: `url(${images.bookingDetailLogo})` }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}

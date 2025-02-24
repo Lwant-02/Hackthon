@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import background from "../assets/image/main-bg.jpg";
 import { HomeSearchField } from "../components/Home/HomeSearchField";
 import { AISection } from "../components/Home/AISection";
 import { FeatureCourseCard } from "../components/UI/FeatureCourseCard";
@@ -11,7 +10,7 @@ import { ChatbotBox } from "../components/UI/ChatbotBox";
 import { Bot } from "../components/UI/Bot";
 import { NewsSection } from "../components/Home/NewsSection";
 import { Packages } from "../components/UI/Packages";
-import { featureCourse, packages } from "../utils/constant";
+import { featureCourse, images, packages } from "../utils/constant";
 import { reviewers } from "../utils/constant";
 
 export const HomePage = () => {
@@ -20,7 +19,7 @@ export const HomePage = () => {
     <div className="relative w-full flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col">
       <motion.div
         className="relative w-full sm:h-[60vh] h-[45vh] bg-cover bg-center"
-        style={{ backgroundImage: `url(${background})` }}
+        style={{ backgroundImage: `url(${images.homeLogo})` }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.3 }}

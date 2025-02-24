@@ -1,7 +1,21 @@
-import review1 from "../assets/image/review-female.jpg";
-import review2 from "../assets/image/review-male-1.jpg";
-import review3 from "../assets/image/review-male-2.jpg";
-import review4 from "../assets/image/review-male-3.jpg";
+export const images = {
+  homeLogo:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740391896/soheb-zaidi-awin-9RBlpE-unsplash_lcdv8w.jpg",
+
+  bookingLogo:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740391652/booking-bg_inlga7.jpg",
+
+  bookingDetailLogo:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740391652/booking-detail-bg_dkhipo.jpg",
+
+  formLogo:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740392299/form-bg_l6bxrw.jpg",
+
+  profileBg:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740392671/mick-de-paola-LUPJoR3OfEg-unsplash_yjh6pt.jpg",
+  accountLogo:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740392483/robert-ruggiero-U5HMj5J6Opg-unsplash_prkecp.jpg",
+};
 
 export const MainLogo =
   "https://www.cimso.com/wp-content/uploads/2020/01/cimso-logo-300-transparent.png";

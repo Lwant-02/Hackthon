@@ -7,7 +7,7 @@ import { Input } from "../components/UI/Input";
 import { useAuthStore } from "../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import background from "../assets/image/account-bg.jpg";
+import { images } from "../utils/constant";
 export const AccountPage = () => {
   const { authUser, signOut, updateAccount } = useAuthStore();
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export const AccountPage = () => {
   return (
     <div
       className="w-full min-h-screen flex flex-col justify-center items-center sm:px-0 px-5 bg-cover bg-center"
-      style={{ backgroundImage: `url(${background})` }}
+      style={{ backgroundImage: `url(${images.profileBg})` }}
     >
       <motion.form
         className="bg-white/90 shadow-lg sm:w-4/6 w-full h-auto rounded-xl p-7  flex flex-col justify-start items-center gap-3 "

@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  matchPath,
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { HomePage } from "../../pages/HomePage";
 import { Navbar } from "./Navbar";
 import { BookingPage } from "../../pages/BookingPage";
