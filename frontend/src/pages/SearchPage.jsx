@@ -64,7 +64,7 @@ export const SearchPage = () => {
               type="search"
               required
               className="text-xs"
-              placeholder="Type the course name or city or country "
+              placeholder="Type the course name or city "
               name="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}

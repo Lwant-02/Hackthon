@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { CustomButton } from "./CustomButton";
 import { useUtilsStore } from "../../store/useUtilsStore";
+import { useBookingStore } from "../../store/useBookingStore";
 
 export const Packages = ({ title, price, badge, features, isHome }) => {
+  const { setPackage, packageType } = useBookingStore();
   const { setActiveTab } = useUtilsStore();
+
+  const handleCheckboxChange = () => {
+    if (packageType?.title === title) {
+      setPackage({}); // Unselect if it's already selected
+    } else {
+      setPackage({ title, price }); // Select the package
+    }
+  };
+
   return (
     <motion.div
       className="card card-md w-80 bg-primary-color border border-base-content/10 shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
@@ -59,6 +70,8 @@ export const Packages = ({ title, price, badge, features, isHome }) => {
                 type="checkbox"
                 className="checkbox checkbox-success checkbox-sm"
                 name="checkbox"
+                checked={packageType?.title === title}
+                onChange={handleCheckboxChange}
               />
               Select
             </label>

@@ -52,7 +52,7 @@ export const AppLayout = () => {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signin" element={<SingInPage />} />
         <Route
-          path="/booking/check-out"
+          path="/booking/check-out/:courseId"
           element={authUser ? <PaymentPage /> : <Navigate to="/" />}
         />
         <Route path="/about" element={<AboutPage />} />

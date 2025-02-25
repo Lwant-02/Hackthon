@@ -7,7 +7,6 @@ import { Rating } from "../UI/Rating";
 import { useUtilsStore } from "../../store/useUtilsStore";
 import { CustomStatus } from "../UI/CustomStatus";
 import { useAuthStore } from "../../store/useAuthStore";
-import { useBookingStore } from "../../store/useBookingStore";
 import { LocationPart } from "../UI/LocationPart";
 
 export const CourseCard = ({
@@ -41,7 +40,7 @@ export const CourseCard = ({
     >
       <div className="card sm:card-sm card-xs p-2 bg-base-100 sm:w-80 h-[390px] shadow-lg backdrop-blur-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
         <figure className="relative w-full overflow-hidden h-[150px]">
-          <span className="badge badge-md absolute top-3 left-3 rounded-lg bg-accent-color text-primary-color border-none">
+          <span className="badge badge-md absolute top-3 left-3 rounded-lg bg-accent text-white border-none">
             {status}
           </span>
           <img src={image} alt={name} className="w-full h-full object-cover" />
@@ -50,7 +49,9 @@ export const CourseCard = ({
           <h2 className="card-title">
             {name}
             {discount > 0 && (
-              <div className="badge badge-secondary badge-sm">{discount}%</div>
+              <div className="badge badge-secondary text-primary-color badge-sm">
+                {discount}%
+              </div>
             )}
           </h2>
           <p className="text-sm">{subDescription}</p>

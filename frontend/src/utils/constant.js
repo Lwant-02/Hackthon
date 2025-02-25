@@ -47,7 +47,7 @@ export const defaultUrl =
 export const packages = [
   {
     name: "Lesson Package",
-    price: "2000",
+    price: 2000,
     features: [
       "Access to Rental Golf Set",
       "One trial Green Session",
@@ -58,7 +58,7 @@ export const packages = [
   },
   {
     name: "Golf Juniors' Package",
-    price: "3000",
+    price: 3000,
     features: [
       "Access to Rental Golf Set",
       "2 rounds of Range and Green",
@@ -69,7 +69,7 @@ export const packages = [
   },
   {
     name: "Golf Seniors' Package",
-    price: "4000",
+    price: 4000,
     features: [
       "Access to Rental Golf Set",
       "One trial Coaching Session",
@@ -145,7 +145,7 @@ export const featureCourse = [
     title: "Black Mountain Golf Club",
     description:
       "Located in Hua Hin, this renowned golf course offers challenging fairways and scenic views of the surrounding mountains. It is known for hosting international tournaments.",
-    delay: 0.1,
+    delay: 0.5,
     image:
       "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740416641/8_qdzvzq.jpg",
   },
@@ -153,7 +153,7 @@ export const featureCourse = [
     title: "Siam Country Club",
     description:
       "A prestigious course located in Pattaya, Siam Country Club offers a variety of layouts and is famous for its lush fairways and excellent amenities.",
-    delay: 0.2,
+    delay: 0.6,
     image:
       "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740416598/1_wf4dbh.jpg",
   },

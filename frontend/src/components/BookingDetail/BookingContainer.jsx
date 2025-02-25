@@ -10,6 +10,7 @@ import { useBookingStore } from "../../store/useBookingStore";
 
 export const BookingContainer = () => {
   const { hole } = useBookingStore();
+
   return (
     <motion.div
       className="bg-white w-full h-auto rounded-lg shadow-lg p-5 flex flex-col"
@@ -18,7 +19,7 @@ export const BookingContainer = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="w-full h-full  sm:p-5 flex sm:gap-2 gap-5 sm:flex-row flex-col ">
-        <div className="sm:w-4/6 flex flex-col justify-start items-start bg-primary-color rounded-xl overflow-hidden shadow-md">
+        <div className="sm:w-4/6 flex flex-col justify-start items-start bg-primary-color rounded-xl overflow-hidden shadow-md border border-base-content/10">
           <h1 className="text-primary-color text-xl font-bold h-14 bg-accent-color w-full flex justify-center items-center">
             Avaliable Tee Times
           </h1>

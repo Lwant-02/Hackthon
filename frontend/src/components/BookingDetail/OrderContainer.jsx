@@ -2,10 +2,21 @@ import React from "react";
 import { CustomButton } from "../UI/CustomButton";
 import { ShoppingCart } from "lucide-react";
 import { SummaryInfo } from "../Payment/SummaryInfo";
+import { useParams } from "react-router-dom";
+import { useBookingStore } from "../../store/useBookingStore";
+import { useAuthStore } from "../../store/useAuthStore";
+import { useUtilsStore } from "../../store/useUtilsStore";
 
 export const OrderContainer = () => {
+  const { authUser } = useAuthStore();
+  const { packageType, hole, timeAndPrice } = useBookingStore();
+  const { courseId } = useParams();
+
+  console.log("pack", typeof packageType.price);
+  console.log(typeof timeAndPrice.price);
+
   return (
-    <div className="sm:w-96 flex flex-col justify-start items-start bg-primary-color rounded-xl overflow-hidden shadow-md h-auto">
+    <div className="sm:w-96 flex flex-col justify-start items-start bg-primary-color rounded-xl overflow-hidden shadow-md h-auto border border-base-content/10">
       <h1 className="text-primary-color text-xl font-bold h-14 bg-accent-color w-full flex justify-center items-center">
         Book Your Teee Times
       </h1>
@@ -18,12 +29,15 @@ export const OrderContainer = () => {
           </div>
         </div>
         <div className="px-3 w-full flex flex-col gap-2">
-          <SummaryInfo name="Name" value="Lwant" />
-          <SummaryInfo name="Email Address" value="jai@gmail.com" />
-          <SummaryInfo name="Hole" value={8} />
-          <SummaryInfo name="Price per tee time" value={500} />
-          <SummaryInfo name="Package name" value="Lesson" />
-          <SummaryInfo name="Package price" value={500} />
+          <SummaryInfo name="Name" value={authUser.fullName} />
+          <SummaryInfo name="Email Address" value={authUser.email} />
+          <SummaryInfo name="Hole" value={hole || "-"} />
+          <SummaryInfo
+            name="Price per session"
+            value={timeAndPrice.price || "-"}
+          />
+          <SummaryInfo name="Package name" value={packageType.title || "-"} />
+          <SummaryInfo name="Package price" value={packageType.price || "-"} />
           <input
             type="text"
             placeholder="Type the number of Golfer"
@@ -37,12 +51,17 @@ export const OrderContainer = () => {
         <div className="flex flex-col gap-3 px-3 w-full mt-2 pb-5">
           <span className="flex justify-between">
             <p className="text-base font-semibold">Total</p>
-            <p className="text-base font-semibold">฿500</p>
+            <p className="text-base font-semibold">
+              ฿
+              {packageType.price && timeAndPrice.price
+                ? Number(packageType.price) + Number(timeAndPrice.price)
+                : packageType.price || timeAndPrice.price || "0"}
+            </p>
           </span>
           <CustomButton
             buttonName="Book Now"
             icon={<ShoppingCart />}
-            url="/booking/check-out"
+            url={`/booking/check-out/${courseId}`}
             type="secondaryButton"
           />
         </div>

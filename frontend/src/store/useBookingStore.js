@@ -2,11 +2,20 @@ import { create } from "zustand";
 import { axiosInstance } from "../utils/axiosInstance";
 
 export const useBookingStore = create((set) => ({
+  isGettingCourse: false,
+  isGettingCourses: false,
   hole: null,
   courses: [],
   course: null,
-  isGettingCourse: false,
-  isGettingCourses: false,
+  packageType: {},
+  timeAndPrice: {},
+  setTimeAndPrice: (data) => {
+    set({ timeAndPrice: data });
+  },
+  setPackage: (data) => {
+    set({ packageType: data });
+  },
+
   setHole: (v) => {
     set({ hole: v });
   },

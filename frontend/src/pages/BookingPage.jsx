@@ -19,7 +19,6 @@ export const BookingPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
   const [filteredCourses, setFilteredCourses] = useState([]);
-  const [gotClick, setGotClick] = useState(false);
 
   return (
     <div className="relative w-full flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col">
@@ -52,7 +51,6 @@ export const BookingPage = () => {
           setFilteredCourses={setFilteredCourses}
           setIsSearching={setIsSearching}
           setHasSearched={setHasSearched}
-          setGotClick={setGotClick}
         />
         {searchQuery && hasSearched ? (
           <div className="w-full h-full">

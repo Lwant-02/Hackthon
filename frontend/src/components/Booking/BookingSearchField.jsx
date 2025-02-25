@@ -10,10 +10,10 @@ export const BookingSearchField = ({
   setIsSearching,
   setFilteredCourses,
   setHasSearched,
-  setGotClick,
 }) => {
   const { courses } = useBookingStore();
   const handleSearch = () => {
+    if (!value.trim()) return;
     setHasSearched(true);
     setIsSearching(true);
     // Simulate a slight delay (e.g., 500ms) before processing
@@ -39,7 +39,7 @@ export const BookingSearchField = ({
         <Search className="size-5" />
         <input
           type="search"
-          placeholder="Type the course name or city or country "
+          placeholder="Type the course name or city  "
           className="border-none"
           name="booking-search"
           value={value}
