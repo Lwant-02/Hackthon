@@ -5,18 +5,35 @@ import { ArrowLeft, Search } from "lucide-react";
 import { CourseCard } from "../components/Booking/CourseCard";
 import { CustomNotFound } from "../components/UI/CustomNotFound";
 import { useNavigate } from "react-router-dom";
+import { useBookingStore } from "../store/useBookingStore";
+import { Spinner } from "../components/UI/Spinner";
 
 export const SearchPage = () => {
+  const { courses } = useBookingStore();
   const [hasSearched, setHasSearched] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const [data, setData] = useState([]); // Assuming data comes from an API or state
+  const [filteredCourses, setFilteredCourses] = useState([]);
 
   const handleSearch = () => {
     setHasSearched(true);
-
-    // Example: Fetch search results from an API
-    // If no results, data remains an empty array
-    setData([]); // Replace this with actual search logic
+    setIsSearching(true);
+    // Simulate a slight delay (e.g., 500ms) before processing
+    setTimeout(() => {
+      const result = courses.filter(
+        (course) =>
+          course.courseName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          course.location.city
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          course.location.country
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase())
+      );
+      setFilteredCourses(result);
+      setIsSearching(false);
+    }, 500);
   };
 
   return (
@@ -46,8 +63,11 @@ export const SearchPage = () => {
             <input
               type="search"
               required
-              placeholder="Where to golf?"
+              className="text-xs"
+              placeholder="Type the course name or city or country "
               name="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </label>
           <CustomButton
@@ -56,23 +76,41 @@ export const SearchPage = () => {
             onClick={handleSearch}
           />
         </div>
+
         {/* Show result count only if searched */}
         {hasSearched && (
           <p className="sm:w-4/6 w-full sm:text-sm font-semibold text-xs capitalize">
-            Golf Found - {data.length}
+            Golf Found - {filteredCourses.length}
           </p>
         )}
 
         {/* If searched and no results found, show CustomNotFound */}
-        {hasSearched && data.length === 0 && (
-          <CustomNotFound type="data" title="Cannot find this course!" />
+        {isSearching ? (
+          <div className="sm:w-4/6 w-full h-96 flex justify-center items-center">
+            <Spinner size="size-10" />
+          </div>
+        ) : (
+          hasSearched &&
+          filteredCourses.length === 0 && (
+            <CustomNotFound type="data" title="Cannot find this course!" />
+          )
         )}
 
         {/* If searched and results found, display courses */}
-        {hasSearched && data.length > 0 && (
+        {!isSearching && hasSearched && filteredCourses.length > 0 && (
           <div className="sm:w-4/6 w-full grid gap-3 sm:grid-cols-2 grid-cols-1 items-center place-items-center p-3">
-            {data.map((course, index) => (
-              <CourseCard key={index} {...course} />
+            {filteredCourses.map((course, index) => (
+              <CourseCard
+                key={index}
+                delay={0.1 * (index + 1)}
+                discount={course.discount}
+                status="Available"
+                id={course._id}
+                image={course.image}
+                name={course.courseName}
+                subDescription={course.subDescription}
+                rating={course.rating}
+              />
             ))}
           </div>
         )}

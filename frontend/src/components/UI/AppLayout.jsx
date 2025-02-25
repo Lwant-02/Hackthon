@@ -15,13 +15,16 @@ import { SearchPage } from "../../pages/SearchPage";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "../../store/useAuthStore";
 import { Spinner } from "./Spinner";
+import { useBookingStore } from "../../store/useBookingStore";
 
 export const AppLayout = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { getCourses } = useBookingStore();
   const location = useLocation();
 
   useEffect(() => {
     checkAuth();
+    getCourses();
   }, []);
 
   if (isCheckingAuth) {
@@ -42,7 +45,10 @@ export const AppLayout = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/booking" element={<BookingPage />} />
-        <Route path="/booking-detail" element={<BookingDetailPage />} />
+        <Route
+          path="/booking-detail/:courseId"
+          element={<BookingDetailPage />}
+        />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signin" element={<SingInPage />} />
         <Route

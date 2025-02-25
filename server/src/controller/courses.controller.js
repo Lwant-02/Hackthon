@@ -17,7 +17,6 @@ export const GetCourse = async (req, res) => {
 export const GetCourses = async (req, res) => {
   try {
     const courses = await Golf.find().lean();
-    console.log("Fetched Courses:", JSON.stringify(courses, null, 2));
     res.status(200).json(courses);
   } catch (error) {
     console.log("Error in GetCourses controller:", error.message);

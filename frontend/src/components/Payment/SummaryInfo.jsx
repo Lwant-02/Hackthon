@@ -6,7 +6,7 @@ export const SummaryInfo = ({ name, value, style, textStyle, valueStyle }) => {
       <p className={`${textStyle ? textStyle : "text-sm opacity-70"}`}>
         {name}
       </p>
-      <p
+      <div
         className={`${
           valueStyle
             ? valueStyle
@@ -14,7 +14,7 @@ export const SummaryInfo = ({ name, value, style, textStyle, valueStyle }) => {
         } `}
       >
         {value}
-      </p>
+      </div>
     </div>
   );
 };

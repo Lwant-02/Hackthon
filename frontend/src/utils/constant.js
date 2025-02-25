@@ -130,23 +130,31 @@ export const featureCourse = [
     description:
       "Set against the beautiful backdrop of the Chiang Mai mountains, this course features a challenging layout, perfect for golfers looking for an exciting yet scenic round.",
     delay: 0.3,
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740416648/10_fc5cws.jpg",
   },
   {
     title: "Amata Spring Country Club",
     description:
       "Located in Chonburi, Amata Spring is a world-class golf course that hosts the Thailand Golf Championship and offers pristine greens and a layout that will challenge players of all skill levels.",
     delay: 0.4,
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740416666/12_ggc0hs.jpg",
   },
   {
     title: "Black Mountain Golf Club",
     description:
       "Located in Hua Hin, this renowned golf course offers challenging fairways and scenic views of the surrounding mountains. It is known for hosting international tournaments.",
     delay: 0.1,
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740416641/8_qdzvzq.jpg",
   },
   {
     title: "Siam Country Club",
     description:
       "A prestigious course located in Pattaya, Siam Country Club offers a variety of layouts and is famous for its lush fairways and excellent amenities.",
     delay: 0.2,
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740416598/1_wf4dbh.jpg",
   },
 ];

@@ -1,4 +1,4 @@
-import { House, CalendarDays, Info, Tickets } from "lucide-react";
+import { House, Info, ShoppingCart, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useUtilsStore } from "../../store/useUtilsStore";
 
@@ -36,7 +36,7 @@ export const Tab = () => {
           closeDrawer();
         }}
       >
-        <span>{<CalendarDays className="size-5" />}</span>
+        <span>{<ShoppingBag className="size-5" />}</span>
         <p className="font-bold text-sm">Booking</p>
       </a>
       <a
@@ -50,8 +50,8 @@ export const Tab = () => {
           closeDrawer();
         }}
       >
-        <span>{<Tickets className="size-5" />}</span>
-        <p className="font-bold text-sm">Reservation</p>
+        <span>{<ShoppingCart className="size-5" />}</span>
+        <p className="font-bold text-sm">History</p>
       </a>
       <a
         role="tab"

@@ -25,10 +25,10 @@ export const ReservationPage = () => {
           transition={{ duration: 1 }}
         >
           <h1 className="text-accent-color sm:text-3xl text-xl font-bold drop-shadow-xl w-full sm:w-4/6">
-            My Reservations
+            My Bookings
           </h1>
           <p className=" sm:w-4/6 flex justify-end items-end font-semibold w-full sm:text-lg text-sm">
-            All Reservations-{booking}
+            All Bookings-{booking}
           </p>
           {booking === 0 ? (
             <NoReservation />

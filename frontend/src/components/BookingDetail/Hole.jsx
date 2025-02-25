@@ -10,7 +10,6 @@ export const Hole = ({ holeNumber }) => {
       setHole(holeNumber);
     }
   };
-  console.log(hole);
 
   return (
     <fieldset className="fieldset p-3 bg-[#2B2B2B] border border-base-300 rounded-box w-full">

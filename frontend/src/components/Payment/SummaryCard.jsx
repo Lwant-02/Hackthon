@@ -4,6 +4,7 @@ import { SummaryInfo } from "./SummaryInfo";
 import { CustomButton } from "../UI/CustomButton";
 import { useUtilsStore } from "../../store/useUtilsStore";
 import { CustomStatus } from "../UI/CustomStatus";
+import { LocationPart } from "../UI/LocationPart";
 
 export const SummaryCard = () => {
   const { openModal } = useUtilsStore();
@@ -23,7 +24,7 @@ export const SummaryCard = () => {
         />
         <SummaryInfo
           name="Location"
-          value="Bangkok Golg Club >Bangkok>Thailand>Chaingmai"
+          value={<LocationPart city="Bangkok" country="Thailand" />}
         />
         <SummaryInfo name="Date" value="Bangkok Golg Club" style="mt-4" />
         <SummaryInfo name="Time" value="Bangkok Golg Club" />

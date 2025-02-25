@@ -6,9 +6,9 @@ export const ReviewCard = ({ delay, rating, name, pic, comment, day }) => {
   return (
     <motion.div
       className="card sm:card-sm card-xs sm:w-72 w-auto sm:p-0 p-2 bg-base-100  shadow-lg cursor-pointer "
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: delay }}
+      transition={{ duration: 1, delay: delay }}
       viewport={{ once: true }}
     >
       <div className="card-body gap-3 ">

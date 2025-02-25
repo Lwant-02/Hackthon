@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import { CourseCard } from "../components/Booking/CourseCard";
@@ -8,9 +8,19 @@ import { Footer } from "../components/UI/Footer";
 import { Bot } from "../components/UI/Bot";
 import { ChatbotBox } from "../components/UI/ChatbotBox";
 import { images } from "../utils/constant";
+import { useBookingStore } from "../store/useBookingStore";
+import { Spinner } from "../components/UI/Spinner";
+import { CustomNotFound } from "../components/UI/CustomNotFound";
 
 export const BookingPage = () => {
+  const { courses } = useBookingStore();
   const [showChat, setShowChat] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
+  const [filteredCourses, setFilteredCourses] = useState([]);
+  const [gotClick, setGotClick] = useState(false);
+
   return (
     <div className="relative w-full flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col">
       <motion.div
@@ -36,22 +46,102 @@ export const BookingPage = () => {
           name="Search Tee Times"
           textStyle="sm:text-3xl text-lg font-semibold"
         />
-        <BookingSearchField />
-        <p className=" sm:text-2xl mt-5 font-bold">Recommended Courses</p>
-        <div className="grid sm:grid-cols-3 grid-cols-1 mt-7 gap-3 mb-7">
-          <CourseCard delay={0.1} status="Recommended" />
-          <CourseCard delay={0.2} status="Recommended" />
-          <CourseCard delay={0.2} status="Recommended" />
-        </div>
-        <Divider
-          name="All Courses"
-          textStyle="sm:text-3xl text-lg font-semibold"
+        <BookingSearchField
+          value={searchQuery}
+          setSearchQuery={setSearchQuery}
+          setFilteredCourses={setFilteredCourses}
+          setIsSearching={setIsSearching}
+          setHasSearched={setHasSearched}
+          setGotClick={setGotClick}
         />
-        <div className="grid sm:grid-cols-3 mt-7 gap-5 mb-7">
-          <CourseCard delay={0.1} status="Avaliable" />
-          <CourseCard delay={0.2} status="Avaliable" />
-          <CourseCard delay={0.2} status="Avaliable" />
-        </div>
+        {searchQuery && hasSearched ? (
+          <div className="w-full h-full">
+            {hasSearched && (
+              <p className=" sm:text-2xl mt-5 font-bold">
+                Golf Found-{filteredCourses.length}
+              </p>
+            )}
+
+            {/* If searched and no results found, show CustomNotFound */}
+            {isSearching ? (
+              <div className=" w-full h-96 flex justify-center items-center">
+                <Spinner size="size-10" />
+              </div>
+            ) : (
+              hasSearched &&
+              filteredCourses.length === 0 && (
+                <div className="flex justify-center items-center">
+                  <CustomNotFound
+                    type="data"
+                    title="Cannot find this course!"
+                  />
+                </div>
+              )
+            )}
+            {!isSearching && hasSearched && filteredCourses.length > 0 && (
+              <div className="grid sm:grid-cols-3 grid-cols-1 mt-7 gap-3 mb-7  sm:pl-12 w-full">
+                {filteredCourses.map((course, index) => (
+                  <CourseCard
+                    key={course.courseName}
+                    name={course.courseName}
+                    image={course.image}
+                    subDescription={course.subDescription}
+                    rating={course.rating}
+                    status="Available"
+                    delay={0.1 * (index + 1)}
+                    discount={course.discount}
+                    location={course.location}
+                    id={course._id}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            <p className=" sm:text-2xl mt-5 font-bold">Recommended Courses</p>
+            <div className="grid sm:grid-cols-3 grid-cols-1 mt-7 gap-3 mb-7 w-full  sm:pl-12">
+              {courses
+                .filter((course) => course.rating >= 4.9)
+                .map((item, index) => (
+                  <CourseCard
+                    delay={0.1 * (index + 1)}
+                    status="Recommended"
+                    image={item.image}
+                    name={item.courseName}
+                    rating={item.rating}
+                    subDescription={item.subDescription}
+                    key={index}
+                    discount={item.discount}
+                    id={item._id}
+                    location={item.location}
+                    yard={item.yard}
+                    description={item.description}
+                  />
+                ))}
+            </div>
+            <Divider
+              name="All Courses"
+              textStyle="sm:text-3xl text-lg font-semibold"
+            />
+            <div className="grid sm:grid-cols-3 mt-7 gap-5 mb-7 mx-auto w-full sm:pl-12">
+              {courses.map((course, index) => (
+                <CourseCard
+                  key={course.courseName}
+                  name={course.courseName}
+                  image={course.image}
+                  subDescription={course.subDescription}
+                  rating={course.rating}
+                  status="Available"
+                  delay={0.1 * (index + 1)}
+                  discount={course.discount}
+                  id={course._id}
+                  location={course.location}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
       <Footer />
       <Bot setShowChat={setShowChat} />

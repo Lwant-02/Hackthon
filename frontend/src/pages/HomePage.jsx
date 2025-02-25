@@ -53,6 +53,7 @@ export const HomePage = () => {
               key={item.title}
               name={item.title}
               description={item.description}
+              image={item.image}
             />
           ))}
         </div>

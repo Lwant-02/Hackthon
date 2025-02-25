@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { AboutCourseCard } from "../components/BookingDetail/AboutCourseCard";
 import { BookingContainer } from "../components/BookingDetail/BookingContainer";
@@ -6,9 +6,21 @@ import { useAuthStore } from "../store/useAuthStore";
 import { CustomStatus } from "../components/UI/CustomStatus";
 import { Packages } from "../components/UI/Packages";
 import { images, packages } from "../utils/constant";
+import { useBookingStore } from "../store/useBookingStore";
+import { CustomButton } from "../components/UI/CustomButton";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const BookingDetailPage = () => {
   const { authUser } = useAuthStore();
+  const { course, getCourse } = useBookingStore();
+  const navigate = useNavigate();
+  const { courseId } = useParams();
+
+  useEffect(() => {
+    if (!courseId) navigate(-1);
+    getCourse(courseId);
+  }, [navigate, courseId]);
+
   return (
     <div className="relative w-full flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col">
       <motion.div
@@ -21,17 +33,29 @@ export const BookingDetailPage = () => {
         <div className="absolute inset-0 bg-black opacity-30" />
         <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-6">
           <h1 className="text-primary-color sm:text-5xl text-xl font-bold drop-shadow-xl">
-            Experience Luxury Redefined at Bangkok Gold Club
+            Experience Luxury Redefined at {course?.courseName}
           </h1>
           <p className="text-primary-color sm:text-2xl text-sm mt-2 font-bold">
-            A breathtaking aerial view of the lush, manicured golf course with
-            the Bangkok skyline in the distance, showcasing the perfect blend of
-            nature and urban luxury.
+            {course?.subDescription}
           </p>
+          <CustomButton
+            buttonName="Back To Booking"
+            type="secondaryButton"
+            style="mt-2"
+            url="/booking"
+          />
         </div>
       </motion.div>
       <div className="py-8 sm:w-5/6 w-full sm:px-0 px-3 flex flex-col gap-4 ">
-        <AboutCourseCard />
+        <AboutCourseCard
+          description={course?.description}
+          discount={course?.discount}
+          location={course?.location}
+          name={course?.courseName}
+          rating={course?.rating}
+          yard={course?.yard}
+          image={course?.image}
+        />
         <motion.div
           className="w-full flex flex-col justify-center items-center gap-4 bg-white h-auto rounded-lg shadow-lg p-4"
           initial={{ opacity: 0, y: 50 }}
