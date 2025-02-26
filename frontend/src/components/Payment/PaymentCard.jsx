@@ -1,7 +1,7 @@
 import React from "react";
 import VisaLogo from "../../assets/svg/visa.svg";
 
-export const PaymentCard = () => {
+export const PaymentCard = ({ formData, setFormData }) => {
   return (
     <div className="w-full bg-white rounded-lg p-3 flex gap-2 justify-start items-start border border-base-content/10 shadow-md flex-col pb-5">
       <p className="text-lg font-semibold">Payment Detail</p>
@@ -17,6 +17,10 @@ export const PaymentCard = () => {
               placeholder="****_****_****_****"
               className="input w-full pr-14 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
               name="card-number"
+              value={formData.cardNumber || ""}
+              onChange={(e) =>
+                setFormData({ ...formData, cardNumber: e.target.value })
+              }
             />
             <img
               src={VisaLogo}
@@ -33,6 +37,10 @@ export const PaymentCard = () => {
               className="input w-full pr-14 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
               placeholder="MM/YY"
               name="date"
+              value={formData.expiryDate || ""}
+              onChange={(e) =>
+                setFormData({ ...formData, expiryDate: e.target.value })
+              }
             />
           </div>
           <div className="sm:flex-1 w-full flex flex-col gap-1">
@@ -42,6 +50,10 @@ export const PaymentCard = () => {
               className="input w-full pr-14 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
               placeholder="***"
               name="cvc"
+              value={formData.cvc || ""}
+              onChange={(e) =>
+                setFormData({ ...formData, cvc: e.target.value })
+              }
             />
           </div>
         </div>

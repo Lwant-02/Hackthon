@@ -2,18 +2,29 @@ import React from "react";
 import { CustomButton } from "../UI/CustomButton";
 import { ShoppingCart } from "lucide-react";
 import { SummaryInfo } from "../Payment/SummaryInfo";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useBookingStore } from "../../store/useBookingStore";
 import { useAuthStore } from "../../store/useAuthStore";
-import { useUtilsStore } from "../../store/useUtilsStore";
+import toast from "react-hot-toast";
 
 export const OrderContainer = () => {
   const { authUser } = useAuthStore();
-  const { packageType, hole, timeAndPrice } = useBookingStore();
+  const { packageType, hole, timeAndPrice, setGolfer, golfer } =
+    useBookingStore();
   const { courseId } = useParams();
+  const navigate = useNavigate();
 
-  console.log("pack", typeof packageType.price);
-  console.log(typeof timeAndPrice.price);
+  const handleBooknow = () => {
+    if (!hole || !timeAndPrice.time || !timeAndPrice.price) {
+      toast.error("You must select Hole and Tee Time first!");
+      return;
+    }
+    if (!golfer) {
+      toast.error("You must fill the number of golfer!");
+      return;
+    }
+    navigate(`/booking/check-out/${courseId}`);
+  };
 
   return (
     <div className="sm:w-96 flex flex-col justify-start items-start bg-primary-color rounded-xl overflow-hidden shadow-md h-auto border border-base-content/10">
@@ -41,8 +52,11 @@ export const OrderContainer = () => {
           <input
             type="text"
             placeholder="Type the number of Golfer"
-            className="input w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-color focus:border-transparent"
+            className="input  w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-color focus:border-transparent"
             name="golfer"
+            value={golfer || ""}
+            onChange={(e) => setGolfer(e.target.value)}
+            required
           />
           <p className="text-xs opacity-45">
             Note:The minimum number of golfer is 2 persons/group
@@ -61,8 +75,8 @@ export const OrderContainer = () => {
           <CustomButton
             buttonName="Book Now"
             icon={<ShoppingCart />}
-            url={`/booking/check-out/${courseId}`}
-            type="secondaryButton"
+            onClick={handleBooknow}
+            type="submitButton"
           />
         </div>
       </div>

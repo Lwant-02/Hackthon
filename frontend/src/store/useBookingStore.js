@@ -9,6 +9,19 @@ export const useBookingStore = create((set) => ({
   course: null,
   packageType: {},
   timeAndPrice: {},
+  dateAndTime: "",
+  golfer: null,
+  total: null,
+  setTotal: (v) => {
+    set({ total: v });
+  },
+  setGolfer: (v) => {
+    set({ golfer: v });
+  },
+  setDateAndTime: (date) => {
+    set({ dateAndTime: date });
+  },
+  getUpdateTimeAndPrice: () => {},
   setTimeAndPrice: (data) => {
     set({ timeAndPrice: data });
   },

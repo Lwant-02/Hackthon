@@ -1,20 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useBookingStore } from "../../store/useBookingStore";
 
 const DateNavigator = () => {
+  const { setDateAndTime } = useBookingStore();
   const [date, setDate] = useState(new Date());
+
+  const formatDate = (date) => {
+    const options = { weekday: "short", day: "2-digit", month: "short" };
+    return date.toLocaleDateString("en-GB", options);
+  };
+  useEffect(() => {
+    const formattedDate = formatDate(date);
+    setDateAndTime(formattedDate);
+  }, [date, setDateAndTime]);
 
   const changeDate = (days) => {
     setDate((prevDate) => {
       const newDate = new Date(prevDate);
       newDate.setDate(newDate.getDate() + days);
+
       return newDate;
     });
-  };
-
-  const formatDate = (date) => {
-    const options = { weekday: "short", day: "2-digit", month: "short" };
-    return date.toLocaleDateString("en-GB", options);
   };
 
   return (

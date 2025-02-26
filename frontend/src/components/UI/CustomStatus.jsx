@@ -4,7 +4,14 @@ import { X } from "lucide-react";
 import { useUtilsStore } from "../../store/useUtilsStore";
 import { CustomButton } from "./CustomButton";
 
-export const CustomStatus = ({ status, title, subTitle, url, buttonTitle }) => {
+export const CustomStatus = ({
+  status,
+  title,
+  subTitle,
+  url,
+  buttonTitle,
+  hasButton,
+}) => {
   const { closeModal } = useUtilsStore();
   const unsuccessfulStatus = (
     <DotLottieReact
@@ -27,29 +34,33 @@ export const CustomStatus = ({ status, title, subTitle, url, buttonTitle }) => {
       <div className="modal-box">
         <div className="flex w-full justify-between items-center ">
           <h3 className="font-bold text-lg">{title}</h3>
-          <button
-            className="modal-close cursor-pointer p-1 rounded-full hover:bg-accent-color/50 hover:text-primary-color transition-colors duration-300"
-            onClick={() => closeModal()}
-          >
-            <X className="size-4" />
-          </button>
+          {hasButton && (
+            <button
+              className="modal-close cursor-pointer p-1 rounded-full hover:bg-accent-color/50 hover:text-primary-color transition-colors duration-300"
+              onClick={() => closeModal()}
+            >
+              <X className="size-4" />
+            </button>
+          )}
         </div>
         <div className="w-full h-auto">
           {status === "success" ? successfulStatus : unsuccessfulStatus}
           <p className="py-4 text-sm font-semibold text-center">{subTitle}</p>
         </div>
-        <div className="modal-action flex justify-end items-center gap-3">
-          <CustomButton
-            buttonName="Cancel"
-            onClick={() => closeModal()}
-            type="primaryButton"
-          />
-          <CustomButton
-            buttonName={buttonTitle}
-            url={url}
-            type="secondaryButton"
-          />
-        </div>
+        {hasButton && (
+          <div className="modal-action flex justify-end items-center gap-3">
+            <CustomButton
+              buttonName="Cancel"
+              onClick={() => closeModal()}
+              type="primaryButton"
+            />
+            <CustomButton
+              buttonName={buttonTitle}
+              url={url}
+              type="secondaryButton"
+            />
+          </div>
+        )}
       </div>
     </dialog>
   );

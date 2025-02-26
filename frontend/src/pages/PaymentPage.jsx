@@ -1,5 +1,5 @@
 import { CircleAlert } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { InformationCard } from "../components/Payment/InformationCard";
 import { PaymentCard } from "../components/Payment/PaymentCard";
@@ -7,6 +7,11 @@ import { CancelPolicy } from "../components/Reservation/CancelPolicy";
 import { SummaryCard } from "../components/Payment/SummaryCard";
 
 export const PaymentPage = () => {
+  const [formData, setFormData] = useState({
+    cardNumber: "",
+    expiryDate: "",
+    cvc: "",
+  });
   return (
     <div className="py-8 sm:w-5/6 w-auto sm:px-0 px-3 flex justify-center items-center gap-7 mx-auto">
       <div className="w-full h-auto flex justify-start items-start flex-col gap-3">
@@ -29,10 +34,10 @@ export const PaymentPage = () => {
               </p>
             </div>
             <InformationCard />
-            <PaymentCard />
+            <PaymentCard setFormData={setFormData} formData={formData} />
             <CancelPolicy />
           </motion.div>
-          <SummaryCard />
+          <SummaryCard formData={formData} />
         </div>
       </div>
     </div>

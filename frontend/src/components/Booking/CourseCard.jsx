@@ -83,6 +83,7 @@ export const CourseCard = ({
         buttonTitle="Sign In"
         subTitle="Please! Sign in first in order to continue this booking!"
         url="/signin"
+        hasButton={true}
       />
     </motion.div>
   );

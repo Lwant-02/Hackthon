@@ -2,10 +2,11 @@ import React from "react";
 import { useBookingStore } from "../../store/useBookingStore";
 
 export const Hole = ({ holeNumber }) => {
-  const { hole, setHole } = useBookingStore();
+  const { hole, setHole, setTimeAndPrice } = useBookingStore();
   const handleCheckboxChange = () => {
     if (hole === holeNumber) {
       setHole(null);
+      setTimeAndPrice({}); // Clear time and price if it's already selected
     } else {
       setHole(holeNumber);
     }

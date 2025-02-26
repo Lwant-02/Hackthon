@@ -72,7 +72,7 @@ export const ChatbotBox = ({ onClose }) => {
           type="text"
           placeholder="Type a message"
           className="input input-sm input-bordered focus:outline-none focus:ring-0"
-          value={input}
+          value={input || ""}
           name="input"
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {

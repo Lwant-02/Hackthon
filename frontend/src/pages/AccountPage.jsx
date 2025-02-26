@@ -99,7 +99,7 @@ export const AccountPage = () => {
           <Input
             placeholder="Your name"
             name="Your Name"
-            value={formData.fullName}
+            value={formData.fullName || ""}
             icon={<UserRound className="size-5" />}
             onChange={(e) =>
               setFormData({ ...formData, fullName: e.target.value })
@@ -108,7 +108,7 @@ export const AccountPage = () => {
           <Input
             placeholder="Your email"
             name="Email Address"
-            value={formData.email}
+            value={formData.email || ""}
             icon={<Mail className="size-5" />}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
@@ -117,7 +117,7 @@ export const AccountPage = () => {
           <Input
             placeholder="Your phone number"
             name="Phone Number"
-            value={formData.phone}
+            value={formData.phone || ""}
             icon={<Phone className="size-5" />}
             onChange={(e) =>
               setFormData({ ...formData, phone: e.target.value })

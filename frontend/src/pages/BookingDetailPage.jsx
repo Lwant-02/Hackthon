@@ -12,7 +12,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export const BookingDetailPage = () => {
   const { authUser } = useAuthStore();
-  const { course, getCourse } = useBookingStore();
+  const { course, getCourse, setPackage, setHole, setTimeAndPrice } =
+    useBookingStore();
   const navigate = useNavigate();
   const { courseId } = useParams();
 
@@ -43,6 +44,11 @@ export const BookingDetailPage = () => {
             type="secondaryButton"
             style="mt-2"
             url="/booking"
+            onClick={() => {
+              setPackage({});
+              setHole(null);
+              setTimeAndPrice({});
+            }}
           />
         </div>
       </motion.div>
@@ -85,6 +91,7 @@ export const BookingDetailPage = () => {
         buttonTitle="Sign In"
         subTitle="Please! Sign in first in order to continue this booking!"
         url="/signin"
+        hasButton={true}
       />
     </div>
   );

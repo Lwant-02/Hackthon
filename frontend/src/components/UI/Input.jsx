@@ -26,7 +26,7 @@ export const Input = ({
           pattern={pattern}
           minLength={minLength}
           maxLength={maxLength}
-          value={value}
+          value={value || ""}
           onChange={onChange}
           name={name}
         />

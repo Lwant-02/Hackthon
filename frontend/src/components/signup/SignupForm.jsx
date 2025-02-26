@@ -49,7 +49,7 @@ export const SignupForm = () => {
         required={true}
         validateMessage="Name is required"
         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-        value={formData.fullName}
+        value={formData.fullName || ""}
       />
       <Input
         name="Email"
@@ -59,7 +59,7 @@ export const SignupForm = () => {
         validateMessage="Please enter a valid email address"
         required={true}
         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        value={formData.email}
+        value={formData.email || ""}
       />
       <Input
         name="Phone Number"
@@ -68,7 +68,7 @@ export const SignupForm = () => {
         required={true}
         validateMessage="Phone number is required"
         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-        value={formData.phone}
+        value={formData.phone || ""}
       />
       <Input
         name="Password"
@@ -78,7 +78,7 @@ export const SignupForm = () => {
         validateMessage="Password must be at least 8 characters"
         required={true}
         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-        value={formData.password}
+        value={formData.password || ""}
       />
       <CustomButton
         buttonName="GET STARTED"

@@ -41,7 +41,7 @@ export const SinginFrom = () => {
         validateMessage="Please enter a valid email address"
         required={true}
         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        value={formData.email}
+        value={formData.email || ""}
       />
 
       <Input
@@ -52,7 +52,7 @@ export const SinginFrom = () => {
         validateMessage="Password must be at least 8 characters"
         required={true}
         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-        value={formData.password}
+        value={formData.password || ""}
       />
       <CustomButton
         buttonName="CONTINUE"
