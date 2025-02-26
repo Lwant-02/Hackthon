@@ -19,12 +19,13 @@ import { useBookingStore } from "../../store/useBookingStore";
 
 export const AppLayout = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
-  const { getCourses } = useBookingStore();
+  const { getCourses, getBookings } = useBookingStore();
   const location = useLocation();
 
   useEffect(() => {
     checkAuth();
     getCourses();
+    getBookings();
   }, []);
 
   if (isCheckingAuth) {
@@ -49,8 +50,14 @@ export const AppLayout = () => {
           path="/booking-detail/:courseId"
           element={<BookingDetailPage />}
         />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/signin" element={<SingInPage />} />
+        <Route
+          path="/signup"
+          element={!authUser ? <SignUpPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/signin"
+          element={!authUser ? <SingInPage /> : <Navigate to="/" />}
+        />
         <Route
           path="/booking/check-out/:courseId"
           element={authUser ? <PaymentPage /> : <Navigate to="/" />}

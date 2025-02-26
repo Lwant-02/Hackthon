@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { SummaryInfo } from "./SummaryInfo";
 import { CustomButton } from "../UI/CustomButton";
@@ -8,6 +8,7 @@ import { LocationPart } from "../UI/LocationPart";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { useBookingStore } from "../../store/useBookingStore";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export const SummaryCard = ({ formData }) => {
   const {
@@ -23,32 +24,64 @@ export const SummaryCard = ({ formData }) => {
     setPackage,
     setGolfer,
   } = useBookingStore();
+  const { authUser } = useAuthStore();
   const { openModal, closeModal, setActiveTab } = useUtilsStore();
+  const { createBooking } = useBookingStore();
   const { courseId } = useParams();
   const navigate = useNavigate();
+
+  const totalPrice =
+    packageType.price && timeAndPrice.price
+      ? Number(packageType.price) + Number(timeAndPrice.price)
+      : packageType.price || timeAndPrice.price || 0;
 
   useEffect(() => {
     getCourse(courseId);
   }, [courseId]);
 
-  const handlSubmitBooking = (e) => {
+  const handlSubmitBooking = async (e) => {
     e.preventDefault();
+
     if (!formData.cardNumber || !formData.expiryDate || !formData.cvc) {
       toast.error("Please fill out all payment details first!");
       return;
     }
 
-    setHole(null);
-    setPackage({});
-    setTimeAndPrice({});
-    setGolfer(null);
+    //Create booking
+    const bookingRes = await createBooking({
+      userId: authUser._id,
+      user: { name: authUser.fullName, email: authUser.email },
+      bookingDate: dateAndTime,
+      courseId: courseId,
+      golfers: golfer,
+      holes: hole,
+      packageType: { name: packageType.title, price: packageType.price },
+      holePrice: timeAndPrice.price,
+      totalPrice: totalPrice,
+      golfPic: course.image,
+      location: {
+        city: course.location.city,
+        country: course.location.country,
+      },
+      courseName: course.courseName,
+      bookingTime: timeAndPrice.time,
+    });
 
-    openModal();
-    setActiveTab("reservation");
-    setTimeout(() => {
-      closeModal();
-      navigate("/reservation");
-    }, 3000);
+    if (bookingRes) {
+      openModal();
+      setHole(null);
+      setPackage({});
+      setTimeAndPrice({});
+      setGolfer(null);
+
+      setActiveTab("reservation");
+      setTimeout(() => {
+        closeModal();
+        navigate("/reservation");
+      }, 3000);
+    } else {
+      toast.error("Booking failed. Please try again.");
+    }
   };
 
   return (
@@ -89,11 +122,7 @@ export const SummaryCard = ({ formData }) => {
         />
         <SummaryInfo
           name="Total"
-          value={`฿ ${
-            packageType.price && timeAndPrice.price
-              ? Number(packageType.price) + Number(timeAndPrice.price)
-              : packageType.price || timeAndPrice.price || "0"
-          }`}
+          value={`฿ ${totalPrice}`}
           style="mt-5 border-t border-base-content/20 pt-3"
           textStyle="text-lg font-semibold"
           valueStyle="text-lg font-semibold"

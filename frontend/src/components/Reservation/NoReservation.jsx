@@ -11,7 +11,11 @@ export const NoReservation = () => {
         You don't have any booking yet! Please book a reservation to see it
         here.
       </p>
-      <CustomButton buttonName="Book Now" url="/booking" />
+      <CustomButton
+        buttonName="Book Now"
+        url="/booking"
+        type="secondaryButton"
+      />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Spinner } from "./Spinner";
 import { useAuthStore } from "../../store/useAuthStore";
+import { useBookingStore } from "../../store/useBookingStore";
 
 export const CustomButton = ({
   url,
@@ -13,6 +14,7 @@ export const CustomButton = ({
   textStyle,
 }) => {
   const { isSigningup, isSigningin, isUpdatingAccount } = useAuthStore();
+  const { isCreatingBooing } = useBookingStore();
 
   const primaryButton = (
     <Link
@@ -44,7 +46,7 @@ export const CustomButton = ({
       onClick={onClick}
       type="submit"
     >
-      {isSigningin || isSigningup || isUpdatingAccount ? (
+      {isSigningin || isSigningup || isUpdatingAccount || isCreatingBooing ? (
         <Spinner />
       ) : (
         <div className="w-full flex justify-center items-center">

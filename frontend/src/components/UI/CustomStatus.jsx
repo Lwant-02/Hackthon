@@ -11,6 +11,8 @@ export const CustomStatus = ({
   url,
   buttonTitle,
   hasButton,
+  comfirmed,
+  onClick,
 }) => {
   const { closeModal } = useUtilsStore();
   const unsuccessfulStatus = (
@@ -58,6 +60,20 @@ export const CustomStatus = ({
               buttonName={buttonTitle}
               url={url}
               type="secondaryButton"
+            />
+          </div>
+        )}
+        {comfirmed && (
+          <div className="modal-action flex justify-end items-center gap-3">
+            <CustomButton
+              buttonName="Cancel"
+              onClick={() => closeModal()}
+              type="primaryButton"
+            />
+            <CustomButton
+              buttonName={buttonTitle}
+              onClick={onClick}
+              type="submitButton"
             />
           </div>
         )}

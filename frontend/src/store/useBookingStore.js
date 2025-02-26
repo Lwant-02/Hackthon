@@ -12,6 +12,42 @@ export const useBookingStore = create((set) => ({
   dateAndTime: "",
   golfer: null,
   total: null,
+  bookings: [],
+  cancelBookings: [],
+  isGettingCancelBookings: false,
+  isCancelBooking: false,
+  isGettingBookings: false,
+  isCreatingBooking: false,
+  createBooking: async (data) => {
+    try {
+      set({ isCreatingBooking: true });
+      try {
+        const res = await axiosInstance.post("/bookings/create-booking", data);
+        if (res.status === 201) {
+          set((state) => ({ bookings: [res.data, ...state.bookings] }));
+        }
+        return res.data;
+      } catch (error) {}
+    } catch (error) {
+      console.log("Error in createBooking:", error.message);
+      return null;
+    } finally {
+      set({ isCreatingBooking: false });
+    }
+  },
+  getBookings: async () => {
+    set({ isGettingBookings: true });
+    try {
+      const res = await axiosInstance.get("/bookings/get-bookings");
+      if (res.status == 200) {
+        set({ bookings: res.data });
+      }
+    } catch (error) {
+      console.log("Error in getBookings:", error.message);
+    } finally {
+      set({ isGettingBookings: false });
+    }
+  },
   setTotal: (v) => {
     set({ total: v });
   },
@@ -55,6 +91,46 @@ export const useBookingStore = create((set) => ({
     } catch (error) {
     } finally {
       set({ isGettingCourse: false });
+    }
+  },
+  insertCancelBooking: async (data) => {
+    try {
+      const res = await axiosInstance.post(
+        "/bookings/insert-cancel-booking",
+        data
+      );
+      if (res.status === 201) {
+        set((state) => ({
+          cancelBookings: [res.data, ...state.cancelBookings],
+        }));
+      }
+    } catch (error) {
+      console.log("Error in insertCancelBooking:", error.message);
+    }
+  },
+  getCancelBookings: async () => {
+    set({ isGettingCancelBookings: true });
+    try {
+      const res = await axiosInstance.get("/bookings/get-cancel-bookings");
+      if (res) {
+        set({ cancelBookings: res.data });
+      }
+    } catch (error) {
+      console.log("Error in getCancelBookings:", error.message);
+    } finally {
+      set({ isGettingCancelBookings: false });
+    }
+  },
+  cancelBooking: async (bookingId) => {
+    set({ isCancelBooking: true });
+    try {
+      await axiosInstance.delete(`/cancel-booking/${bookingId}`);
+      return true;
+    } catch (error) {
+      console.log("Error in cancelBooking:", error.message);
+      return false;
+    } finally {
+      set({ isCancelBooking: false });
     }
   },
 }));

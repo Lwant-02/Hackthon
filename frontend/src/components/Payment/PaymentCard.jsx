@@ -13,7 +13,7 @@ export const PaymentCard = ({ formData, setFormData }) => {
           <p className="text-sm font-semibold">Card Number</p>
           <div className="relative w-full">
             <input
-              type="text"
+              type="password"
               placeholder="****_****_****_****"
               className="input w-full pr-14 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
               name="card-number"
@@ -33,7 +33,7 @@ export const PaymentCard = ({ formData, setFormData }) => {
           <div className="sm:w-1/2 w-full flex flex-col gap-1">
             <p className="text-sm font-semibold">Expire Date</p>
             <input
-              type="text"
+              type="password"
               className="input w-full pr-14 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
               placeholder="MM/YY"
               name="date"
@@ -46,7 +46,7 @@ export const PaymentCard = ({ formData, setFormData }) => {
           <div className="sm:flex-1 w-full flex flex-col gap-1">
             <p className="text-sm font-semibold">CVC/CVV</p>
             <input
-              type="text"
+              type="password"
               className="input w-full pr-14 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
               placeholder="***"
               name="cvc"
