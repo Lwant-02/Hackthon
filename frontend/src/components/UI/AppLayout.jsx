@@ -19,13 +19,14 @@ import { useBookingStore } from "../../store/useBookingStore";
 
 export const AppLayout = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
-  const { getCourses, getBookings } = useBookingStore();
+  const { getCourses, getBookings, getCancelBookings } = useBookingStore();
   const location = useLocation();
 
   useEffect(() => {
     checkAuth();
     getCourses();
     getBookings();
+    getCancelBookings();
   }, []);
 
   if (isCheckingAuth) {

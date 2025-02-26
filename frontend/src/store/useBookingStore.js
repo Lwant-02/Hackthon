@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { axiosInstance } from "../utils/axiosInstance";
 
-export const useBookingStore = create((set) => ({
+export const useBookingStore = create((set, get) => ({
   isGettingCourse: false,
   isGettingCourses: false,
   hole: null,
@@ -124,7 +124,8 @@ export const useBookingStore = create((set) => ({
   cancelBooking: async (bookingId) => {
     set({ isCancelBooking: true });
     try {
-      await axiosInstance.delete(`/cancel-booking/${bookingId}`);
+      await axiosInstance.delete(`/bookings/cancel-booking/${bookingId}`);
+      get().getBookings();
       return true;
     } catch (error) {
       console.log("Error in cancelBooking:", error.message);

@@ -14,7 +14,7 @@ export const StatusTab = ({ setActiveTab, activeTab }) => {
           }`}
           onClick={() => setActiveTab("comfirmed")}
         >
-          Comfirmed
+          Confirmed
         </a>
         <a
           role="tab"

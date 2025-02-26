@@ -37,7 +37,7 @@ export const Tab = () => {
         }}
       >
         <span>{<ShoppingBag className="size-5" />}</span>
-        <p className="font-bold text-sm">Booking</p>
+        <p className="font-bold text-sm">Explore</p>
       </a>
       <a
         role="tab"
@@ -51,7 +51,7 @@ export const Tab = () => {
         }}
       >
         <span>{<ShoppingCart className="size-5" />}</span>
-        <p className="font-bold text-sm">History</p>
+        <p className="font-bold text-sm">Booking</p>
       </a>
       <a
         role="tab"

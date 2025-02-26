@@ -14,7 +14,7 @@ export const CustomButton = ({
   textStyle,
 }) => {
   const { isSigningup, isSigningin, isUpdatingAccount } = useAuthStore();
-  const { isCreatingBooing } = useBookingStore();
+  const { isCreatingBooking, isCancelBooking } = useBookingStore();
 
   const primaryButton = (
     <Link
@@ -46,7 +46,11 @@ export const CustomButton = ({
       onClick={onClick}
       type="submit"
     >
-      {isSigningin || isSigningup || isUpdatingAccount || isCreatingBooing ? (
+      {isSigningin ||
+      isSigningup ||
+      isUpdatingAccount ||
+      isCreatingBooking ||
+      isCancelBooking ? (
         <Spinner />
       ) : (
         <div className="w-full flex justify-center items-center">
