@@ -110,6 +110,7 @@ export const SearchPage = () => {
                 name={course.courseName}
                 subDescription={course.subDescription}
                 rating={course.rating}
+                location={course.location}
               />
             ))}
           </div>
