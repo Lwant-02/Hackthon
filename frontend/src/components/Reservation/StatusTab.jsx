@@ -18,8 +18,10 @@ export const StatusTab = ({ setActiveTab, activeTab }) => {
         </a>
         <a
           role="tab"
-          className={`tab ${activeTab === "canceled" && "tab-active"} text-xs `}
-          onClick={() => setActiveTab("canceled")}
+          className={`tab ${
+            activeTab === "cancelled" && "tab-active"
+          } text-xs `}
+          onClick={() => setActiveTab("cancelled")}
         >
           Cancelled
         </a>

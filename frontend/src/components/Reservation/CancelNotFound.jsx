@@ -13,11 +13,10 @@ export const CancelNotFound = () => {
       transition={{ duration: 1 }}
     >
       <h3 className=" sm:text-2xl font-bold drop-shadow-xl flex justify-center items-center">
-        Booking Not Found
+        Cancel Booking Not Found
       </h3>
       <p className="font-semibold sm:text-sm text-xs flex justify-center items-center">
-        You don't have any booking yet! Please book a reservation to see it
-        here.
+        You don't have any cancelled bookings.
       </p>
       <CustomButton
         buttonName="Book Now"

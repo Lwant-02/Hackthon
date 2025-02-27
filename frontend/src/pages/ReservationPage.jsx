@@ -53,6 +53,8 @@ export const ReservationPage = () => {
     getCancelBookings();
   }, []);
 
+  console.log(activeTab);
+
   return (
     <div className="py-8 sm:w-5/6 w-auto sm:px-0 px-3 flex flex-col justify-center items-center mx-auto ">
       {!authUser ? (
