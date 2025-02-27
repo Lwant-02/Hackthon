@@ -19,7 +19,7 @@ export const ActionNeed = () => {
       />
       <div className="flex flex-col justify-center items-center gap-3">
         <h1 className="sm:text-3xl text-xl font-semibold">Unlock Features</h1>
-        <p className="sm:text-xl font-semibold">
+        <p className="sm:text-xl text-sm font-semibold">
           You need to sign in first to see your reservations!
         </p>
         <CustomButton
