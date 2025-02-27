@@ -81,6 +81,5 @@ Cape Town: +27 21 852 2388
   - **Rating:** 4.5/5.0 (720+ reviews)
   - **Best Tee Times:** 9:00 AM, 11:00 AM, 1:00 PM, 3:00 PM, 5:00 PM, 7:00 PM
 
-### **Website (Conceptual):**  
-[www.cimso.com/golfbooking](https://www.cimso.com/golfbooking)
+
 `;

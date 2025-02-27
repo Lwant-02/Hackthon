@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  ArrowRight,
-  Award,
-  CalendarFold,
-  ChartNoAxesCombined,
-  Zap,
-} from "lucide-react";
+import { Award, CalendarFold, ChartNoAxesCombined, Zap } from "lucide-react";
 import { motion } from "framer-motion";
-import { CustomButton } from "../UI/CustomButton";
 import Carousel from "../UI/Carousel";
 
 export const NewsSection = () => {
@@ -58,13 +51,6 @@ export const NewsSection = () => {
             <p className="text-sm ">To Be Continue</p>
           </span>
         </div>
-        <CustomButton
-          buttonName="Sign Up Now"
-          icon={<ArrowRight />}
-          type="secondaryButton"
-          onClick={() => setShowChat(true)}
-          style="sm:mb-0 mb-5 mt-3 w-40"
-        />
       </div>
     </motion.div>
   );

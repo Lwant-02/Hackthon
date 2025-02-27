@@ -144,4 +144,114 @@ export const golfData = [
       "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740416602/2_roabds.jpg",
     rating: 4.7,
   },
+  // newCourse
+  {
+    courseName: "Royal Hua Hin Golf Course",
+    subDescription: "Thailand’s oldest golf course, established in 1924.",
+    yard: 6678,
+    location: {
+      city: "Hua Hin",
+      country: "Thailand",
+    },
+    description:
+      "A historic course with scenic mountain views and classic design.",
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740666617/new2_xndafk.jpg",
+    rating: 4.4,
+  },
+  {
+    courseName: "Santiburi Samui Country Club",
+    subDescription: "Koh Samui’s premier golf destination.",
+    yard: 6800,
+    location: {
+      city: "Koh Samui",
+      country: "Thailand",
+    },
+    description: "A stunning course with ocean views and hilly terrain.",
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740666626/new1_n4xvw9.jpg",
+    rating: 4.7,
+  },
+  {
+    courseName: "Khao Kheow Country Club",
+    subDescription: "A 27-hole championship course in Chonburi.",
+    yard: 7100,
+    location: {
+      city: "Chonburi",
+      country: "Thailand",
+    },
+    description:
+      "Designed by Pete Dye, featuring challenging layouts and water hazards.",
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740666628/new5_ehmojb.jpg",
+    rating: 4.6,
+  },
+  {
+    courseName: "Gassan Khuntan Golf & Resort",
+    subDescription: "A hidden gem in northern Thailand.",
+    yard: 7200,
+    location: {
+      city: "Lampang",
+      country: "Thailand",
+    },
+    description:
+      "Surrounded by mountains and rivers, offering a scenic golf experience.",
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740666633/new6_dljaxk.jpg",
+    rating: 4.5,
+  },
+  {
+    courseName: "Rajpruek Club",
+    subDescription: "A private, top-tier course in Bangkok.",
+    yard: 7000,
+    location: {
+      city: "Bangkok",
+      country: "Thailand",
+    },
+    description:
+      "An elite golf club known for its exclusivity and well-kept greens.",
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740666633/new4_wexb4z.jpg",
+    rating: 4.8,
+  },
+  {
+    courseName: "Phoenix Gold Golf & Country Club",
+    subDescription: "A 27-hole championship course in Pattaya.",
+    yard: 7072,
+    location: {
+      city: "Pattaya",
+      country: "Thailand",
+    },
+    description: "Hosts professional tournaments and features scenic fairways.",
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740666637/new3_jdnnxd.jpg",
+    rating: 4.6,
+  },
+  {
+    courseName: "Waterford Valley Golf Club",
+    subDescription: "A peaceful golf retreat in Chiang Rai.",
+    yard: 6930,
+    location: {
+      city: "Chiang Rai",
+      country: "Thailand",
+    },
+    description:
+      "Nestled in lush greenery, offering a relaxing golfing experience.",
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740666649/new7_f3zcdt.jpg",
+    rating: 4.5,
+  },
+  {
+    courseName: "Sea Pines Golf Course",
+    subDescription: "A stunning beachfront golf course in Hua Hin.",
+    yard: 6780,
+    location: {
+      city: "Hua Hin",
+      country: "Thailand",
+    },
+    description: "A links-style course with breathtaking ocean views.",
+    image:
+      "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740666649/new8_ivxmj0.jpg",
+    rating: 4.7,
+  },
 ];

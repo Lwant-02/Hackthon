@@ -48,7 +48,7 @@ export const Tab = () => {
         }  sm:w-auto w-36  gap-1 cursor-pointer items-center sm:justify-center justify-start sm:pl-0 pl-7`}
         onClick={() => {
           setActiveTab("reservation");
-          navigate(`/reservation/${authUser._id}`);
+          navigate(`/reservation`);
           closeDrawer();
         }}
       >

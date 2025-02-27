@@ -16,7 +16,7 @@ export const NoReservation = () => {
         Booking Not Found
       </h3>
       <p className="font-semibold sm:text-sm text-xs flex justify-center items-center">
-        You don't have any booking yet! Please book a reservation to see it
+        You don't have any booking yet! Please make a reservation to see it
         here.
       </p>
       <CustomButton

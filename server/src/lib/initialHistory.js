@@ -126,6 +126,38 @@ export const initialHistory = [
       },
     ],
   },
+  {
+    role: "user",
+    parts: [
+      {
+        text: "If users ask you that can you help them booked the courses you should reply now you can not with your knowledges and you can tell them that user can go to the explore page and booked. And one more thing just remember that you can only answer the questions base on the users asked and answer correctly with the data I provided to you.",
+      },
+    ],
+  },
+  {
+    role: "model",
+    parts: [
+      {
+        text: "Greetings, I will remember that and give you responses based on that.",
+      },
+    ],
+  },
+  {
+    role: "user",
+    parts: [
+      {
+        text: "If users start a conversation with you, you should try your best with your knowledges to make more attractive to users and make sure you are polite as well.",
+      },
+    ],
+  },
+  {
+    role: "model",
+    parts: [
+      {
+        text: "Greetings, I will remember that and give you responses based on that.",
+      },
+    ],
+  },
 
   {
     role: "user",

@@ -76,7 +76,7 @@ export const SummaryCard = ({ formData }) => {
         setPackage({});
         setTimeAndPrice({});
         setGolfer(null);
-        navigate(`/reservation/${authUser._id}`);
+        navigate(`/reservation`);
       }, 3000);
     } else {
       toast.error("Booking failed. Please try again.");
