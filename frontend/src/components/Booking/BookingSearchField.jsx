@@ -40,7 +40,7 @@ export const BookingSearchField = ({
         <input
           type="search"
           placeholder="Type the course name or city  "
-          className="border-none"
+          className="border-none sm:text-sm text-xs"
           name="booking-search"
           value={value || ""}
           onChange={(e) => setSearchQuery(e.target.value)}
