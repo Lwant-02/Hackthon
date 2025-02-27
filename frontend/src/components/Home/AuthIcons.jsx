@@ -16,7 +16,7 @@ export const AuthIcon = () => {
           navigate(`/profile/${authUser.fullName}`);
           closeDrawer();
         }}
-        data-tip="Account"
+        data-tip={authUser.fullName}
       >
         <div className="ring-primary ring-offset-base-100 sm:w-12 w-20 rounded-full ring ring-offset-2 sm:order-2 order-1">
           <img src={authUser.profilePic} alt={authUser.fullName} />

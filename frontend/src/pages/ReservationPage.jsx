@@ -12,10 +12,17 @@ import { StatusTab } from "../components/Reservation/StatusTab";
 import { useUtilsStore } from "../store/useUtilsStore";
 import { CustomStatus } from "../components/UI/CustomStatus";
 import { CancelCard } from "../components/Reservation/CancelCard";
+import { CancelNotFound } from "../components/Reservation/CancelNotFound";
 
 export const ReservationPage = () => {
-  const { bookings, cancelBooking, insertCancelBooking, cancelBookings } =
-    useBookingStore();
+  const {
+    cancelBooking,
+    insertCancelBooking,
+    cancelBookings,
+    userBookings,
+    getUserBookings,
+    getCancelBookings,
+  } = useBookingStore();
   const { openModal, closeModal } = useUtilsStore();
   const { authUser } = useAuthStore();
 
@@ -28,7 +35,10 @@ export const ReservationPage = () => {
     totalPrice,
     cancelDate,
   }) => {
-    await insertCancelBooking({ courseName, golfPic, totalPrice, cancelDate });
+    await insertCancelBooking(
+      { courseName, golfPic, totalPrice, cancelDate },
+      authUser._id
+    );
     const isSuccess = await cancelBooking(bookingId);
     if (isSuccess) {
       openModal();
@@ -37,6 +47,11 @@ export const ReservationPage = () => {
       }, 3000);
     }
   };
+
+  useEffect(() => {
+    getUserBookings();
+    getCancelBookings();
+  }, []);
 
   return (
     <div className="py-8 sm:w-5/6 w-auto sm:px-0 px-3 flex flex-col justify-center items-center mx-auto ">
@@ -57,7 +72,7 @@ export const ReservationPage = () => {
           <StatusTab setActiveTab={setActiveTab} activeTab={activeTab} />
           {activeTab === "comfirmed" ? (
             <p className=" sm:w-4/6 flex justify-end items-end font-semibold w-full sm:text-lg text-sm">
-              All Bookings-{bookings.length}
+              All Bookings-{userBookings.length}
             </p>
           ) : (
             <p className=" sm:w-4/6 flex justify-end items-end font-semibold w-full sm:text-lg text-sm">
@@ -65,10 +80,10 @@ export const ReservationPage = () => {
             </p>
           )}
           {activeTab === "comfirmed" ? (
-            bookings.length === 0 ? (
+            userBookings.length === 0 ? (
               <NoReservation />
             ) : (
-              bookings.map((booking) => (
+              userBookings.map((booking) => (
                 <motion.div
                   className="sm:w-4/6 w-full bg-white border border-base-content/10 shadow-lg rounded-lg p-7 flex flex-col justify-start items-start gap-2"
                   key={booking._id}
@@ -131,7 +146,7 @@ export const ReservationPage = () => {
                     <div className="h-8 flex justify-between items-center border-b border-base-content/10">
                       <p className="font-semibold capitalize">Package Name</p>
                       <p className="font-semibold">
-                        {booking.packageType.name}
+                        {booking.packageType.name || "-"}
                       </p>
                     </div>
                     <div className="h-8 flex justify-between items-center border-b border-base-content/10">
@@ -169,10 +184,10 @@ export const ReservationPage = () => {
                 </motion.div>
               ))
             )
-          ) : cancelBooking.length > 0 ? (
-            <CancelCard />
+          ) : cancelBookings.length === 0 ? (
+            <CancelNotFound />
           ) : (
-            <NoReservation />
+            <CancelCard />
           )}
         </motion.div>
       )}

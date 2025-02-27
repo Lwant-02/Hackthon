@@ -45,7 +45,27 @@ export const CreateBooking = async (req, res) => {
 
 export const GetBookings = async (req, res) => {
   try {
+    // Filter bookings by userId
     const bookings = await Booking.find().lean();
+    if (bookings.length === 0) {
+      return res.status(404).json({ message: "No bookings found f" });
+    }
+    res.status(200).json(bookings);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const GetUserBookings = async (req, res) => {
+  const { _id } = req.user;
+  try {
+    const bookings = await Booking.find({ userId: _id }).lean();
+    if (bookings.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No bookings found for this user" });
+    }
     res.status(200).json(bookings);
   } catch (error) {
     console.log(error);
@@ -68,6 +88,7 @@ export const CancelBooking = async (req, res) => {
 };
 
 export const InsertCancelBooking = async (req, res) => {
+  const { userId } = req.params;
   const { courseName, golfPic, totalPrice, cancelDate } = req.body;
 
   if (!courseName || !golfPic || !totalPrice || !cancelDate) {
@@ -75,6 +96,7 @@ export const InsertCancelBooking = async (req, res) => {
   }
   try {
     const newCancelBooking = await CancelBookingData.create({
+      userId,
       courseName,
       golfPic,
       totalPrice,
@@ -88,8 +110,14 @@ export const InsertCancelBooking = async (req, res) => {
 };
 
 export const GetCancelBookings = async (req, res) => {
+  const { _id } = req.user;
   try {
-    const cancelBookings = await CancelBookingData.find().lean();
+    const cancelBookings = await CancelBookingData.find({ userId: _id }).lean();
+    if (cancelBookings.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No cancelled bookings found for this user" });
+    }
     res.status(200).json(cancelBookings);
   } catch (error) {
     console.log(error);

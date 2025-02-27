@@ -7,9 +7,26 @@ import { timeSlots } from "../../utils/constant";
 import { OrderContainer } from "./OrderContainer";
 import { Hole } from "./Hole";
 import { useBookingStore } from "../../store/useBookingStore";
+import { useParams } from "react-router-dom";
 
 export const BookingContainer = () => {
-  const { hole } = useBookingStore();
+  const { hole, bookings, dateAndTime } = useBookingStore();
+
+  const { courseId } = useParams();
+  const defaultHole = hole ? hole : 9;
+
+  const isBooked = (time) => {
+    const selectedBooking = bookings.filter(
+      (booking) => booking.courseId === courseId
+    );
+
+    return selectedBooking.some(
+      (item) =>
+        item?.bookingDate === dateAndTime &&
+        item.holes === defaultHole &&
+        item.bookingTime === time
+    );
+  };
 
   return (
     <motion.div
@@ -47,6 +64,7 @@ export const BookingContainer = () => {
                       ? time.price18
                       : time.price9
                   }
+                  isBooked={isBooked(time.time)}
                 />
               ))}
             </div>

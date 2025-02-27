@@ -42,6 +42,11 @@ export const Booking =
 
 const cancelBookingSchema = new mongoose.Schema(
   {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
     courseName: { type: String, required: true },
     golfPic: { type: String, required: true },
     totalPrice: { type: Number, required: true },

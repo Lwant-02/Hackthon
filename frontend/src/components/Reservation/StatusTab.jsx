@@ -21,7 +21,7 @@ export const StatusTab = ({ setActiveTab, activeTab }) => {
           className={`tab ${activeTab === "canceled" && "tab-active"} text-xs `}
           onClick={() => setActiveTab("canceled")}
         >
-          Canceled
+          Cancelled
         </a>
       </div>
     </div>

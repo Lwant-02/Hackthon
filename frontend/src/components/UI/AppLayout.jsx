@@ -19,13 +19,15 @@ import { useBookingStore } from "../../store/useBookingStore";
 
 export const AppLayout = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
-  const { getCourses, getBookings, getCancelBookings } = useBookingStore();
+  const { getCourses, getBookings, getCancelBookings, getUserBookings } =
+    useBookingStore();
   const location = useLocation();
 
   useEffect(() => {
     checkAuth();
     getCourses();
     getBookings();
+    getUserBookings();
     getCancelBookings();
   }, []);
 
@@ -68,7 +70,7 @@ export const AppLayout = () => {
           path="/profile/:name"
           element={authUser ? <AccountPage /> : <Navigate to="/" />}
         />
-        <Route path="/reservation" element={<ReservationPage />} />
+        <Route path="/reservation/:userId" element={<ReservationPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="*" element={<FallbackPage />} />
       </Routes>

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 import { CourseCard } from "../components/Booking/CourseCard";
 import { BookingSearchField } from "../components/Booking/BookingSearchField";
 import { Divider } from "../components/UI/Divider";
-import { Footer } from "../components/UI/Footer";
 import { Bot } from "../components/UI/Bot";
 import { ChatbotBox } from "../components/UI/ChatbotBox";
 import { images } from "../utils/constant";
@@ -141,7 +140,7 @@ export const BookingPage = () => {
           </>
         )}
       </div>
-      <Footer />
+
       <Bot setShowChat={setShowChat} />
       {showChat && <ChatbotBox onClose={() => setShowChat(false)} />}
     </div>

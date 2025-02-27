@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { axiosInstance } from "../utils/axiosInstance";
+import { useAuthStore } from "./useAuthStore";
 
 export const useBookingStore = create((set, get) => ({
   isGettingCourse: false,
@@ -14,6 +15,8 @@ export const useBookingStore = create((set, get) => ({
   total: null,
   bookings: [],
   cancelBookings: [],
+  userBookings: [],
+  isGettingUserBookings: false,
   isGettingCancelBookings: false,
   isCancelBooking: false,
   isGettingBookings: false,
@@ -21,13 +24,13 @@ export const useBookingStore = create((set, get) => ({
   createBooking: async (data) => {
     try {
       set({ isCreatingBooking: true });
-      try {
-        const res = await axiosInstance.post("/bookings/create-booking", data);
-        if (res.status === 201) {
-          set((state) => ({ bookings: [res.data, ...state.bookings] }));
-        }
-        return res.data;
-      } catch (error) {}
+
+      const res = await axiosInstance.post("/bookings/create-booking", data);
+      if (res.status === 201) {
+        set((state) => ({ bookings: [res.data, ...state.bookings] }));
+      }
+      get().getUserBookings();
+      return res.data;
     } catch (error) {
       console.log("Error in createBooking:", error.message);
       return null;
@@ -40,10 +43,13 @@ export const useBookingStore = create((set, get) => ({
     try {
       const res = await axiosInstance.get("/bookings/get-bookings");
       if (res.status == 200) {
-        set({ bookings: res.data });
+        set({ bookings: res.data || [] });
       }
     } catch (error) {
-      console.log("Error in getBookings:", error.message);
+      if (import.meta.env.NODE_ENV !== "production") {
+        console.log("Error in getBookings:", error.message);
+      }
+      set({ bookings: [] });
     } finally {
       set({ isGettingBookings: false });
     }
@@ -76,7 +82,9 @@ export const useBookingStore = create((set, get) => ({
         set({ courses: res.data });
       }
     } catch (error) {
-      console.log("Error in getCourses:", error.message);
+      if (import.meta.env.NODE_ENV !== "production") {
+        console.log("Error in getCourses:", error.message);
+      }
     } finally {
       set({ isGettingCourses: false });
     }
@@ -89,14 +97,17 @@ export const useBookingStore = create((set, get) => ({
         set({ course: res.data });
       }
     } catch (error) {
+      if (import.meta.env.NODE_ENV !== "production") {
+        console.log("Error in getCourse:", error.message);
+      }
     } finally {
       set({ isGettingCourse: false });
     }
   },
-  insertCancelBooking: async (data) => {
+  insertCancelBooking: async (data, userId) => {
     try {
       const res = await axiosInstance.post(
-        "/bookings/insert-cancel-booking",
+        `/bookings/insert-cancel-booking/${userId}`,
         data
       );
       if (res.status === 201) {
@@ -116,7 +127,9 @@ export const useBookingStore = create((set, get) => ({
         set({ cancelBookings: res.data });
       }
     } catch (error) {
-      console.log("Error in getCancelBookings:", error.message);
+      if (import.meta.env.NODE_ENV !== "production") {
+        console.log("Error in getCancelBookings:", error.message);
+      }
     } finally {
       set({ isGettingCancelBookings: false });
     }
@@ -125,13 +138,31 @@ export const useBookingStore = create((set, get) => ({
     set({ isCancelBooking: true });
     try {
       await axiosInstance.delete(`/bookings/cancel-booking/${bookingId}`);
-      get().getBookings();
+      get().getUserBookings();
       return true;
     } catch (error) {
-      console.log("Error in cancelBooking:", error.message);
+      if (import.meta.env.NODE_ENV !== "production") {
+        console.log("Error in cancelBooking:", error.message);
+      }
       return false;
     } finally {
       set({ isCancelBooking: false });
+    }
+  },
+  getUserBookings: async () => {
+    set({ isGettingUserBookings: true });
+    try {
+      const res = await axiosInstance.get("/bookings/get-user-bookings");
+      if (res.status === 200) {
+        set({ userBookings: res.data || [] });
+      }
+    } catch (error) {
+      if (import.meta.env.NODE_ENV !== "production") {
+        console.log("Error in getUserBookings:", error.message);
+      }
+      set({ userBookings: [] });
+    } finally {
+      set({ isGettingUserBookings: false });
     }
   },
 }));

@@ -1,8 +1,10 @@
 import { House, Info, ShoppingCart, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useUtilsStore } from "../../store/useUtilsStore";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export const Tab = () => {
+  const { authUser } = useAuthStore();
   const { closeDrawer, setActiveTab, activeTab } = useUtilsStore();
   const navigate = useNavigate();
 
@@ -46,7 +48,7 @@ export const Tab = () => {
         }  sm:w-auto w-36  gap-1 cursor-pointer items-center sm:justify-center justify-start sm:pl-0 pl-7`}
         onClick={() => {
           setActiveTab("reservation");
-          navigate("/reservation");
+          navigate(`/reservation/${authUser._id}`);
           closeDrawer();
         }}
       >

@@ -14,10 +14,10 @@ export const Footer = () => {
           Home
         </Link>
         <Link className="link link-hover" to="/booking">
-          Booking
+          Explore
         </Link>
         <Link className="link link-hover" to="/reservation">
-          Reservation
+          Booking
         </Link>
         <Link className="link link-hover" to="/about">
           About us
