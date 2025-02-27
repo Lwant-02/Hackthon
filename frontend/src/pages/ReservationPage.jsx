@@ -136,34 +136,52 @@ export const ReservationPage = () => {
                   </div>
                   <div className="w-full rounded-lg p-2 flex flex-col gap-2 border border-base-content/10 mt-2">
                     <div className="h-8 flex justify-between items-center border-b border-base-content/10">
-                      <p className="font-semibold capitalize">
+                      <p className="font-semibold capitalize opacity-60 sm:text-base text-sm">
                         Number of golfer
                       </p>
-                      <p className="font-semibold">{booking.golfers}</p>
+                      <p className="font-semibold sm:text-base text-sm">
+                        {booking.golfers}
+                      </p>
                     </div>
                     <div className="h-8 flex justify-between items-center border-b border-base-content/10">
-                      <p className="font-semibold capitalize">Hole</p>
-                      <p className="font-semibold">{booking.holes} Hole</p>
+                      <p className="font-semibold capitalize sm:text-base text-sm opacity-60">
+                        Hole
+                      </p>
+                      <p className="font-semibold sm:text-base text-sm">
+                        {booking.holes} Hole
+                      </p>
                     </div>
                     <div className="h-8 flex justify-between items-center border-b border-base-content/10">
-                      <p className="font-semibold capitalize">Package Name</p>
-                      <p className="font-semibold">
+                      <p className="font-semibold capitalize sm:text-base text-sm opacity-60">
+                        Package Name
+                      </p>
+                      <p className="font-semibold sm:text-base text-sm">
                         {booking.packageType.name || "-"}
                       </p>
                     </div>
                     <div className="h-8 flex justify-between items-center border-b border-base-content/10">
-                      <p className="font-semibold capitalize">Package Price</p>
-                      <p className="font-semibold">
+                      <p className="font-semibold capitalize sm:text-base text-sm opacity-60">
+                        Package Price
+                      </p>
+                      <p className="font-semibold sm:text-base text-sm">
                         ฿{booking.packageType.price}
                       </p>
                     </div>
                     <div className="h-8 flex justify-between items-center border-b border-base-content/10">
-                      <p className="font-semibold capitalize">Hole Price</p>
-                      <p className="font-semibold">฿{booking.holePrice}</p>
+                      <p className="font-semibold capitalize sm:text-base text-sm opacity-60">
+                        Hole Price
+                      </p>
+                      <p className="font-semibold sm:text-base text-sm">
+                        ฿{booking.holePrice}
+                      </p>
                     </div>
                     <div className="h-8 flex justify-between items-center">
-                      <p className="font-semibold capitalize">Total</p>
-                      <p className="font-semibold">฿{booking.totalPrice}</p>
+                      <p className="font-semibold capitalize sm:text-base text-sm opacity-60">
+                        Total
+                      </p>
+                      <p className="font-semibold sm:text-base text-sm">
+                        ฿{booking.totalPrice}
+                      </p>
                     </div>
                   </div>
                   <div className="w-full flex justify-end items-end mt-2 w-">
