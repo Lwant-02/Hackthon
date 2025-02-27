@@ -195,7 +195,7 @@ export const ReservationPage = () => {
       )}
       <CustomStatus
         title="Success"
-        subTitle="Successfully canceled your booking."
+        subTitle="Successfully cancelled your booking."
         hasButton={false}
         status="success"
       />
