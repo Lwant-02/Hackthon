@@ -135,7 +135,7 @@ export const SummaryCard = ({ formData }) => {
       <CustomStatus
         status="success"
         title="Booking Success"
-        subTitle="Booking has been successfully booked and redirecting you to the history page."
+        subTitle="Booking has been successfully booked and redirecting you to the booking page."
         hasButton={false}
       />
     </motion.div>
