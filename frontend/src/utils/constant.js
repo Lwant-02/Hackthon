@@ -158,3 +158,34 @@ export const featureCourse = [
       "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740416598/1_wf4dbh.jpg",
   },
 ];
+
+export const aboutImages = {
+  image1:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740645918/About-5_svbdvo.png",
+  image2:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740645918/About-1_wzr86l.png",
+  image3:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740645918/About-3_bbctgd.png",
+  image4:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740645918/About-2_xa75v2.png",
+  image5:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740645918/About-4_b3fo6a.png",
+};
+
+export const newsImages = {
+  image1:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740647833/news5_ihlnym.jpg",
+  image2:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740647833/news6_cedktk.jpg",
+  image3:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740647832/news2_cgjkkn.jpg",
+  image4:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740647832/news4_nw7kwg.jpg",
+  image5:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740647831/news3_n5u2od.jpg",
+  image6:
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740647831/news1_oehby4.jpg",
+};
+
+export const AI_Logo =
+  "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740648154/AI-Image_gpjzig.png";

@@ -12,8 +12,14 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export const BookingDetailPage = () => {
   const { authUser } = useAuthStore();
-  const { course, getCourse, setPackage, setHole, setTimeAndPrice } =
-    useBookingStore();
+  const {
+    course,
+    getCourse,
+    setPackage,
+    setHole,
+    setTimeAndPrice,
+    getBookings,
+  } = useBookingStore();
   const navigate = useNavigate();
   const { courseId } = useParams();
 
@@ -21,6 +27,10 @@ export const BookingDetailPage = () => {
     if (!courseId) navigate(-1);
     getCourse(courseId);
   }, [navigate, courseId]);
+
+  useEffect(() => {
+    getBookings();
+  }, []);
 
   return (
     <div className="relative w-full flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col">

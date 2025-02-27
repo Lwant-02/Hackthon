@@ -3,12 +3,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import img1 from "../../assets/image/news1.jpg";
-import img2 from "../../assets/image/news2.jpg";
-import img3 from "../../assets/image/news3.jpg";
-import img4 from "../../assets/image/news4.jpg";
-import img5 from "../../assets/image/news5.jpg";
-import img6 from "../../assets/image/news6.jpg";
+import { newsImages } from "../../utils/constant";
 
 export default function Carousel() {
   return (
@@ -22,42 +17,42 @@ export default function Carousel() {
     >
       <SwiperSlide className="">
         <img
-          src={img1}
+          src={newsImages.image1}
           alt="Slide 1"
           className="w-full h-[300px] object-cover rounded-lg"
         />
       </SwiperSlide>
       <SwiperSlide className="w-full h-[200px]">
         <img
-          src={img2}
+          src={newsImages.image2}
           alt="Slide 2"
           className="w-full h-[300px] object-cover rounded-lg"
         />
       </SwiperSlide>
       <SwiperSlide className="w-full h-[200px]">
         <img
-          src={img3}
+          src={newsImages.image3}
           alt="Slide 3"
           className="w-full h-[300px] object-cover rounded-lg"
         />
       </SwiperSlide>
       <SwiperSlide className="w-full h-[200px]">
         <img
-          src={img4}
+          src={newsImages.image4}
           alt="Slide 4"
           className="w-full h-[300px] object-cover rounded-lg"
         />
       </SwiperSlide>
       <SwiperSlide className="w-full h-[200px]">
         <img
-          src={img5}
+          src={newsImages.image5}
           alt="Slide 5"
           className="w-full h-[300px] object-cover rounded-lg"
         />
       </SwiperSlide>
       <SwiperSlide className="w-full h-[200px]">
         <img
-          src={img6}
+          src={newsImages.image6}
           alt="Slide 6"
           className="w-full h-[300px] object-cover rounded-lg"
         />

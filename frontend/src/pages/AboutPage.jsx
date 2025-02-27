@@ -1,11 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import img_1 from "../assets/image/About-1.png";
-import img_2 from "../assets/image/About-2.png";
-import img_3 from "../assets/image/About-3.png";
-import img_4 from "../assets/image/About-4.png";
-import img_5 from "../assets/image/About-5.png";
 import { Footer } from "../components/UI/Footer";
+import { aboutImages } from "../utils/constant";
 
 export const AboutPage = () => {
   return (
@@ -55,12 +51,12 @@ export const AboutPage = () => {
             transition={{ duration: 1, delay: 0.3 }}
           >
             <div className=" w-1/2 flex flex-col gap-3 p-2">
-              <img src={img_5} alt="Logo" />
-              <img src={img_4} alt="Logo" />
+              <img src={aboutImages.image1} alt="Logo" />
+              <img src={aboutImages.image5} alt="Logo" />
             </div>
             <div className="flex-1 flex flex-col gap-3 p-2">
-              <img src={img_3} alt="Logo" />
-              <img src={img_2} alt="Logo" />
+              <img src={aboutImages.image3} alt="Logo" />
+              <img src={aboutImages.image4} alt="Logo" />
             </div>
           </motion.div>
         </div>
@@ -72,7 +68,7 @@ export const AboutPage = () => {
             transition={{ duration: 1, delay: 0.8 }}
           >
             <div className="flex p-2">
-              <img src={img_1} alt="Logo" />
+              <img src={aboutImages.image2} alt="Logo" />
             </div>
           </motion.div>
           <motion.div

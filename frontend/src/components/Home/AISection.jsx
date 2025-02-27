@@ -1,7 +1,7 @@
 import { ArrowRight, Award, ChartNoAxesCombined, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { CustomButton } from "../UI/CustomButton";
-import logo from "../../assets/image/AI-Image.png";
+import { AI_Logo } from "../../utils/constant";
 
 export const AISection = ({ setShowChat }) => {
   return (
@@ -48,7 +48,7 @@ export const AISection = ({ setShowChat }) => {
       </div>
       <div className="sm:flex-1 justify-center items-center flex ">
         <img
-          src={logo}
+          src={AI_Logo}
           alt="logo"
           className="size-80 object-cover rounded-lg"
         />

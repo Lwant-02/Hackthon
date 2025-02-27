@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { CustomButton } from "../UI/CustomButton";
-import logo from "../../assets/image/AI-Image.png";
 import Carousel from "../UI/Carousel";
 
 export const NewsSection = () => {
