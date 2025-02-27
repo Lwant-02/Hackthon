@@ -1,4 +1,4 @@
-const golfData = [
+export const golfData = [
   {
     courseName: "Amata Spring Country Club",
     subDescription: "A prestigious golf course in the heart of Thailand.",

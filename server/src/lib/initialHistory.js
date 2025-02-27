@@ -1,3 +1,4 @@
+import { GolfData, timeSlots } from "./constant.js";
 import { data } from "./data.js";
 
 export const initialHistory = [
@@ -67,6 +68,65 @@ export const initialHistory = [
     role: "model",
     parts: [{ text: "Sure! I will remember that." }],
   },
+  {
+    role: "user",
+    parts: [
+      {
+        text: "If user asking about the courses, you need to look at the data that I will provide you and reply to them.Do not answer beyoond the questions",
+      },
+    ],
+  },
+  {
+    role: "model",
+    parts: [{ text: "Sure! I will remember that." }],
+  },
+  {
+    role: "user",
+    parts: [
+      { text: `Here is the informations of courses that we have ${GolfData}` },
+    ],
+  },
+  {
+    role: "model",
+    parts: [
+      {
+        text: "Greetings, I will remember that and give you responses based on that.",
+      },
+    ],
+  },
+  {
+    role: "user",
+    parts: [
+      {
+        text: "Another one if user asking you about the tee time for the course you must take data from the tee time slot that I will provide you and tee time that I will give you is for all course, it means all course have the same tee time but not the same price then you can give them the price as well.And if they asked you is there any promotion, you can just look at the golfData which rating is equal to or greater that 4.9 and for that we have 30% discount and you can you your knowledegs to calculate the discount and reply to the users. ",
+      },
+    ],
+  },
+  {
+    role: "model",
+    parts: [
+      {
+        text: "Greetings, I will remember that and give you responses based on that.",
+      },
+    ],
+  },
+  {
+    role: "user",
+    parts: [
+      {
+        text: `Here is the tee time and price for the courses ${timeSlots}`,
+      },
+    ],
+  },
+  {
+    role: "model",
+    parts: [
+      {
+        text: "Greetings, I will remember that and give you responses based on that.",
+      },
+    ],
+  },
+
   {
     role: "user",
     parts: [
