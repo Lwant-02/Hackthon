@@ -124,7 +124,7 @@ export const BookingPage = () => {
             <div className="grid sm:grid-cols-3 mt-7 gap-5 mb-7 mx-auto w-full sm:pl-12">
               {courses.map((course, index) => (
                 <CourseCard
-                  key={course.courseName}
+                  key={index}
                   name={course.courseName}
                   image={course.image}
                   subDescription={course.subDescription}

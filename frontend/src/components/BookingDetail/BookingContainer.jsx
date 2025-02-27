@@ -44,7 +44,7 @@ export const BookingContainer = () => {
             <div className="flex justify-between items-center">
               <span className="text-black/50 text-xs font-bold sm:p-3 p-1 flex gap-1 justify-start items-center">
                 <CalendarClock className="size-4" />
-                <p>Date and Time(GMT+7) </p>
+                <p>Date and Time </p>
               </span>
               <DateNavigator />
             </div>
