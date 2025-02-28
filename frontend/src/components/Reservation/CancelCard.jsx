@@ -42,13 +42,13 @@ export const CancelCard = () => {
               </div>
             </div>
             <div>
-              <p className="text-lg  font-bold drop-shadow-xl">
+              <p className="sm:text-lg text-sm  font-bold drop-shadow-xl">
                 {booking.courseName}
               </p>
-              <p className="font-semibold text-sm ms:text-base">
+              <p className="font-semibold text-xs sm:text-base">
                 Total Price-฿{booking.totalPrice}
               </p>
-              <p className="font-semibold text-sm ms:text-base">
+              <p className="font-semibold text-xs sm:text-base">
                 Cancel Date-{formattedDate(booking.cancelDate)}
               </p>
             </div>
