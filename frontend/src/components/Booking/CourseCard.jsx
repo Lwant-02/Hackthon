@@ -32,11 +32,11 @@ export const CourseCard = ({
 
   return (
     <motion.div
-      className="w-full"
+      className="w-full "
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: delay }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.01 }}
     >
       <div className="card sm:card-sm card-xs p-2 bg-base-100 sm:w-80 h-[390px] shadow-lg backdrop-blur-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
         <figure className="relative w-full overflow-hidden h-[150px]">

@@ -97,7 +97,7 @@ export const BookingPage = () => {
         ) : (
           <>
             <p className=" sm:text-2xl mt-5 font-bold">Recommended Courses</p>
-            <div className="grid sm:grid-cols-3 grid-cols-1 mt-7 gap-3 mb-7 w-full  sm:pl-12">
+            <div className="grid sm:grid-cols-3 grid-cols-1 mt-3 gap-3 mb-7 w-full  sm:pl-12">
               {courses
                 .filter((course) => course.rating >= 4.9)
                 .map((item, index) => (
