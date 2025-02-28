@@ -54,7 +54,7 @@ export const SearchPage = () => {
         <h1 className="text-accent-color sm:text-3xl text-xl font-bold drop-shadow-xl w-full sm:w-4/6 flex justify-center items-center">
           Explore
         </h1>
-        <p className="sm:text-xl font-semibold text-lg capitalize">
+        <p className="sm:text-xl font-semibold text-lg capitalize text-center">
           Instantly book the world best Golf Courses
         </p>
         <div className="sm:w-4/6 w-full flex gap-4 justify-center items-center">

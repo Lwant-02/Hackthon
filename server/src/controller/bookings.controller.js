@@ -45,10 +45,9 @@ export const CreateBooking = async (req, res) => {
 
 export const GetBookings = async (req, res) => {
   try {
-    // Filter bookings by userId
     const bookings = await Booking.find().lean();
     if (bookings.length === 0) {
-      return res.status(404).json({ message: "No bookings found f" });
+      return res.status(404).json({ message: "No bookings found." });
     }
     res.status(200).json(bookings);
   } catch (error) {
@@ -60,7 +59,9 @@ export const GetBookings = async (req, res) => {
 export const GetUserBookings = async (req, res) => {
   const { _id } = req.user;
   try {
-    const bookings = await Booking.find({ userId: _id }).lean();
+    const bookings = await Booking.find({ userId: _id })
+      .sort({ createdAt: -1 })
+      .lean();
     if (bookings.length === 0) {
       return res
         .status(404)
