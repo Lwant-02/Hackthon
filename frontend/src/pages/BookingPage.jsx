@@ -55,7 +55,7 @@ export const BookingPage = () => {
           <div className="w-full h-full">
             {hasSearched && (
               <p className=" sm:text-2xl mt-5 font-bold">
-                Golf Found-{filteredCourses.length}
+                Course Found-{filteredCourses.length}
               </p>
             )}
 

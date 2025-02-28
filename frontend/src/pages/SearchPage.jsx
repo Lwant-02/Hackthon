@@ -80,7 +80,7 @@ export const SearchPage = () => {
         {/* Show result count only if searched */}
         {hasSearched && (
           <p className="sm:w-4/6 w-full sm:text-sm font-semibold text-xs capitalize">
-            Golf Found - {filteredCourses.length}
+            Course Found-{filteredCourses.length}
           </p>
         )}
 
