@@ -12,7 +12,7 @@ export const CancelPolicy = () => {
           <CircleAlert className="text-orange-400" />
         </span>
       </span>
-      <p className="text-sm font-semibold text-justify">
+      <p className="sm:text-sm text-xs font-semibold text-justify">
         Cancel for free anytime in advance, otherwise you will be charged 100%
         of the service price for not showing up.
       </p>
