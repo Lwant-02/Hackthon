@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { CustomButton } from "../components/UI/CustomButton";
 import { ImagePicker } from "../components/UI/ImagePicker";
