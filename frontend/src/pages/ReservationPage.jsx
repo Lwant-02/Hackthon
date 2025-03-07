@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { CircleCheckBig } from "lucide-react";
 import { CustomButton } from "../components/UI/CustomButton";
@@ -51,7 +51,7 @@ export const ReservationPage = () => {
   useEffect(() => {
     getUserBookings();
     getCancelBookings();
-  }, []);
+  }, [getCancelBookings, getUserBookings]);
 
   return (
     <div className="py-8 sm:w-5/6 w-auto sm:px-0 px-3 flex flex-col justify-center items-center mx-auto ">

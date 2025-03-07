@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { HomeSearchField } from "../components/Home/HomeSearchField";
 import { AISection } from "../components/Home/AISection";

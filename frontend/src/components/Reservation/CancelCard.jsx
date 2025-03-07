@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { CircleCheckBig } from "lucide-react";
 import { useBookingStore } from "../../store/useBookingStore";
