@@ -9,6 +9,7 @@ import { authRouter } from "./route/auths.route.js";
 import { bookingRouter } from "./route/bookings.route.js";
 import { chatBotRouter } from "./route/chat-bot.route.js";
 import { courseRouter } from "./route/courses.route.js";
+import { sendMailRouter } from "./route/send-mail.route.js";
 
 dotenv.config();
 const app = express();
@@ -25,6 +26,7 @@ app.use("/v1/api/auths", authRouter);
 app.use("/v1/api/bookings", bookingRouter);
 app.use("/v1/api/chat", chatBotRouter);
 app.use("/v1/api/courses", courseRouter);
+app.use("/v1/api/emails", sendMailRouter);
 
 // Serve static files from the build directory
 if (process.env.NODE_ENV === "production") {

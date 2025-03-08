@@ -1,4 +1,3 @@
-import React from "react";
 import VisaLogo from "../../assets/svg/visa.svg";
 
 export const PaymentCard = ({ formData, setFormData }) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input } from "../UI/Input";
 import { ArrowRight, Lock, Mail, Phone, UserRound } from "lucide-react";
 import { CustomButton } from "../UI/CustomButton";
@@ -7,9 +7,11 @@ import GoogleLogin from "../UI/GoogleLogin";
 import { FormLink } from "../UI/FormLink";
 import { useAuthStore } from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
+import { useUtilsStore } from "../../store/useUtilsStore";
 
 export const SignupForm = () => {
   const { signUp } = useAuthStore();
+  const { sentWelcomeEmail } = useUtilsStore();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -33,6 +35,10 @@ export const SignupForm = () => {
     if (!isSuccess) {
       return;
     } else {
+      await sentWelcomeEmail({
+        userName: formData.fullName,
+        email: formData.email,
+      });
       navigate("/");
     }
   };

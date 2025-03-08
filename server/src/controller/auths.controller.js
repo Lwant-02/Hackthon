@@ -173,3 +173,20 @@ export function CheckAuth(req, res) {
     res.status(500).json({ message: "Internal server error!" });
   }
 }
+
+export const CheckUserExist = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      return res.status(200).json({ message: "User exists!", success: true });
+    } else {
+      return res
+        .status(404)
+        .json({ message: "User not found!", success: false });
+    }
+  } catch (error) {
+    console.log("Error in CheckUserExist controller:", error.message);
+    res.status(500).json({ message: "Internal server error!", success: false });
+  }
+};

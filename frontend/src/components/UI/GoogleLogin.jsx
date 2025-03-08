@@ -1,14 +1,16 @@
-import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import GoogleLogo from "../../assets/svg/google.svg";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/useAuthStore";
 import { Spinner } from "./Spinner";
+import { useUtilsStore } from "../../store/useUtilsStore";
 
 export default function GoogleLogin() {
-  const { googleSignIn, isGoogleSignIn } = useAuthStore();
+  const { googleSignIn, isGoogleSignIn, checkUserExist } = useAuthStore();
+  const { sentWelcomeEmail } = useUtilsStore();
   const navigate = useNavigate();
+
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
@@ -17,13 +19,20 @@ export default function GoogleLogin() {
           "https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        console.log(response.data);
-
         const formData = {
           fullName: response.data.name,
           email: response.data.email,
           profilePic: response.data.picture,
         };
+        const email = response.data.email;
+        const userExist = await checkUserExist(email);
+
+        if (!userExist) {
+          sentWelcomeEmail({
+            userName: response.data.name,
+            email: response.data.email,
+          });
+        }
         const isSuccess = await googleSignIn(formData);
         if (!isSuccess) {
           return;

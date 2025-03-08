@@ -5,19 +5,22 @@ export const generateConfrimTemplate = ({
   price,
   location,
   dateTime,
+  golfer,
+  hole,
+  packageName,
 }) => `
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 0; background-color: #f4f7fa;">
         <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
             <tr>
                 <td style="background-color: #4a90e2; text-align: center; padding: 20px;">
-                    <p style="font-size: 36px; line-height: 42px; font-weight: 700; color: #fff;">Booking Confrimation✅</p>
+                    <p style="font-size: 36px; line-height: 42px; font-weight: 700; color: #ffffff !important;">Your Booking is Confirmed! 🎉</p>
                 </td>
             </tr>
             <tr>
                 <td style="padding: 40px 30px;">
                     <p style="font-size: 16px; margin-bottom: 25px;">Hello <strong style="color: #4a90e2;">${userName}</strong>,</p>
                     
-                    <p style="font-size: 16px; margin-bottom: 25px;">Thank you for choosing GolfBooking! We are thrilled to have you on board and can’t wait for you to experience an amazing day at the golf course.</p>
+                    <p style="font-size: 16px; margin-bottom: 25px;">Thank you for choosing our online golf booking! We are thrilled to have you on board and can’t wait for you to experience an amazing day at the golf course.</p>
   
                     <p style="font-size: 16px; margin-bottom: 25px;">Your upcoming session details:</p>
   
@@ -29,7 +32,24 @@ export const generateConfrimTemplate = ({
                         </tr>
                         <tr>
                             <td style="font-size: 16px; border-bottom: 1px solid #d0e3ff;">
-                                <strong>Course:</strong> ${courseTitle}
+                                <strong>Course name:</strong> ${courseTitle}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 16px; border-bottom: 1px solid #d0e3ff;">
+                                <strong>Number of Golfer:</strong> ${golfer}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 16px; border-bottom: 1px solid #d0e3ff;">
+                                <strong>Hole:</strong> ${hole}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 16px; border-bottom: 1px solid #d0e3ff;">
+                                <strong>Package name:</strong> ${
+                                  packageName ? packageName : "none"
+                                }
                             </td>
                         </tr>
                         <tr>
@@ -44,7 +64,7 @@ export const generateConfrimTemplate = ({
                         </tr>
                         <tr>
                             <td style="font-size: 16px;">
-                                <strong>Price:</strong> ${price}
+                                <strong>Price:</strong> ${price}฿
                             </td>
                         </tr>
                     </table>
@@ -93,7 +113,7 @@ export const generateBookingCancellationTemplate = ({
         <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
             <tr>
                 <td style="background-color: #e74c3c; text-align: center; padding: 20px;">
-                    <p style="font-size: 54px; line-height: 54px; font-weight: 800; color: white;">Booking Cancelled✅</p>
+                    <p style="font-size: 54px; line-height: 54px; font-weight: 800; color: #ffffff;">Booking Cancelled✅</p>
                 </td>
             </tr>
             <tr>
@@ -116,7 +136,7 @@ export const generateBookingCancellationTemplate = ({
                         
                         <tr>
                             <td style="font-size: 16px; border-bottom: 1px solid #e2b1b1;">
-                                <strong>Price:</strong> ${price}
+                                <strong>Price:</strong> ${price}฿
                             </td>
                         </tr>
                     </table>
@@ -146,3 +166,64 @@ export const generateBookingCancellationTemplate = ({
         </table>
     </div>
     `;
+
+export const generateWelcomeEmailTemplate = ({ userName }) => `
+    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 0; background-color: #f4f7fa;">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <tr>
+                <td style="background-color: #2ecc71; text-align: center; padding: 20px;">
+                    <p style="font-size: 54px; line-height: 54px; font-weight: 800; color:#ffffff !important;">Welcome Aboard! 🎉</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 40px 30px;">                
+                    <p style="font-size: 16px; margin-bottom: 25px;">Hello <strong style="color: #2ecc71;">${userName}</strong>,</p>
+                    
+                    <p style="font-size: 16px; margin-bottom: 25px;">We’re thrilled to have you as a part of our community! Your account has been successfully created, and you’re now ready to explore and book your next golf adventure with us.</p>
+                    
+                    <table cellpadding="15" cellspacing="0" border="0" width="100%" style="background-color: #eaf9f1; border-radius: 10px; margin-bottom: 25px;">
+                        <tr>
+                            <td style="font-size: 16px; text-align: center;">
+                                <img src="https://www.cimso.com/wp-content/uploads/2020/01/cimso-logo-300-transparent.png" alt="Welcome" style="max-width: 100%; height: auto; border-radius: 10px;">
+                            </td>
+                        </tr>
+                    </table>
+  
+                    <p style="font-size: 16px; margin-bottom: 25px;">Here’s what you can do next:</p>
+                    <ul style="font-size: 16px; padding-left: 20px; margin-bottom: 25px;">
+                        <li>🏌️‍♂️ Browse and book top golf courses</li>
+                        <li>📅 Manage your bookings effortlessly</li>
+                        <li>💬 Get exclusive golf tips & offers</li>
+                    </ul>
+
+                    <p style="font-size: 16px; margin-bottom: 25px;">Click the button below to get started:</p>
+                    
+                    <p style="text-align: center;">
+                        <a href="https://cimso-golf-booking-demo.onrender.com" style="background-color: #2ecc71; color: #ffffff; padding: 12px 24px; border-radius: 5px; font-size: 18px; text-decoration: none; display: inline-block;">
+                            Start Exploring ⛳
+                        </a>
+                    </p>
+
+                    <p style="font-size: 16px; margin-top: 30px;">If you have any questions or need assistance, feel free to <a href="mailto:support@yourdomain.com" style="color: #2ecc71; text-decoration: none;">contact our support team</a>.</p>
+                    
+                    <p style="font-size: 16px; margin-top: 30px;">
+                        Best regards,<br>
+                        <strong>Cimso Team</strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: #eaf9f1; padding: 20px; text-align: center; font-size: 14px;">
+                    <p style="margin: 0 0 10px;">
+                        Cimso Online Golf Booking Inc.
+                    </p>
+                    <p style="margin: 0;">
+                        <a href="#" style="color: #2ecc71; text-decoration: none; margin: 0 10px;">Unsubscribe</a> | 
+                        <a href="#" style="color: #2ecc71; text-decoration: none; margin: 0 10px;">Privacy Policy</a> | 
+                        <a href="#" style="color: #2ecc71; text-decoration: none; margin: 0 10px;">Terms of Service</a>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+`;

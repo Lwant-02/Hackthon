@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { SummaryInfo } from "./SummaryInfo";
 import { CustomButton } from "../UI/CustomButton";
@@ -25,7 +25,8 @@ export const SummaryCard = ({ formData }) => {
     setGolfer,
   } = useBookingStore();
   const { authUser } = useAuthStore();
-  const { openModal, closeModal, setActiveTab } = useUtilsStore();
+  const { openModal, closeModal, setActiveTab, sentConfirmEmail } =
+    useUtilsStore();
   const { createBooking } = useBookingStore();
   const { courseId } = useParams();
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export const SummaryCard = ({ formData }) => {
 
   useEffect(() => {
     getCourse(courseId);
-  }, [courseId]);
+  }, [courseId, getCourse]);
 
   const handlSubmitBooking = async (e) => {
     e.preventDefault();
@@ -67,9 +68,23 @@ export const SummaryCard = ({ formData }) => {
       bookingTime: timeAndPrice.time,
     });
 
+    const emailInfo = {
+      userName: authUser.fullName,
+      courseTitle: course.courseName,
+      courseImage: course.image,
+      price: totalPrice,
+      location: `${course.location.city} > ${course.location.country}`,
+      dateTime: `${dateAndTime} at ${timeAndPrice.time}`,
+      email: authUser.email,
+      golfer: golfer,
+      hole: hole,
+      packageName: packageType.title,
+    };
+
     if (bookingRes) {
       openModal();
       setActiveTab("reservation");
+      //Here we sent the email
       setTimeout(() => {
         closeModal();
         setHole(null);
@@ -78,6 +93,7 @@ export const SummaryCard = ({ formData }) => {
         setGolfer(null);
         navigate(`/reservation`);
       }, 3000);
+      await sentConfirmEmail(emailInfo);
     } else {
       toast.error("Booking failed. Please try again.");
     }

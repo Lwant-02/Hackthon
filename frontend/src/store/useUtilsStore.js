@@ -55,4 +55,27 @@ export const useUtilsStore = create((set, get) => ({
       console.log(error);
     }
   },
+  sentConfirmEmail: async (formData) => {
+    try {
+      // Send request to email confirmation API
+      await axiosInstance.post("/emails/send-email-confirm", formData);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  sentCancelEmail: async (formData) => {
+    try {
+      // Send request to email cancellation API
+      await axiosInstance.post("/emails/send-email-cancel", formData);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  sentWelcomeEmail: async (formData) => {
+    try {
+      await axiosInstance.post("/emails/send-email-welcome", formData);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 }));

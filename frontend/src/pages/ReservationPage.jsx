@@ -23,7 +23,7 @@ export const ReservationPage = () => {
     getUserBookings,
     getCancelBookings,
   } = useBookingStore();
-  const { openModal, closeModal } = useUtilsStore();
+  const { openModal, closeModal, sentCancelEmail } = useUtilsStore();
   const { authUser } = useAuthStore();
 
   const [activeTab, setActiveTab] = useState("comfirmed");
@@ -35,10 +35,20 @@ export const ReservationPage = () => {
     totalPrice,
     cancelDate,
   }) => {
+    console.log(courseName);
+
     await insertCancelBooking(
       { courseName, golfPic, totalPrice, cancelDate },
       authUser._id
     );
+    const cancelEmailInfo = {
+      userName: authUser.fullName,
+      email: authUser.email,
+      courseName: courseName,
+      courseImage: golfPic,
+      price: totalPrice,
+      cancellationDate: cancelDate,
+    };
     const isSuccess = await cancelBooking(bookingId);
     if (isSuccess) {
       openModal();
@@ -46,6 +56,7 @@ export const ReservationPage = () => {
         closeModal();
       }, 3000);
     }
+    await sentCancelEmail(cancelEmailInfo);
   };
 
   useEffect(() => {

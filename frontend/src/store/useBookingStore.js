@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { axiosInstance } from "../utils/axiosInstance";
-import { useAuthStore } from "./useAuthStore";
 
 export const useBookingStore = create((set, get) => ({
   isGettingCourse: false,

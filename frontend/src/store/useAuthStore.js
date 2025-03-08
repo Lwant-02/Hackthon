@@ -106,4 +106,21 @@ export const useAuthStore = create((set, get) => ({
       set({ isUpdatingAccount: false });
     }
   },
+  checkUserExist: async (email) => {
+    try {
+      const res = await axiosInstance.post(`/auths/check-user-exist`, {
+        email,
+      });
+      if (res.data.success === true) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      if (import.meta.env.VITE_NODE_ENV === "development") {
+        console.log(error.response.data.message);
+      }
+      return false;
+    }
+  },
 }));

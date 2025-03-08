@@ -1,5 +1,3 @@
-import React from "react";
-
 export const SummaryInfo = ({ name, value, style, textStyle, valueStyle }) => {
   return (
     <div className={`w-full flex justify-between items-center ${style}`}>
