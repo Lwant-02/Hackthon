@@ -61,17 +61,14 @@ export const generateGolfReceiptPDF = async (bookingDetails, pdfPath) => {
           130
         )
         .text(
-          `Date of Booking: ${
-            bookingDetails.bookingDateTime ||
-            new Date().toLocaleString("en-US", {
-              hour: "2-digit",
-              minute: "2-digit",
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-              timeZoneName: "short",
-            })
-          }`,
+          `Date of Booking: ${new Date().toLocaleString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+            timeZoneName: "short",
+          })}`,
           50,
           145
         );
