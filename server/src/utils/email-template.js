@@ -8,6 +8,7 @@ export const generateConfrimTemplate = ({
   golfer,
   hole,
   packageName,
+  email,
 }) => `
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 0; background-color: #f4f7fa;">
         <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
@@ -22,12 +23,17 @@ export const generateConfrimTemplate = ({
                     
                     <p style="font-size: 16px; margin-bottom: 25px;">Thank you for choosing our online golf booking! We are thrilled to have you on board and can’t wait for you to experience an amazing day at the golf course.</p>
   
-                    <p style="font-size: 16px; margin-bottom: 25px;">Your upcoming session details:</p>
+                    <p style="font-size: 16px; margin-bottom: 25px;">Below is your upcoming session details and your receipt:</p>
   
                     <table cellpadding="15" cellspacing="0" border="0" width="100%" style="background-color: #f0f7ff; border-radius: 10px; margin-bottom: 25px;">
-                        <tr>
+                    <tr>
                             <td colspan="2" style="text-align: center; padding: 15px;">
                                 <img src="${courseImage}" alt="${courseTitle}" style="width: 100%; max-width: 500px; border-radius: 8px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 16px; border-bottom: 1px solid #d0e3ff;">
+                                <strong>Email Address:</strong> ${email}
                             </td>
                         </tr>
                         <tr>

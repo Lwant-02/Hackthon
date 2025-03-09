@@ -1,9 +1,13 @@
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
 import { acccountEmail, transporter } from "../config/nodemailer.config.js";
 import {
   generateBookingCancellationTemplate,
   generateConfrimTemplate,
   generateWelcomeEmailTemplate,
 } from "../utils/email-template.js";
+import { generateGolfReceiptPDF } from "../utils/generatePDF.js";
 
 export const SendMailConfirm = async (req, res) => {
   const {
@@ -19,6 +23,26 @@ export const SendMailConfirm = async (req, res) => {
     packageName,
   } = req.body;
   try {
+    //Generate the pdf file first
+    // Get the directory name for the current module
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    const pdfPath = path.join(__dirname, "GolfBookingReceipt.pdf");
+    await generateGolfReceiptPDF(
+      {
+        userName,
+        courseTitle,
+        courseImage,
+        price,
+        location,
+        dateTime,
+        golfer,
+        hole,
+        packageName,
+        email,
+      },
+      pdfPath
+    );
+
     const subject = "Cimso Online Golf Booking Confirmation✅";
     const message = generateConfrimTemplate({
       userName,
@@ -30,16 +54,32 @@ export const SendMailConfirm = async (req, res) => {
       golfer,
       hole,
       packageName,
+      email,
     });
     const mailOption = {
       from: acccountEmail,
       to: email,
       subject: subject,
       html: message,
+      attachments: [
+        {
+          filename: "E-Receipt.pdf",
+          path: pdfPath,
+          contentType: "application/pdf",
+        },
+      ],
     };
+    // Send email
     transporter.sendMail(mailOption, (error, info) => {
-      if (error) return console.log(error, "Error sending mail.");
-      console.log("Email sent:" + info.response);
+      // Remove the temporary PDF after sending
+      fs.unlinkSync(pdfPath);
+
+      if (error) {
+        console.error("Error sending mail:", error);
+        return res.status(500).json({ message: "Error sending email!" });
+      }
+      console.log("Email sent: " + info.response);
+      res.status(200).json({ message: "Email sent successfully!" });
     });
   } catch (error) {
     console.log("Error in SendMailConfirm:", error.message);
