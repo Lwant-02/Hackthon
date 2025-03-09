@@ -115,7 +115,7 @@ export const generateGolfReceiptPDF = async (bookingDetails, pdfPath) => {
           {
             label: bookingDetails.courseTitle,
             value: bookingDetails.dateTime,
-            rightValue: bookingDetails.packageName,
+            rightValue: bookingDetails.packageName || "None",
           },
         ],
         true
