@@ -114,7 +114,7 @@ export const initialHistory = [
     role: "user",
     parts: [
       {
-        text: `Here is the tee time and price for the courses ${timeSlots}`,
+        text: `Here is the tee time and price for the courses ${timeSlots} and if user ask for the time per session, the time per session will be 1 hour.`,
       },
     ],
   },
