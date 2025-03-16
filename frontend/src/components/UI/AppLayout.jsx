@@ -16,6 +16,7 @@ import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "../../store/useAuthStore";
 import { Spinner } from "./Spinner";
 import { useBookingStore } from "../../store/useBookingStore";
+import { TournamentPage } from "../../pages/TournamentPage";
 
 export const AppLayout = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -45,7 +46,7 @@ export const AppLayout = () => {
       {!shouldHideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/booking" element={<BookingPage />} />
+        <Route path="/courses" element={<BookingPage />} />
         <Route
           path="/booking-detail/:courseId"
           element={<BookingDetailPage />}
@@ -69,6 +70,7 @@ export const AppLayout = () => {
         />
         <Route path="/reservation" element={<ReservationPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/tournament" element={<TournamentPage />} />
         <Route path="*" element={<FallbackPage />} />
       </Routes>
       <Toaster toastOptions={{ style: { fontSize: "15px" } }} />

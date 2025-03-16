@@ -9,6 +9,7 @@ import { images, packages } from "../utils/constant";
 import { useBookingStore } from "../store/useBookingStore";
 import { CustomButton } from "../components/UI/CustomButton";
 import { useNavigate, useParams } from "react-router-dom";
+import { useUtilsStore } from "../store/useUtilsStore";
 
 export const BookingDetailPage = () => {
   const { authUser } = useAuthStore();
@@ -21,6 +22,7 @@ export const BookingDetailPage = () => {
     getBookings,
   } = useBookingStore();
   const navigate = useNavigate();
+  const { setActiveTab } = useUtilsStore();
   const { courseId } = useParams();
 
   useEffect(() => {
@@ -50,14 +52,15 @@ export const BookingDetailPage = () => {
             {course?.subDescription}
           </p>
           <CustomButton
-            buttonName="Back To Booking"
+            buttonName="Back To Courses"
             type="secondaryButton"
             style="mt-2"
-            url="/booking"
+            url="/courses"
             onClick={() => {
               setPackage({});
               setHole(null);
               setTimeAndPrice({});
+              setActiveTab("courses");
             }}
           />
         </div>

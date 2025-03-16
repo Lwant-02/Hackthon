@@ -30,9 +30,9 @@ export const Navbar = () => {
               <AuthIcon />
             ) : (
               <CustomButton
-                buttonName="Sign Up"
+                buttonName="Sign In"
                 icon={<ArrowRight className="size-5" />}
-                url="/signup"
+                url="/signin"
                 type="secondaryButton"
               />
             )}

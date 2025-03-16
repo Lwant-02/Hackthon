@@ -52,9 +52,9 @@ export const Drawer = () => {
             />
           ) : (
             <CustomButton
-              buttonName="Sign Up"
+              buttonName="Sign In"
               icon={<ArrowRight className="size-5" />}
-              url="/signup"
+              url="/signin"
               type="secondaryButton"
               style="w-full mt-3"
               onClick={closeDrawer()}

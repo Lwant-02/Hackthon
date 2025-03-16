@@ -1,7 +1,14 @@
 import React from "react";
-import { Award, CalendarFold, ChartNoAxesCombined, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  Award,
+  CalendarFold,
+  ChartNoAxesCombined,
+  Zap,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import Carousel from "../UI/Carousel";
+import { CustomButton } from "../UI/CustomButton";
 
 export const NewsSection = () => {
   return (
@@ -16,7 +23,7 @@ export const NewsSection = () => {
       </div>
       <div className="sm:w-3/6 w-full sm:flex-row flex-col justify-start items-start gap-3 sm:order-2 order-1">
         <h1 className="text-accent-color text-2xl font-bold">
-          The Ultimate Online Golf Tournament
+          The Ultimate Golf Tour Awaits!
         </h1>
         <p className="text-sm text-justify mt-2">
           Get ready to tee off in our Ultimate Online Golf Tournament! Compete
@@ -46,10 +53,16 @@ export const NewsSection = () => {
               system.
             </p>
           </span>
-          <span className="flex justify-center items-center gap-1">
+          {/* <span className="flex justify-center items-center gap-1">
             <CalendarFold className=" p-1 size-7 rounded-full text-accent-color bg-gray-200 " />
             <p className="text-sm ">To Be Continue</p>
-          </span>
+          </span> */}
+          <CustomButton
+            buttonName="More Details"
+            icon={<ArrowRight className="size-5" />}
+            url="/tournament"
+            type="secondaryButton"
+          />
         </div>
       </div>
     </motion.div>
