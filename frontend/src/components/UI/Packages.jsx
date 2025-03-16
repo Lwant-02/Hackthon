@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { CustomButton } from "./CustomButton";
 import { useUtilsStore } from "../../store/useUtilsStore";
@@ -59,8 +59,8 @@ export const Packages = ({ title, price, badge, features, isHome }) => {
             <CustomButton
               buttonName="Get Started"
               type="secondaryButton"
-              url="/booking"
-              onClick={() => setActiveTab("booking")}
+              url="/courses"
+              onClick={() => setActiveTab("courses")}
             />
           </div>
         ) : (

@@ -1,10 +1,9 @@
-import { House, Info, ShoppingCart, ShoppingBag } from "lucide-react";
+import { House, Info, ShoppingCart, Goal } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useUtilsStore } from "../../store/useUtilsStore";
 import { useAuthStore } from "../../store/useAuthStore";
 
 export const Tab = () => {
-  const { authUser } = useAuthStore();
   const { closeDrawer, setActiveTab, activeTab } = useUtilsStore();
   const navigate = useNavigate();
 
@@ -30,16 +29,16 @@ export const Tab = () => {
       <a
         role="tab"
         className={`tab ${
-          activeTab === "booking" && "tab-active"
+          activeTab === "courses" && "tab-active"
         }  sm:w-auto w-36  gap-1 cursor-pointer items-center sm:justify-center  justify-start sm:pl-0 pl-7`}
         onClick={() => {
-          setActiveTab("booking");
-          navigate("/booking");
+          setActiveTab("courses");
+          navigate("/courses");
           closeDrawer();
         }}
       >
-        <span>{<ShoppingBag className="size-5" />}</span>
-        <p className="font-bold text-sm">Explore</p>
+        <span>{<Goal className="size-5" />}</span>
+        <p className="font-bold text-sm">Courses</p>
       </a>
       <a
         role="tab"
