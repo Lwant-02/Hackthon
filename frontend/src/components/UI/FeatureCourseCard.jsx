@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUtilsStore } from "../../store/useUtilsStore";
 
 export const FeatureCourseCard = ({ delay, name, description, image }) => {
@@ -10,13 +10,12 @@ export const FeatureCourseCard = ({ delay, name, description, image }) => {
     <button
       className="flex justify-center items-center hover:scale-105 transition-transform duration-300 "
       onClick={() => {
-        navigate("/booking");
-        setActiveTab("booking");
+        navigate("/courses");
+        setActiveTab("courses");
       }}
     >
       <motion.div
         className="cursor-pointer card sm:card-sm card-xs p-1  bg-base-100  sm:h-[370px] h-80 w-80 shadow-md "
-        to="/booking"
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: delay }}
