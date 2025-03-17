@@ -122,7 +122,8 @@ export const TournamentPage = () => {
             <div className="flex justify-start sm:items-center items-start gap-2">
               <span className="text-lg">🌟</span>
               <p className=" text-base text-accent-color font-bold ">
-                World-Class Course: Play on the breathtaking [Golf Course Name].
+                World-Class Course: Play on the breathtaking Legends Golf
+                Championship.
               </p>
             </div>
             <div className="flex justify-start sm:items-center items-start gap-2">
