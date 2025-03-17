@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  ArrowRight,
-  Award,
-  CalendarFold,
-  ChartNoAxesCombined,
-  Zap,
-} from "lucide-react";
+import { ArrowRight, Award, ChartNoAxesCombined, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import Carousel from "../UI/Carousel";
 import { CustomButton } from "../UI/CustomButton";
@@ -23,15 +17,15 @@ export const NewsSection = () => {
       </div>
       <div className="sm:w-3/6 w-full sm:flex-row flex-col justify-start items-start gap-3 sm:order-2 order-1">
         <h1 className="text-accent-color text-2xl font-bold">
-          The Ultimate Golf Tour Awaits!
+          The Legends Golf Championship Awaits!
         </h1>
         <p className="text-sm text-justify mt-2">
-          Get ready to tee off in our Ultimate Online Golf Tournament! Compete
-          against players of all skill levels in an exciting, action-packed
-          competition. Whether you're a seasoned pro or a weekend warrior, this
-          tournament is your chance to show off your golfing skills. Play
-          through custom-designed courses, take on daily challenges, and earn
-          rewards for your performance.
+          Get ready to tee off in our Legends Golf Championship Tournament!
+          Compete against players of all skill levels in an exciting,
+          action-packed competition. Whether you're a seasoned pro or a weekend
+          warrior, this tournament is your chance to show off your golfing
+          skills. Play through custom-designed courses, take on daily
+          challenges, and earn rewards for your performance.
         </p>
         <div className="flex flex-col gap-2 justify-start items-start mt-3">
           <span className="flex justify-center items-center gap-1">
@@ -47,16 +41,13 @@ export const NewsSection = () => {
             </p>
           </span>
           <span className="flex justify-center items-center gap-1">
-            <ChartNoAxesCombined className=" p-1 size-7 rounded-full text-accent-color bg-gray-200 w-" />
+            <ChartNoAxesCombined className=" p-1 size-7 rounded-full text-accent-color bg-gray-200 " />
             <p className="text-sm ">
               Sign up and play at your convenience through our online booking
               system.
             </p>
           </span>
-          {/* <span className="flex justify-center items-center gap-1">
-            <CalendarFold className=" p-1 size-7 rounded-full text-accent-color bg-gray-200 " />
-            <p className="text-sm ">To Be Continue</p>
-          </span> */}
+
           <CustomButton
             buttonName="More Details"
             icon={<ArrowRight className="size-5" />}

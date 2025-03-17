@@ -19,11 +19,11 @@ export const CustomButton = ({
   const primaryButton = (
     <Link
       to={url && url}
-      className={`flex gap-1 justify-center items-center bg-[#0c0b22] border-none text-white rounded-xl btn btn-primary shadow-2xl drop-shadow-lg ${style}`}
+      className={`flex gap-1 justify-center items-center bg-[#0c0b22] border-none text-white rounded-xl btn btn-primary shadow-md drop-shadow-md ${style}`}
       onClick={onClick}
       type="button"
     >
-      <p className="text-sm">{buttonName}</p>
+      <div className="text-sm">{buttonName}</div>
       {icon && <span>{icon}</span>}
     </Link>
   );
@@ -31,18 +31,18 @@ export const CustomButton = ({
   const secondaryButton = (
     <Link
       to={url && url}
-      className={`flex gap-1 justify-center items-center bg-accent-color border-none text-white rounded-xl btn btn-primary shadow-2xl drop-shadow-lg ${style}`}
+      className={`flex gap-1 justify-center items-center bg-accent-color border-none text-white rounded-xl btn btn-primary shadow-md drop-shadow-md ${style}`}
       onClick={onClick}
       type="button"
     >
-      <p className={`text-sm ${textStyle}`}>{buttonName}</p>
+      <div className={`text-sm ${textStyle}`}>{buttonName}</div>
       {icon && <span>{icon}</span>}
     </Link>
   );
 
   const submitButton = (
     <button
-      className={`flex gap-1 justify-center items-center bg-accent-color border-none text-white rounded-xl btn btn-primary shadow-2xl drop-shadow-lg ${style}`}
+      className={`flex gap-1 justify-center items-center bg-accent-color border-none text-white rounded-xl btn btn-primary shadow-md drop-shadow-md ${style}`}
       onClick={onClick}
       type="submit"
     >
@@ -54,7 +54,7 @@ export const CustomButton = ({
         <Spinner />
       ) : (
         <div className="w-full flex justify-center items-center">
-          <p className={`text-sm ${textStyle}`}>{buttonName}</p>
+          <div className={`text-sm ${textStyle}`}>{buttonName}</div>
           <span>{icon}</span>
         </div>
       )}

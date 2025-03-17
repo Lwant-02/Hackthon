@@ -6,6 +6,7 @@ import {
   generateBookingCancellationTemplate,
   generateConfrimTemplate,
   generateWelcomeEmailTemplate,
+  generateTournamentConfirmationEmail,
 } from "../utils/email-template.js";
 import { generateGolfReceiptPDF } from "../utils/generatePDF.js";
 
@@ -133,6 +134,36 @@ export const SendWelcomeMail = async (req, res) => {
     });
   } catch (error) {
     console.log("Error in SendWelcomeMail:", error.message);
+    res.status(500).json({ message: "Internal server error!" });
+  }
+};
+
+export const SendMailTournament = async (req, res) => {
+  const { name, email, phone, tournamentName, date, time, location } = req.body;
+  try {
+    const subject = `🏆 Get Ready! Your Spot in ${tournamentName} is Confirmed!`;
+    const message = generateTournamentConfirmationEmail({
+      name,
+      email,
+      phone,
+      tournamentName,
+      date,
+      time,
+      location,
+    });
+    const mailOption = {
+      from: acccountEmail,
+      to: email,
+      subject: subject,
+      html: message,
+    };
+    transporter.sendMail(mailOption, (error, info) => {
+      if (error) return console.log(error, "Error sending mail.");
+      console.log("Email sent:" + info.response);
+      res.status(200).json({ success: true });
+    });
+  } catch (error) {
+    console.log("Error in SendMailTournament:", error.message);
     res.status(500).json({ message: "Internal server error!" });
   }
 };

@@ -233,3 +233,73 @@ export const generateWelcomeEmailTemplate = ({ userName }) => `
         </table>
     </div>
 `;
+
+export const generateTournamentConfirmationEmail = ({
+  name,
+  email,
+  phone,
+  tournamentName,
+  date,
+  time,
+  location,
+}) => `
+      <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 0; background-color: #f4f7fa;">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <tr>
+                  <td style="background-color: #3498db; text-align: center; padding: 20px;">
+                      <p style="font-size: 48px; font-weight: 800; color: #ffffff;">Tournament Registration Confirmed! 🏌️‍♂️</p>
+                  </td>
+              </tr>
+              <tr>
+                  <td style="padding: 40px 30px;">
+                      <p style="font-size: 16px; margin-bottom: 25px;">Dear <strong style="color: #3498db;">${name}</strong>,</p>
+  
+                      <p style="font-size: 16px; margin-bottom: 25px;">Congratulations! Your registration for the **${tournamentName}** has been successfully received. We are excited to have you join us on this thrilling golf tournament!</p>
+  
+                      <table cellpadding="10" cellspacing="0" border="0" width="100%" style="background-color: #eaf2fb; border-radius: 10px; margin-bottom: 25px;">
+                          <tr>
+                              <td style="font-size: 16px; padding: 15px;">
+                                  <strong>Tournament Details:</strong><br>
+                                  🏆 <strong>Event:</strong> ${tournamentName} <br>
+                                  📅 <strong>Date:</strong> ${date} <br>
+                                  ⏰ <strong>Time:</strong> ${time} <br>
+                                  📍 <strong>Location:</strong> ${location} <br>
+                              </td>
+                          </tr>
+                      </table>
+  
+                      <p style="font-size: 16px; margin-bottom: 25px;">Here’s your contact information:</p>
+                      <ul style="font-size: 16px; padding-left: 20px; margin-bottom: 25px;">
+                          <li>📧 Email: ${email}</li>
+                          <li>📞 Phone: ${phone}</li>
+                      </ul>
+  
+                      <p style="font-size: 16px; margin-bottom: 25px;">If you have any questions or need to update your details, please contact us at <a href="mailto:support@yourdomain.com" style="color: #3498db; text-decoration: none;">cimsosupport@gmil.com</a>.</p>
+  
+                      <p style="text-align: center; margin-top: 30px;">
+                          <a href="https://cimso-golf-booking-demo.onrender.com/tournament" style="background-color: #3498db; color: #ffffff; padding: 12px 24px; border-radius: 5px; font-size: 18px; text-decoration: none; display: inline-block;">
+                              View Tournament Details ⛳
+                          </a>
+                      </p>
+  
+                      <p style="font-size: 16px; margin-top: 30px;">
+                          We look forward to seeing you on the green!<br>
+                          <strong>The Tournament Team</strong>
+                      </p>
+                  </td>
+              </tr>
+              <tr>
+                  <td style="background-color: #eaf2fb; padding: 20px; text-align: center; font-size: 14px;">
+                      <p style="margin: 0 0 10px;">
+                          Cimso Online Golf Booking Inc.
+                      </p>
+                      <p style="margin: 0;">
+                          <a href="#" style="color: #3498db; text-decoration: none; margin: 0 10px;">Unsubscribe</a> | 
+                          <a href="#" style="color: #3498db; text-decoration: none; margin: 0 10px;">Privacy Policy</a> | 
+                          <a href="#" style="color: #3498db; text-decoration: none; margin: 0 10px;">Terms of Service</a>
+                      </p>
+                  </td>
+              </tr>
+          </table>
+      </div>
+  `;
