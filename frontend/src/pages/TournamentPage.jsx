@@ -89,10 +89,10 @@ export const TournamentPage = () => {
           The{" "}
           <span className="text-accent-color">Legends Golf Championship</span>{" "}
           is where precision meets passion. Set against the stunning backdrop of
-          [Golf Course Name], this tournament brings together the finest golfers
-          from around the world to compete for the ultimate title. Whether
-          you're a seasoned professional or an enthusiastic fan, this is an
-          event you won’t want to miss!
+          Legends Golf Championship, this tournament brings together the finest
+          golfers from around the world to compete for the ultimate title.
+          Whether you're a seasoned professional or an enthusiastic fan, this is
+          an event you won’t want to miss!
         </p>
         {authUser ? (
           <CustomButton
