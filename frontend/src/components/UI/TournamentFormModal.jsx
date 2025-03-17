@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { CustomButton } from "./CustomButton";
-import { useAuthStore } from "../../store/useAuthStore";
 import { Input } from "./Input";
 import { useUtilsStore } from "../../store/useUtilsStore";
 import { Spinner } from "./Spinner";
 
 export const TournamentFormModal = ({ closeModal: closeTournamentModal }) => {
-  const { authUser } = useAuthStore();
   const { setTournamentConfirm, openModal, isSendingMail, closeModal } =
     useUtilsStore();
   const [formData, setFormData] = useState({
@@ -93,20 +91,12 @@ export const TournamentFormModal = ({ closeModal: closeTournamentModal }) => {
               type="primaryButton"
               style="w-1/2"
             />
-            {authUser ? (
-              <CustomButton
-                buttonName={isSendingMail ? <Spinner /> : "Submit"}
-                type="submitButton"
-                style="flex-1"
-              />
-            ) : (
-              <CustomButton
-                buttonName="Sign In To Continue"
-                url="/signin"
-                type="secondaryButton"
-                style="flex-1"
-              />
-            )}
+
+            <CustomButton
+              buttonName={isSendingMail ? <Spinner /> : "Submit"}
+              type="submitButton"
+              style="flex-1"
+            />
           </div>
         </form>
       </div>

@@ -10,8 +10,10 @@ import { useNavigate } from "react-router-dom";
 import { TournamentFormModal } from "../components/UI/TournamentFormModal";
 import { CustomStatus } from "../components/UI/CustomStatus";
 import TournamentCarousel from "../components/UI/TournamentCarousel";
+import { useAuthStore } from "../store/useAuthStore";
 
 export const TournamentPage = () => {
+  const { authUser } = useAuthStore();
   const { setActiveTab } = useUtilsStore();
   const navigate = useNavigate();
 
@@ -92,13 +94,21 @@ export const TournamentPage = () => {
           you're a seasoned professional or an enthusiastic fan, this is an
           event you won’t want to miss!
         </p>
-        <CustomButton
-          buttonName="Register Now"
-          type="secondaryButton"
-          onClick={() => {
-            document.getElementById("tournament_modal").showModal();
-          }}
-        />
+        {authUser ? (
+          <CustomButton
+            buttonName="Register Now"
+            type="secondaryButton"
+            onClick={() => {
+              document.getElementById("tournament_modal").showModal();
+            }}
+          />
+        ) : (
+          <CustomButton
+            buttonName="Sign In To Continue"
+            url="/signin"
+            type="secondaryButton"
+          />
+        )}
       </motion.div>
       <motion.div
         className="w-full h-auto  mt-4  sm:px-0 px-3 flex flex-col"
