@@ -189,3 +189,18 @@ export const newsImages = {
 
 export const AI_Logo =
   "https://res.cloudinary.com/dt28nxrrx/image/upload/v1740648154/AI-Image_gpjzig.png";
+
+export const tournamentsImages = {
+  mainLogo:
+    "https://res.cloudinary.com/dxmvqasul/image/upload/v1742204444/luis-villasmil-3yr-LjHyFsA-unsplash_emx7tj.jpg",
+  logo1:
+    "https://res.cloudinary.com/dxmvqasul/image/upload/v1742204443/brandon-williams-KNDbsl-jBEQ-unsplash_paqoud.jpg",
+  logo2:
+    "https://res.cloudinary.com/dxmvqasul/image/upload/v1742204443/adrian-hernandez-b8JAAnEEPG8-unsplash_formuk.jpg",
+  logo3:
+    "https://res.cloudinary.com/dxmvqasul/image/upload/v1742204443/sugar-golf-mqQ0BuJ5dsA-unsplash_a76fhd.jpg",
+  logo4:
+    "https://res.cloudinary.com/dxmvqasul/image/upload/v1742204443/peter-drew-01hTeNUuzfY-unsplash_ahdrp5.jpg",
+  logo5:
+    "https://res.cloudinary.com/dxmvqasul/image/upload/v1742204442/courtney-cook-qbP8Cj4Xa9o-unsplash_t4pfp0.jpg",
+};

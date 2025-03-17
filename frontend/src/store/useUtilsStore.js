@@ -21,6 +21,7 @@ export const useUtilsStore = create((set, get) => ({
   },
   input: "",
   chatMessage: [],
+  isSendingMail: false,
   setInput: (input) => set({ input }),
   clearChat: () => set({ input: "", botResponse: "", chatMessage: [] }),
   sentMessage: async (input) => {
@@ -76,6 +77,16 @@ export const useUtilsStore = create((set, get) => ({
       await axiosInstance.post("/emails/send-email-welcome", formData);
     } catch (error) {
       console.log(error);
+    }
+  },
+  setTournamentConfirm: async (formData) => {
+    try {
+      set((state) => ({ ...state, isSendingMail: true }));
+      await axiosInstance.post("/emails/send-email-tournament", formData);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      set((state) => ({ ...state, isSendingMail: false }));
     }
   },
 }));

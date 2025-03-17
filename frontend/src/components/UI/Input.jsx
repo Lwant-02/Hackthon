@@ -9,7 +9,7 @@ export const Input = ({
   onChange,
   pattern,
   validateMessage,
-  minLength = 3,
+  minLength = 2,
   maxLength = 30,
   required = false,
 }) => {
@@ -18,7 +18,7 @@ export const Input = ({
     <div className="w-full flex flex-col justify-start items-start gap-1">
       {name && <p className="text-sm ">{name}</p>}
       <label className="input validator w-full rounded-xl">
-        <span>{icon}</span>
+        {icon && <span>{icon}</span>}
         <input
           type={name === "Password" && !showPassword ? "password" : "text"}
           required={required}
