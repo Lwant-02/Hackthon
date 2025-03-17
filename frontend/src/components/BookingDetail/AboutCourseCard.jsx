@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { MapPinned, SquareMousePointer, Star } from "lucide-react";
 import { CustomButton } from "../UI/CustomButton";
 import { useAuthStore } from "../../store/useAuthStore";
-import { useUtilsStore } from "../../store/useUtilsStore";
 import { LocationPart } from "../UI/LocationPart";
 
 export const AboutCourseCard = ({
@@ -15,7 +14,6 @@ export const AboutCourseCard = ({
   image,
 }) => {
   const { authUser } = useAuthStore();
-  const { openModal } = useUtilsStore();
 
   return (
     <motion.div
@@ -53,7 +51,7 @@ export const AboutCourseCard = ({
             <CustomButton
               buttonName="Book This Course"
               type="secondaryButton"
-              onClick={() => openModal()}
+              url="/signin"
             />
           )}
         </div>

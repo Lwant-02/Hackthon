@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { AboutCourseCard } from "../components/BookingDetail/AboutCourseCard";
 import { BookingContainer } from "../components/BookingDetail/BookingContainer";
 import { useAuthStore } from "../store/useAuthStore";
-import { CustomStatus } from "../components/UI/CustomStatus";
 import { Packages } from "../components/UI/Packages";
 import { images, packages } from "../utils/constant";
 import { useBookingStore } from "../store/useBookingStore";
@@ -99,13 +98,6 @@ export const BookingDetailPage = () => {
         </motion.div>
         {authUser && <BookingContainer />}
       </div>
-      <CustomStatus
-        title="Unlock Features"
-        buttonTitle="Sign In"
-        subTitle="Please! Sign in first in order to continue this booking!"
-        url="/signin"
-        hasButton={true}
-      />
     </div>
   );
 };
