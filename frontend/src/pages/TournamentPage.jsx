@@ -18,7 +18,7 @@ export const TournamentPage = () => {
   return (
     <div className="relative mx-auto flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col sm:w-5/6 w-auto pb-7">
       <motion.div
-        className="relative w-full sm:h-[40vh] h-[20vh] bg-cover bg-center "
+        className="relative w-full sm:h-[40vh] h-[30vh] bg-cover bg-center "
         style={{ backgroundImage: `url(${tournamentsImages.mainLogo})` }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
