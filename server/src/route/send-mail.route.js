@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  SendCertificate,
   SendMailCancel,
   SendMailConfirm,
   SendMailTournament,
@@ -15,3 +16,5 @@ sendMailRouter.post("/send-email-cancel", SendMailCancel);
 sendMailRouter.post("/send-email-welcome", SendWelcomeMail);
 
 sendMailRouter.post("/send-email-tournament", SendMailTournament);
+
+sendMailRouter.post("/send-email-certificate", SendCertificate);
