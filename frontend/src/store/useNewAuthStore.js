@@ -105,12 +105,20 @@ export const useNewAuthStore = create((set, get) => ({
         toast.success("Logged in with Google successfully");
         return true;
       } catch (loginError) {
-        if (import.meta.env.VITE_NODE_ENV === "development") {
-          console.log("Login failed:", loginError.response?.data?.message);
+        try {
+          const loginRes = await newAxiosInstance.post("/login", formData); 
+          set({ authUser: loginRes.data.customer });
+          localStorage.setItem("authUser", loginRes.data.token);
+          toast.success("Logged in with Google successfully");
+          return true;
+        } catch (loginError) {
+          if (import.meta.env.VITE_NODE_ENV === "development") {
+            console.log("Login failed:", loginError.response?.data?.message);
+          }
+          toast.error(loginError.response?.data?.message || "Failed to sign in with Google");
+          set({ isGoogleSignIn: false });
+          return false;
         }
-        toast.error(loginError.response?.data?.message || "Failed to sign in with Google");
-        set({ isGoogleSignIn: false });
-        return false;
       }
     }
   },
