@@ -24,8 +24,7 @@ export const AppLayout = () => {
   // const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
   // const { getCourses, getBookings } = useBookingStore();
   const { checkAuth, authUser, isCheckingAuth, setToken } = useNewAuthStore();
-  const { getCourses, getBookings, getPackages, bookings } =
-    useNewBookingStore();
+  const { getCourses, getPackages } = useNewBookingStore();
   const location = useLocation();
 
   useEffect(() => {
@@ -33,10 +32,6 @@ export const AppLayout = () => {
     getCourses();
     getPackages();
   }, []);
-
-  useEffect(() => {
-    getBookings(authUser?.id);
-  }, [authUser?.id]);
 
   useEffect(() => {
     setToken(localStorage.getItem("authUser"));

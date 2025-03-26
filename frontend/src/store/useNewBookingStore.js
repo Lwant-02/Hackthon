@@ -71,7 +71,6 @@ export const useNewBookingStore = create((set, get) => ({
           Authorization: `Bearer ${token} `,
         },
       });
-      console.log(res.data);
       if (res.status == 200) {
         set({ bookings: res.data || [] });
       }

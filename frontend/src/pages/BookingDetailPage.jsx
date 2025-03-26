@@ -31,6 +31,7 @@ export const BookingDetailPage = () => {
     setTimeAndPrice,
     getBookings,
     packages,
+    bookings,
   } = useNewBookingStore();
   const navigate = useNavigate();
   const { setActiveTab } = useUtilsStore();
@@ -42,8 +43,8 @@ export const BookingDetailPage = () => {
   }, [navigate, courseId]);
 
   useEffect(() => {
-    getBookings();
-  }, []);
+    getBookings(authUser?.id);
+  }, [authUser?.id]);
 
   return (
     <div className="relative w-full flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col">

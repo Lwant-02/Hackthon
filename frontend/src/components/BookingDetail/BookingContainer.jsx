@@ -11,21 +11,40 @@ import { useNewBookingStore } from "../../store/useNewBookingStore";
 
 export const BookingContainer = () => {
   const { hole, bookings, dateAndTime } = useNewBookingStore();
-
   const { courseId } = useParams();
   const defaultHole = hole ? hole : 9;
 
-  const isBooked = (time) => {
-    if (!Array.isArray(bookings) || bookings.length === 0) return false;
-    return bookings
-      .filter((booking) => booking.id === courseId)
-      .some(
-        (item) =>
-          item?.booking_date === dateAndTime &&
-          item.holes === defaultHole &&
-          item.booking_time === time
-      );
+  const formatDate = (passDate) => {
+    const options = { weekday: "short", day: "2-digit", month: "short" };
+    const date = new Date(passDate);
+    return date.toLocaleDateString("en-GB", options);
   };
+
+  const isBooked = (time) => {
+    // Check if bookings exist
+    if (!bookings || !bookings.bookings || bookings.bookings.length === 0) {
+      return false;
+    }
+
+    // Filter bookings for the current course
+    const courseBookings = bookings.bookings.filter(
+      (booking) => booking.course_id === Number(courseId)
+    );
+
+    // Check each booking
+    const bookedSlot = courseBookings.find((booking) => {
+      const formattedBookingDate = formatDate(booking.booking_date).trim();
+      const formattedSelectedDate = dateAndTime.trim();
+      return (
+        formattedBookingDate === formattedSelectedDate &&
+        booking.holes === defaultHole &&
+        booking.booking_time === time
+      );
+    });
+    const isBookedResult = !!bookedSlot;
+    return isBookedResult;
+  };
+
   return (
     <motion.div
       className="bg-white w-full h-auto rounded-lg shadow-lg p-5 flex flex-col"
