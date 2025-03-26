@@ -11,7 +11,6 @@ export const AccountPage = () => {
 
   useEffect(() => {
     getNetWorkUser();
-    ww;
   }, []);
 
   return (
