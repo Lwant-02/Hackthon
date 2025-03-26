@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export const SinginFrom = () => {
-  // const { signIn } = useAuthStore();
   const { signIn } = useNewAuthStore();
   const [formData, setFormData] = useState({
     email: "",
