@@ -1,5 +1,7 @@
 import { create } from "zustand";
 import { axiosInstance } from "../utils/axiosInstance";
+import { newAxiosInstance } from "../utils/newAxiosInstance";
+import { useNewAuthStore } from "./useNewAuthStore";
 
 export const useUtilsStore = create((set, get) => ({
   closeDrawer: () => {
@@ -87,6 +89,18 @@ export const useUtilsStore = create((set, get) => ({
       console.log(error);
     } finally {
       set((state) => ({ ...state, isSendingMail: false }));
+    }
+  },
+  submitTournament: async (formData) => {
+    try {
+      const token = useNewAuthStore.getState().token;
+      cosnt = await newAxiosInstance.post("/attendee/create", formData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
     }
   },
 }));

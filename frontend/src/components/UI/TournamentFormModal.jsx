@@ -5,8 +5,13 @@ import { useUtilsStore } from "../../store/useUtilsStore";
 import { Spinner } from "./Spinner";
 
 export const TournamentFormModal = ({ closeModal: closeTournamentModal }) => {
-  const { setTournamentConfirm, openModal, isSendingMail, closeModal } =
-    useUtilsStore();
+  const {
+    setTournamentConfirm,
+    openModal,
+    isSendingMail,
+    closeModal,
+    submitTournament,
+  } = useUtilsStore();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -28,6 +33,13 @@ export const TournamentFormModal = ({ closeModal: closeTournamentModal }) => {
       location: "PathumThani > Thailand",
     };
     await setTournamentConfirm(formDataObj);
+    const submitData = {
+      name: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      tournament_name: "Legends Golf Championship(2025)",
+    };
+    await submitTournament(submitData);
     closeTournamentModal();
     openModal();
     setTimeout(() => {
