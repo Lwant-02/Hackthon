@@ -12,15 +12,18 @@ export const Packages = ({
   features,
   isHome,
   isFeatrue,
+  id,
 }) => {
   // const { setPackage, packageType } = useBookingStore();
-  const { setPackage, packageType } = useNewBookingStore();
+  const { setPackage, packageType, setPackageId } = useNewBookingStore();
   const { setActiveTab } = useUtilsStore();
 
   const handleCheckboxChange = () => {
     if (packageType?.title === title) {
       setPackage({}); // Unselect if it's already selected
+      setPackageId(null);
     } else {
+      setPackageId(id);
       setPackage({ title, price }); // Select the package
     }
   };

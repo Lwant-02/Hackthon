@@ -4,8 +4,8 @@ import { AboutCourseCard } from "../components/BookingDetail/AboutCourseCard";
 import { BookingContainer } from "../components/BookingDetail/BookingContainer";
 // import { useAuthStore } from "../store/useAuthStore";
 import { Packages } from "../components/UI/Packages";
-import { images, packages } from "../utils/constant";
-import { useBookingStore } from "../store/useBookingStore";
+import { images } from "../utils/constant";
+// import { useBookingStore } from "../store/useBookingStore";
 import { CustomButton } from "../components/UI/CustomButton";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUtilsStore } from "../store/useUtilsStore";
@@ -30,6 +30,7 @@ export const BookingDetailPage = () => {
     setHole,
     setTimeAndPrice,
     getBookings,
+    packages,
   } = useNewBookingStore();
   const navigate = useNavigate();
   const { setActiveTab } = useUtilsStore();
@@ -101,9 +102,11 @@ export const BookingDetailPage = () => {
                 key={item.name}
                 title={item.name}
                 price={item.price}
-                badge={item.badge}
+                badge="Most popular"
+                isFeatrue={item.is_featured}
                 features={item.features}
                 isHome={false}
+                id={item.id}
               />
             ))}
           </div>

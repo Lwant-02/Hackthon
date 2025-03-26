@@ -56,7 +56,6 @@ export const SummaryCard = ({ formData }) => {
   useEffect(() => {
     getCourse(courseId);
   }, [courseId, getCourse]);
-  console.log(packageType);
 
   const handlSubmitBooking = async (e) => {
     e.preventDefault();
@@ -79,7 +78,7 @@ export const SummaryCard = ({ formData }) => {
       package_id: packageId,
       hole_price: timeAndPrice.price,
       total_price: totalPrice,
-      coupon_code: ["csdfewo"],
+      coupon_code: "",
       status: "confirmed",
     });
 
@@ -95,6 +94,7 @@ export const SummaryCard = ({ formData }) => {
       hole: hole,
       packageName: packageType.title,
     };
+    console.log("Summary:", bookingRes);
 
     if (bookingRes) {
       openModal();
