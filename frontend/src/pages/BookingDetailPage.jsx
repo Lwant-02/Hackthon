@@ -10,10 +10,19 @@ import { CustomButton } from "../components/UI/CustomButton";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUtilsStore } from "../store/useUtilsStore";
 import { useNewAuthStore } from "../store/useNewAuthStore";
+import { useNewBookingStore } from "../store/useNewBookingStore";
 
 export const BookingDetailPage = () => {
   // const { authUser } = useAuthStore();
   const { authUser } = useNewAuthStore();
+  // const {
+  //   course,
+  //   getCourse,
+  //   setPackage,
+  //   setHole,
+  //   setTimeAndPrice,
+  //   getBookings,
+  // } = useBookingStore();
   const {
     course,
     getCourse,
@@ -21,7 +30,7 @@ export const BookingDetailPage = () => {
     setHole,
     setTimeAndPrice,
     getBookings,
-  } = useBookingStore();
+  } = useNewBookingStore();
   const navigate = useNavigate();
   const { setActiveTab } = useUtilsStore();
   const { courseId } = useParams();
@@ -47,10 +56,10 @@ export const BookingDetailPage = () => {
         <div className="absolute inset-0 bg-black opacity-30" />
         <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-6">
           <h1 className="text-primary-color sm:text-5xl text-xl font-bold drop-shadow-xl">
-            Experience Luxury Redefined at {course?.courseName}
+            Experience Luxury Redefined at {course?.course_name}
           </h1>
           <p className="text-primary-color sm:text-2xl text-sm mt-2 font-bold">
-            {course?.subDescription}
+            {course?.sub_description}
           </p>
           <CustomButton
             buttonName="Back To Courses"
@@ -70,11 +79,12 @@ export const BookingDetailPage = () => {
         <AboutCourseCard
           description={course?.description}
           discount={course?.discount}
-          location={course?.location}
-          name={course?.courseName}
+          location_city={course?.location_city}
+          location_country={course?.location_country}
+          name={course?.course_name}
           rating={course?.rating}
           yard={course?.yard}
-          image={course?.image}
+          image={course?.image_url}
         />
         <motion.div
           className="w-full flex flex-col justify-center items-center gap-4 bg-white h-auto rounded-lg shadow-lg p-4"

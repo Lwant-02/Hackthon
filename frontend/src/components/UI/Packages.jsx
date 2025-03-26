@@ -2,10 +2,19 @@ import React from "react";
 import { motion } from "framer-motion";
 import { CustomButton } from "./CustomButton";
 import { useUtilsStore } from "../../store/useUtilsStore";
-import { useBookingStore } from "../../store/useBookingStore";
+// import { useBookingStore } from "../../store/useBookingStore";
+import { useNewBookingStore } from "../../store/useNewBookingStore";
 
-export const Packages = ({ title, price, badge, features, isHome }) => {
-  const { setPackage, packageType } = useBookingStore();
+export const Packages = ({
+  title,
+  price,
+  badge,
+  features,
+  isHome,
+  isFeatrue,
+}) => {
+  // const { setPackage, packageType } = useBookingStore();
+  const { setPackage, packageType } = useNewBookingStore();
   const { setActiveTab } = useUtilsStore();
 
   const handleCheckboxChange = () => {
@@ -27,8 +36,8 @@ export const Packages = ({ title, price, badge, features, isHome }) => {
         <div className="flex justify-between flex-col relative">
           <h2 className="text-accent-color text-xl font-bold">{title}</h2>
           <span className="text-xl">฿{price}</span>
-          {badge && (
-            <span className="badge badge-xs badge-warning absolute left-20 top-9 ">
+          {isFeatrue && (
+            <span className="badge badge-xs badge-warning absolute left-24 top-9 ">
               {badge}
             </span>
           )}
@@ -50,7 +59,7 @@ export const Packages = ({ title, price, badge, features, isHome }) => {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              <span>{item}</span>
+              <span>{item.feature}</span>
             </li>
           ))}
         </ul>

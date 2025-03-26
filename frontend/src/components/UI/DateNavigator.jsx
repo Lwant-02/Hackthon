@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useBookingStore } from "../../store/useBookingStore";
+// import { useBookingStore } from "../../store/useBookingStore";
+import { useNewBookingStore } from "../../store/useNewBookingStore";
 
 const DateNavigator = () => {
-  const { setDateAndTime } = useBookingStore();
+  // const { setDateAndTime } = useBookingStore();
+  const { setDateAndTime } = useNewBookingStore();
   const [date, setDate] = useState(new Date());
 
   const formatDate = (date) => {

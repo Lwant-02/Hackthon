@@ -1,10 +1,14 @@
 import React from "react";
-import { useAuthStore } from "../../store/useAuthStore";
-import { useBookingStore } from "../../store/useBookingStore";
+// import { useAuthStore } from "../../store/useAuthStore";
+// import { useBookingStore } from "../../store/useBookingStore";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
+import { useNewBookingStore } from "../../store/useNewBookingStore";
 
 export const InformationCard = () => {
-  const { authUser } = useAuthStore();
-  const { golfer } = useBookingStore();
+  // const { authUser } = useAuthStore();
+  const { authUser } = useNewAuthStore();
+  // const { golfer } = useBookingStore();
+  const { golfer } = useNewBookingStore();
   return (
     <div className="w-full bg-white rounded-lg p-3 flex gap-2 justify-start items-start border border-base-content/10 shadow-md flex-col">
       <p className="text-lg font-semibold">Booking Infomation</p>
@@ -14,7 +18,7 @@ export const InformationCard = () => {
             Full Name
           </p>
           <p className="font-semibold sm:text-base text-xs">
-            {authUser.fullName}
+            {authUser.full_name}
           </p>
         </div>
         <div className="flex flex-col justify-start items-start">

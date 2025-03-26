@@ -7,12 +7,15 @@ import { useBookingStore } from "../../store/useBookingStore";
 // import { useAuthStore } from "../../store/useAuthStore";
 import toast from "react-hot-toast";
 import { useNewAuthStore } from "../../store/useNewAuthStore";
+import { useNewBookingStore } from "../../store/useNewBookingStore";
 
 export const OrderContainer = () => {
   // const { authUser } = useAuthStore();
   const { authUser } = useNewAuthStore();
+  // const { packageType, hole, timeAndPrice, setGolfer, golfer } =
+  //   useBookingStore();
   const { packageType, hole, timeAndPrice, setGolfer, golfer } =
-    useBookingStore();
+    useNewBookingStore();
   const { courseId } = useParams();
   const navigate = useNavigate();
 
