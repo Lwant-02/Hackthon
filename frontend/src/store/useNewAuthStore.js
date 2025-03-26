@@ -92,18 +92,26 @@ export const useNewAuthStore = create((set, get) => ({
   googleSignIn: async (formData) => {
     set({ isGoogleSignIn: true });
     try {
-      const res = await newAxiosInstance.post("/register", formData);
+      const res = await newAxiosInstance.post("/register", formData); // Adjusted endpoint for Google
       set({ authUser: res.data.customer });
       localStorage.setItem("authUser", res.data.token);
       return true;
     } catch (error) {
-      if (import.meta.env.VITE_NODE_ENV === "development") {
-        console.log(error.response.data.message);
+      try {
+        const loginRes = await newAxiosInstance.post("/login", formData); 
+        console.log(loginRes);
+        set({ authUser: loginRes.data.customer });
+        localStorage.setItem("authUser", loginRes.data.token);
+        toast.success("Logged in with Google successfully");
+        return true;
+      } catch (loginError) {
+        if (import.meta.env.VITE_NODE_ENV === "development") {
+          console.log("Login failed:", loginError.response?.data?.message);
+        }
+        toast.error(loginError.response?.data?.message || "Failed to sign in with Google");
+        set({ isGoogleSignIn: false });
+        return false;
       }
-      toast.error(error.response.data.message);
-      return false;
-    } finally {
-      set({ isGoogleSignIn: false });
     }
   },
   updateAccount: async (formData) => {

@@ -40,6 +40,7 @@ export default function GoogleLogin() {
           return;
         } else {
           navigate("/");
+          window.location.reload();
         }
       } catch (error) {
         console.error("Error fetching user data in GoogleLogin:", error);
