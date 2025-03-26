@@ -6,19 +6,16 @@ import { TimeCard } from "./TimeCard";
 import { timeSlots } from "../../utils/constant";
 import { OrderContainer } from "./OrderContainer";
 import { Hole } from "./Hole";
-// import { useBookingStore } from "../../store/useBookingStore";
 import { useParams } from "react-router-dom";
 import { useNewBookingStore } from "../../store/useNewBookingStore";
 
 export const BookingContainer = () => {
-  // const { hole, bookings, dateAndTime } = useBookingStore();
   const { hole, bookings, dateAndTime } = useNewBookingStore();
 
   const { courseId } = useParams();
   const defaultHole = hole ? hole : 9;
 
   const isBooked = (time) => {
-    console.log(bookings);
     const selectedBooking = bookings?.filter(
       (booking) => booking.id === courseId
     );
