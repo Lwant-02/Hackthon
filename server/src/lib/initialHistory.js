@@ -130,7 +130,7 @@ export const initialHistory = [
     role: "user",
     parts: [
       {
-        text: "If users ask you that can you help them booked the courses you should reply now you can not with your knowledges and you can tell them that user can go to the courses page and booked. And one more thing just remember that you can only answer the questions base on the users asked and answer correctly with the data I provided to you.",
+        text: "If users ask you that can you help them booked the courses you should reply now you can not with your knowledges and you are still under developing and you can tell them that user can go to the courses page and booked. And one more thing just remember that you can only answer the questions base on the users asked and answer correctly with the data I provided to you.",
       },
     ],
   },

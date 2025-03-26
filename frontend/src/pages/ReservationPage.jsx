@@ -4,7 +4,7 @@ import { CircleCheckBig } from "lucide-react";
 import { CustomButton } from "../components/UI/CustomButton";
 import { NoReservation } from "../components/Reservation/NoReservation";
 import { CancelPolicy } from "../components/Reservation/CancelPolicy";
-import { useAuthStore } from "../store/useAuthStore";
+// import { useAuthStore } from "../store/useAuthStore";
 import { ActionNeed } from "../components/UI/ActionNeed";
 import { useBookingStore } from "../store/useBookingStore";
 import { LocationPart } from "../components/UI/LocationPart";
@@ -13,6 +13,7 @@ import { useUtilsStore } from "../store/useUtilsStore";
 import { CustomStatus } from "../components/UI/CustomStatus";
 import { CancelCard } from "../components/Reservation/CancelCard";
 import { CancelNotFound } from "../components/Reservation/CancelNotFound";
+import { useNewAuthStore } from "../store/useNewAuthStore";
 
 export const ReservationPage = () => {
   const {
@@ -24,7 +25,8 @@ export const ReservationPage = () => {
     getCancelBookings,
   } = useBookingStore();
   const { openModal, closeModal, sentCancelEmail } = useUtilsStore();
-  const { authUser } = useAuthStore();
+  // const { authUser } = useAuthStore();
+  const { authUser } = useNewAuthStore();
 
   const [activeTab, setActiveTab] = useState("comfirmed");
 
@@ -35,8 +37,6 @@ export const ReservationPage = () => {
     totalPrice,
     cancelDate,
   }) => {
-    console.log(courseName);
-
     await insertCancelBooking(
       { courseName, golfPic, totalPrice, cancelDate },
       authUser._id

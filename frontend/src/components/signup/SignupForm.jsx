@@ -5,15 +5,17 @@ import { CustomButton } from "../UI/CustomButton";
 import { Divider } from "../UI/Divider";
 import GoogleLogin from "../UI/GoogleLogin";
 import { FormLink } from "../UI/FormLink";
-import { useAuthStore } from "../../store/useAuthStore";
+// import { useAuthStore } from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import { useUtilsStore } from "../../store/useUtilsStore";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export const SignupForm = () => {
-  const { signUp } = useAuthStore();
+  // const { signUp } = useAuthStore();
+  const { signUp } = useNewAuthStore();
   const { sentWelcomeEmail } = useUtilsStore();
   const [formData, setFormData] = useState({
-    fullName: "",
+    full_name: "",
     email: "",
     phone: "",
     password: "",
@@ -22,9 +24,8 @@ export const SignupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (
-      !formData.fullName ||
+      !formData.full_name ||
       !formData.email ||
       !formData.password ||
       !formData.phone
@@ -36,7 +37,7 @@ export const SignupForm = () => {
       return;
     } else {
       await sentWelcomeEmail({
-        userName: formData.fullName,
+        userName: formData.full_name,
         email: formData.email,
       });
       navigate("/");
@@ -54,8 +55,10 @@ export const SignupForm = () => {
         icon={<UserRound className="size-5" />}
         required={true}
         validateMessage="Name is required"
-        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-        value={formData.fullName || ""}
+        onChange={(e) =>
+          setFormData({ ...formData, full_name: e.target.value })
+        }
+        value={formData.full_name || ""}
       />
       <Input
         name="Email"

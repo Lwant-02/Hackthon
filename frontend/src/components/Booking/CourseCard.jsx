@@ -6,8 +6,9 @@ import { ArrowRight, MapPinned } from "lucide-react";
 import { Rating } from "../UI/Rating";
 import { useUtilsStore } from "../../store/useUtilsStore";
 import { CustomStatus } from "../UI/CustomStatus";
-import { useAuthStore } from "../../store/useAuthStore";
+// import { useAuthStore } from "../../store/useAuthStore";
 import { LocationPart } from "../UI/LocationPart";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export const CourseCard = ({
   delay,
@@ -20,7 +21,8 @@ export const CourseCard = ({
   id,
   location,
 }) => {
-  const { authUser } = useAuthStore();
+  // const { authUser } = useAuthStore();
+  const { authUser } = useNewAuthStore();
   const { openModal, setActiveTab } = useUtilsStore();
 
   const handleBookNow = () => {

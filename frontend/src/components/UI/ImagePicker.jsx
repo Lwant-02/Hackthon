@@ -25,7 +25,7 @@ export const ImagePicker = ({
     try {
       setIsUploading(true);
       const res = await axios.post(import.meta.env.VITE_CLOUDINARY_URL, data);
-      setFormData((pre) => ({ ...pre, profilePic: res.data?.url }));
+      setFormData((pre) => ({ ...pre, profile_pic: res.data?.url }));
     } catch (error) {
       console.log(error);
     } finally {

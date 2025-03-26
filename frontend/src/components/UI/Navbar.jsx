@@ -6,10 +6,13 @@ import { Tab } from "./Tab";
 import { MainLogo } from "../../utils/constant";
 import { AuthIcon } from "../Home/AuthIcons";
 import { Drawer } from "./Drawer";
-import { useAuthStore } from "../../store/useAuthStore";
+// import { useAuthStore } from "../../store/useAuthStore";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export const Navbar = () => {
-  const { authUser } = useAuthStore();
+  // const { authUser } = useAuthStore();
+  const { authUser } = useNewAuthStore();
+
   return (
     <motion.nav
       className={`z-20 w-full flex justify-center h-20 items-center top-0 sticky border-b border-base-content/20 shadow bg-primary-color`}

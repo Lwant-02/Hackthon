@@ -3,6 +3,7 @@ import { MapPinned, SquareMousePointer, Star } from "lucide-react";
 import { CustomButton } from "../UI/CustomButton";
 import { useAuthStore } from "../../store/useAuthStore";
 import { LocationPart } from "../UI/LocationPart";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export const AboutCourseCard = ({
   name,
@@ -13,7 +14,8 @@ export const AboutCourseCard = ({
   discount,
   image,
 }) => {
-  const { authUser } = useAuthStore();
+  // const { authUser } = useAuthStore();
+  const { authUser } = useNewAuthStore();
 
   return (
     <motion.div

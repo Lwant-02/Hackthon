@@ -10,10 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { TournamentFormModal } from "../components/UI/TournamentFormModal";
 import { CustomStatus } from "../components/UI/CustomStatus";
 import TournamentCarousel from "../components/UI/TournamentCarousel";
-import { useAuthStore } from "../store/useAuthStore";
+// import { useAuthStore } from "../store/useAuthStore";
+import { useNewAuthStore } from "../store/useNewAuthStore";
 
 export const TournamentPage = () => {
-  const { authUser } = useAuthStore();
+  // const { authUser } = useAuthStore();
+  const { authUser } = useNewAuthStore();
   const { setActiveTab } = useUtilsStore();
   const navigate = useNavigate();
 

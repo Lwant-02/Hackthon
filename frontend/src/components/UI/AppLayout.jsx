@@ -13,13 +13,15 @@ import { AccountPage } from "../../pages/AccountPage";
 import { ReservationPage } from "../../pages/ReservationPage";
 import { SearchPage } from "../../pages/SearchPage";
 import { Toaster } from "react-hot-toast";
-import { useAuthStore } from "../../store/useAuthStore";
+// import { useAuthStore } from "../../store/useAuthStore";
 import { Spinner } from "./Spinner";
 import { useBookingStore } from "../../store/useBookingStore";
 import { TournamentPage } from "../../pages/TournamentPage";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export const AppLayout = () => {
-  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  // const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { checkAuth, authUser, isCheckingAuth, setToken } = useNewAuthStore();
   const { getCourses, getBookings } = useBookingStore();
   const location = useLocation();
 
@@ -27,6 +29,10 @@ export const AppLayout = () => {
     checkAuth();
     getCourses();
     getBookings();
+  }, []);
+
+  useEffect(() => {
+    setToken(localStorage.getItem("authUser"));
   }, []);
 
   if (isCheckingAuth) {

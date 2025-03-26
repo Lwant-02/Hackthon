@@ -21,9 +21,9 @@ export const NoReservation = () => {
       </p>
       <CustomButton
         buttonName="Book Now"
-        url="/booking"
+        url="/courses"
         type="secondaryButton"
-        onClick={() => setActiveTab("booking")}
+        onClick={() => setActiveTab("courses")}
       />
     </motion.div>
   );

@@ -2,16 +2,18 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { AboutCourseCard } from "../components/BookingDetail/AboutCourseCard";
 import { BookingContainer } from "../components/BookingDetail/BookingContainer";
-import { useAuthStore } from "../store/useAuthStore";
+// import { useAuthStore } from "../store/useAuthStore";
 import { Packages } from "../components/UI/Packages";
 import { images, packages } from "../utils/constant";
 import { useBookingStore } from "../store/useBookingStore";
 import { CustomButton } from "../components/UI/CustomButton";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUtilsStore } from "../store/useUtilsStore";
+import { useNewAuthStore } from "../store/useNewAuthStore";
 
 export const BookingDetailPage = () => {
-  const { authUser } = useAuthStore();
+  // const { authUser } = useAuthStore();
+  const { authUser } = useNewAuthStore();
   const {
     course,
     getCourse,

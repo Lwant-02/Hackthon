@@ -2,12 +2,14 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import GoogleLogo from "../../assets/svg/google.svg";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/useAuthStore";
+// import { useAuthStore } from "../../store/useAuthStore";
 import { Spinner } from "./Spinner";
 import { useUtilsStore } from "../../store/useUtilsStore";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export default function GoogleLogin() {
-  const { googleSignIn, isGoogleSignIn, checkUserExist } = useAuthStore();
+  // const { googleSignIn, isGoogleSignIn, checkUserExist } = useAuthStore();
+  const { googleSignIn, isGoogleSignIn, checkUserExist } = useNewAuthStore();
   const { sentWelcomeEmail } = useUtilsStore();
   const navigate = useNavigate();
 
@@ -20,13 +22,13 @@ export default function GoogleLogin() {
           { headers: { Authorization: `Bearer ${token}` } }
         );
         const formData = {
-          fullName: response.data.name,
+          full_name: response.data.name,
           email: response.data.email,
-          profilePic: response.data.picture,
+          password: "google-login",
+          profile_pic: response.data.picture,
+          phone: "",
         };
-        const email = response.data.email;
-        const userExist = await checkUserExist(email);
-
+        const userExist = await checkUserExist();
         if (!userExist) {
           sentWelcomeEmail({
             userName: response.data.name,

@@ -5,11 +5,13 @@ import { CustomButton } from "../UI/CustomButton";
 import { Divider } from "../UI/Divider";
 import GoogleLogin from "../UI/GoogleLogin";
 import { FormLink } from "../UI/FormLink";
-import { useAuthStore } from "../../store/useAuthStore";
+// import { useAuthStore } from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export const SinginFrom = () => {
-  const { signIn } = useAuthStore();
+  // const { signIn } = useAuthStore();
+  const { signIn } = useNewAuthStore();
   const [formData, setFormData] = useState({
     email: "",
     password: "",

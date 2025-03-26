@@ -2,21 +2,26 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { CustomButton } from "../components/UI/CustomButton";
 import { ImagePicker } from "../components/UI/ImagePicker";
-import { LogOut, Mail, Phone, UserRound, X } from "lucide-react";
+import { LogOut, Mail, Phone, UserRound, X, Lock, Tickets } from "lucide-react";
 import { Input } from "../components/UI/Input";
-import { useAuthStore } from "../store/useAuthStore";
+// import { useAuthStore } from "../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { images } from "../utils/constant";
+import { useNewAuthStore } from "../store/useNewAuthStore";
 export const AccountPage = () => {
-  const { authUser, signOut, updateAccount } = useAuthStore();
+  // const { authUser, signOut, updateAccount } = useAuthStore();
+  const { authUser, signOut, updateAccount } = useNewAuthStore();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fullName: authUser.fullName || "",
+    full_name: authUser.full_name || "",
     email: authUser.email || "",
     phone: authUser.phone || "",
-    profilePic: authUser.profilePic || "",
+    profile_pic: authUser.profile_pic || "",
+    password: "",
   });
+  const defaultUrl =
+    "https://res.cloudinary.com/dt28nxrrx/image/upload/v1738487430/vector-flat-illustration-grayscale-avatar-600nw-2264922221_vltchf.webp";
 
   const fileRef = useRef(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -34,7 +39,7 @@ export const AccountPage = () => {
   };
 
   const handleRemoveImage = () => {
-    setFormData({ ...formData, profilePic: "" });
+    setFormData({ ...formData, profile_pic: "" });
   };
 
   return (
@@ -66,10 +71,13 @@ export const AccountPage = () => {
           </div>
           <div className="avatar relative">
             <div className="ring-primary ring-offset-base-100 sm:w-32 w-28 rounded-full ring ring-offset-2">
-              <img src={formData.profilePic} alt={formData.fullName} />
+              <img
+                src={formData.profile_pic || defaultUrl}
+                alt={formData.full_name}
+              />
             </div>
             <ImagePicker
-              profilePic={formData.profilePic}
+              profilePic={formData.profile_pic}
               fileRef={fileRef}
               setIsUploading={setIsUploading}
               setFormData={setFormData}
@@ -99,10 +107,10 @@ export const AccountPage = () => {
           <Input
             placeholder="Your name"
             name="Your Name"
-            value={formData.fullName || ""}
+            value={formData.full_name || ""}
             icon={<UserRound className="size-5" />}
             onChange={(e) =>
-              setFormData({ ...formData, fullName: e.target.value })
+              setFormData({ ...formData, full_name: e.target.value })
             }
           />
           <Input
@@ -123,6 +131,21 @@ export const AccountPage = () => {
               setFormData({ ...formData, phone: e.target.value })
             }
           />
+          <Input
+            placeholder="Your password"
+            name="Password"
+            value={formData.password || ""}
+            icon={<Lock className="size-5" />}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+          />
+
+          <p className="text-sm">Your Cupon(Read Only)</p>
+          <div className="w-full bg-yellow-100 border border-primary-content/20 mb-5 flex gap-2 px-3 p-2 rounded-xl items-center justify-center">
+            <Tickets className="size-5" />
+            <p className="text-sm">No cupon to show</p>
+          </div>
           <CustomButton buttonName="Save Changes" type="submitButton" />
         </div>
       </motion.form>

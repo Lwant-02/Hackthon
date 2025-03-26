@@ -5,9 +5,11 @@ import { useUtilsStore } from "../../store/useUtilsStore";
 import { CustomButton } from "./CustomButton";
 import { AuthIcon } from "../Home/AuthIcons";
 import { useAuthStore } from "../../store/useAuthStore";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export const Drawer = () => {
-  const { authUser, signOut } = useAuthStore();
+  // const { authUser, signOut } = useAuthStore();
+  const { authUser, signOut } = useNewAuthStore();
   const { closeDrawer } = useUtilsStore();
   return (
     <div className="drawer drawer-end">

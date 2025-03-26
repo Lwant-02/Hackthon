@@ -4,11 +4,13 @@ import { ShoppingCart } from "lucide-react";
 import { SummaryInfo } from "../Payment/SummaryInfo";
 import { useNavigate, useParams } from "react-router-dom";
 import { useBookingStore } from "../../store/useBookingStore";
-import { useAuthStore } from "../../store/useAuthStore";
+// import { useAuthStore } from "../../store/useAuthStore";
 import toast from "react-hot-toast";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export const OrderContainer = () => {
-  const { authUser } = useAuthStore();
+  // const { authUser } = useAuthStore();
+  const { authUser } = useNewAuthStore();
   const { packageType, hole, timeAndPrice, setGolfer, golfer } =
     useBookingStore();
   const { courseId } = useParams();
@@ -40,7 +42,7 @@ export const OrderContainer = () => {
           </div>
         </div>
         <div className="px-3 w-full flex flex-col gap-2">
-          <SummaryInfo name="Name" value={authUser.fullName} />
+          <SummaryInfo name="Name" value={authUser.full_name} />
           <SummaryInfo name="Email Address" value={authUser.email} />
           <SummaryInfo name="Hole" value={hole || "-"} />
           <SummaryInfo
@@ -67,9 +69,12 @@ export const OrderContainer = () => {
             <p className="text-base font-semibold">Total</p>
             <p className="text-base font-semibold">
               ฿
-              {packageType.price && timeAndPrice.price
-                ? Number(packageType.price) + Number(timeAndPrice.price)
-                : packageType.price || timeAndPrice.price || "0"}
+              {packageType.price && timeAndPrice.price && golfer
+                ? Number(packageType.price) +
+                  Number(timeAndPrice.price) * Number(golfer)
+                : packageType.price ||
+                  timeAndPrice.price * Number(golfer) ||
+                  "0"}
             </p>
           </span>
           <CustomButton

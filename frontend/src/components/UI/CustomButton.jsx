@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Spinner } from "./Spinner";
 import { useAuthStore } from "../../store/useAuthStore";
 import { useBookingStore } from "../../store/useBookingStore";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
 
 export const CustomButton = ({
   url,
@@ -13,7 +14,8 @@ export const CustomButton = ({
   onClick,
   textStyle,
 }) => {
-  const { isSigningup, isSigningin, isUpdatingAccount } = useAuthStore();
+  // const { isSigningup, isSigningin, isUpdatingAccount } = useAuthStore();
+  const { isSigningup, isSigningin, isUpdatingAccount } = useNewAuthStore();
   const { isCreatingBooking, isCancelBooking } = useBookingStore();
 
   const primaryButton = (
