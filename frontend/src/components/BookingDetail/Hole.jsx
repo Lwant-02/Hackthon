@@ -1,8 +1,10 @@
 import React from "react";
-import { useBookingStore } from "../../store/useBookingStore";
+// import { useBookingStore } from "../../store/useBookingStore";
+import { useNewBookingStore } from "../../store/useNewBookingStore";
 
 export const Hole = ({ holeNumber }) => {
-  const { hole, setHole, setTimeAndPrice } = useBookingStore();
+  // const { hole, setHole, setTimeAndPrice } = useBookingStore();
+  const { hole, setHole, setTimeAndPrice } = useNewBookingStore();
   const handleCheckboxChange = () => {
     if (hole === holeNumber) {
       setHole(null);

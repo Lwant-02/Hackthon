@@ -19,7 +19,8 @@ export const CourseCard = ({
   rating,
   discount,
   id,
-  location,
+  location_city,
+  location_country,
 }) => {
   // const { authUser } = useAuthStore();
   const { authUser } = useNewAuthStore();
@@ -60,7 +61,7 @@ export const CourseCard = ({
           <Rating rating={rating} />
           <span className="flex justify-start items-center gap-1 w-full ">
             <MapPinned className="size-4 text-accent-color " />
-            <LocationPart city={location?.city} country={location?.country} />
+            <LocationPart city={location_city} country={location_country} />
           </span>
           <div className="card-actions flex justify-between  items-center">
             <CustomButton

@@ -10,11 +10,14 @@ import { ChatbotBox } from "../components/UI/ChatbotBox";
 import { Bot } from "../components/UI/Bot";
 import { NewsSection } from "../components/Home/NewsSection";
 import { Packages } from "../components/UI/Packages";
-import { featureCourse, images, packages } from "../utils/constant";
+import { featureCourse, images } from "../utils/constant";
 import { reviewers } from "../utils/constant";
+import { useNewBookingStore } from "../store/useNewBookingStore";
 
 export const HomePage = () => {
   const [showChat, setShowChat] = useState(false);
+  const { packages } = useNewBookingStore();
+
   return (
     <div className="relative w-full flex-1 overflow-auto overflow-y-auto justify-center items-center flex flex-col">
       <motion.div
@@ -64,11 +67,12 @@ export const HomePage = () => {
         <div className="w-full h-auto gap-8 grid sm:grid-cols-3 grid-cols-1 place-items-center">
           {packages.map((item) => (
             <Packages
-              key={item.name}
+              key={item.id}
               title={item.name}
               price={item.price}
-              badge={item.badge}
+              badge="Most Popular"
               features={item.features}
+              isFeatrue={item.is_featured}
               isHome={true}
             />
           ))}

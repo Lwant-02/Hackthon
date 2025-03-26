@@ -1,8 +1,10 @@
 import React from "react";
-import { useBookingStore } from "../../store/useBookingStore";
+// import { useBookingStore } from "../../store/useBookingStore";
+import { useNewBookingStore } from "../../store/useNewBookingStore";
 
 export const TimeCard = ({ time, price, isBooked }) => {
-  const { course, setTimeAndPrice, timeAndPrice } = useBookingStore();
+  // const { course, setTimeAndPrice, timeAndPrice } = useBookingStore();
+  const { course, setTimeAndPrice, timeAndPrice } = useNewBookingStore();
   const discountRate = (course?.discount ?? 0) / 100;
   const hasDiscount = price * (1 - discountRate);
 

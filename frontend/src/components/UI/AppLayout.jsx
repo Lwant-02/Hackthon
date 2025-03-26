@@ -13,22 +13,26 @@ import { AccountPage } from "../../pages/AccountPage";
 import { ReservationPage } from "../../pages/ReservationPage";
 import { SearchPage } from "../../pages/SearchPage";
 import { Toaster } from "react-hot-toast";
-// import { useAuthStore } from "../../store/useAuthStore";
 import { Spinner } from "./Spinner";
-import { useBookingStore } from "../../store/useBookingStore";
 import { TournamentPage } from "../../pages/TournamentPage";
 import { useNewAuthStore } from "../../store/useNewAuthStore";
+import { useNewBookingStore } from "../../store/useNewBookingStore";
+// import { useAuthStore } from "../../store/useAuthStore";
+// import { useBookingStore } from "../../store/useBookingStore";
 
 export const AppLayout = () => {
   // const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  // const { getCourses, getBookings } = useBookingStore();
   const { checkAuth, authUser, isCheckingAuth, setToken } = useNewAuthStore();
-  const { getCourses, getBookings } = useBookingStore();
+  const { getCourses, getBookings, getPackages, packages } =
+    useNewBookingStore();
   const location = useLocation();
 
   useEffect(() => {
     checkAuth();
     getCourses();
     getBookings();
+    getPackages();
   }, []);
 
   useEffect(() => {

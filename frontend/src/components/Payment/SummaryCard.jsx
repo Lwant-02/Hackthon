@@ -7,10 +7,26 @@ import { CustomStatus } from "../UI/CustomStatus";
 import { LocationPart } from "../UI/LocationPart";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
-import { useBookingStore } from "../../store/useBookingStore";
-import { useAuthStore } from "../../store/useAuthStore";
+import { useNewBookingStore } from "../../store/useNewBookingStore";
+import { useNewAuthStore } from "../../store/useNewAuthStore";
+// import { useBookingStore } from "../../store/useBookingStore";
+// import { useAuthStore } from "../../store/useAuthStore";
 
 export const SummaryCard = ({ formData }) => {
+  // const {
+  //   getCourse,
+  //   course,
+  //   dateAndTime,
+  //   timeAndPrice,
+  //   golfer,
+  //   hole,
+  //   packageType,
+  //   setHole,
+  //   setTimeAndPrice,
+  //   setPackage,
+  //   setGolfer,
+  // } = useBookingStore();
+  // const { authUser } = useAuthStore();
   const {
     getCourse,
     course,
@@ -23,22 +39,24 @@ export const SummaryCard = ({ formData }) => {
     setTimeAndPrice,
     setPackage,
     setGolfer,
-  } = useBookingStore();
-  const { authUser } = useAuthStore();
+    createBooking,
+    packageId,
+  } = useNewBookingStore();
+  const { authUser } = useNewAuthStore();
   const { openModal, closeModal, setActiveTab, sentConfirmEmail } =
     useUtilsStore();
-  const { createBooking } = useBookingStore();
   const { courseId } = useParams();
   const navigate = useNavigate();
 
   const totalPrice =
     packageType.price && timeAndPrice.price
-      ? Number(packageType.price) + Number(timeAndPrice.price)
-      : packageType.price || timeAndPrice.price || 0;
+      ? Number(packageType.price) + Number(timeAndPrice.price) * Number(golfer)
+      : packageType.price || timeAndPrice.price * Number(golfer) || 0;
 
   useEffect(() => {
     getCourse(courseId);
   }, [courseId, getCourse]);
+  console.log(packageType);
 
   const handlSubmitBooking = async (e) => {
     e.preventDefault();
@@ -50,30 +68,27 @@ export const SummaryCard = ({ formData }) => {
 
     //Create booking
     const bookingRes = await createBooking({
-      userId: authUser._id,
-      user: { name: authUser.fullName, email: authUser.email },
-      bookingDate: dateAndTime,
-      courseId: courseId,
+      customer_id: authUser.id,
+      booking_date: dateAndTime,
+      booking_time: timeAndPrice.time,
+      location_city: course.location_city,
+      location_country: course.location_country,
+      course_id: courseId,
       golfers: golfer,
       holes: hole,
-      packageType: { name: packageType.title, price: packageType.price },
-      holePrice: timeAndPrice.price,
-      totalPrice: totalPrice,
-      golfPic: course.image,
-      location: {
-        city: course.location.city,
-        country: course.location.country,
-      },
-      courseName: course.courseName,
-      bookingTime: timeAndPrice.time,
+      package_id: packageId,
+      hole_price: timeAndPrice.price,
+      total_price: totalPrice,
+      coupon_code: ["csdfewo"],
+      status: "confirmed",
     });
 
     const emailInfo = {
-      userName: authUser.fullName,
-      courseTitle: course.courseName,
-      courseImage: course.image,
+      userName: authUser.full_name,
+      courseTitle: course.course_name,
+      courseImage: course.image_url,
       price: totalPrice,
-      location: `${course.location.city} > ${course.location.country}`,
+      location: `${course.location_city} > ${course.location_country}`,
       dateTime: `${dateAndTime} at ${timeAndPrice.time}`,
       email: authUser.email,
       golfer: golfer,
@@ -113,15 +128,15 @@ export const SummaryCard = ({ formData }) => {
       >
         <SummaryInfo
           name="Course Name"
-          value={course.courseName}
+          value={course.course_name}
           style="mt-5"
         />
         <SummaryInfo
           name="Location"
           value={
             <LocationPart
-              city={course.location.city}
-              country={course.location.country}
+              city={course.location_city}
+              country={course.location_country}
             />
           }
         />

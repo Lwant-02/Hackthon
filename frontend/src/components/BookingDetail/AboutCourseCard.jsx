@@ -9,7 +9,8 @@ export const AboutCourseCard = ({
   name,
   description,
   rating,
-  location,
+  location_city,
+  location_country,
   yard,
   discount,
   image,
@@ -42,7 +43,7 @@ export const AboutCourseCard = ({
             </span>
             <span className="flex justify-center items-center gap-1">
               <MapPinned className=" p-1 size-7 rounded-full text-accent-color bg-gray-200" />
-              <LocationPart city={location?.city} country={location?.country} />
+              <LocationPart city={location_city} country={location_country} />
             </span>
             <span className="flex justify-center items-center gap-1">
               <SquareMousePointer className=" p-1 size-7 rounded-full text-accent-color bg-gray-200" />

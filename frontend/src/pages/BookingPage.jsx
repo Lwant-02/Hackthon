@@ -10,9 +10,11 @@ import { images } from "../utils/constant";
 import { useBookingStore } from "../store/useBookingStore";
 import { Spinner } from "../components/UI/Spinner";
 import { CustomNotFound } from "../components/UI/CustomNotFound";
+import { useNewBookingStore } from "../store/useNewBookingStore";
 
 export const BookingPage = () => {
-  const { courses } = useBookingStore();
+  // const { courses } = useBookingStore();
+  const { courses } = useNewBookingStore();
   const [showChat, setShowChat] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -79,16 +81,16 @@ export const BookingPage = () => {
               <div className="grid sm:grid-cols-3 grid-cols-1 mt-7 gap-3 mb-7  sm:pl-12 w-full">
                 {filteredCourses.map((course, index) => (
                   <CourseCard
-                    key={course.courseName}
-                    name={course.courseName}
-                    image={course.image}
-                    subDescription={course.subDescription}
+                    key={course.course_name}
+                    name={course.course_name}
+                    image={course.image_url}
+                    subDescription={course.description}
                     rating={course.rating}
                     status="Available"
                     delay={0.1 * (index + 1)}
                     discount={course.discount}
-                    location={course.location}
-                    id={course._id}
+                    // location={}
+                    id={course.id}
                   />
                 ))}
               </div>
@@ -104,14 +106,15 @@ export const BookingPage = () => {
                   <CourseCard
                     delay={0.1 * (index + 1)}
                     status="Recommended"
-                    image={item.image}
-                    name={item.courseName}
+                    image={item.image_url}
+                    name={item.course_name}
                     rating={item.rating}
-                    subDescription={item.subDescription}
+                    subDescription={item.sub_description}
                     key={index}
                     discount={item.discount}
-                    id={item._id}
-                    location={item.location}
+                    id={item.id}
+                    location_city={item.location_city}
+                    location_country={item.location_country}
                     yard={item.yard}
                     description={item.description}
                   />
@@ -125,15 +128,16 @@ export const BookingPage = () => {
               {courses.map((course, index) => (
                 <CourseCard
                   key={index}
-                  name={course.courseName}
-                  image={course.image}
-                  subDescription={course.subDescription}
+                  name={course.course_name}
+                  image={course.image_url}
+                  subDescription={course.sub_description}
                   rating={course.rating}
                   status="Available"
                   delay={0.1 * (index + 1)}
                   discount={course.discount}
-                  id={course._id}
-                  location={course.location}
+                  id={course.id}
+                  location_city={course.location_city}
+                  location_country={course.location_country}
                 />
               ))}
             </div>
