@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { tournamentsImages } from "../utils/constant";
 import { LocationPart } from "../components/UI/LocationPart";

@@ -152,4 +152,16 @@ export const useNewBookingStore = create((set, get) => ({
       set({ isCancelBooking: false });
     }
   },
+  networkUsers: null,
+  getNetWorkUser: async () => {
+    try {
+      const token = useNewAuthStore.getState().token;
+      const res = await newAxiosInstance.get("/network", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      set({ networkUsers: res.data });
+    } catch (error) {
+      console.log("Error in getNetWorkUser:", error.message);
+    }
+  },
 }));
