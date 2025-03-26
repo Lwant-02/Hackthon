@@ -17,8 +17,6 @@ export const useNewBookingStore = create((set, get) => ({
   bookings: [],
   cancelBookings: [],
   userBookings: [],
-  isGettingUserBookings: false,
-  isGettingCancelBookings: false,
   isCancelBooking: false,
   isGettingBookings: false,
   isCreatingBooking: false,
@@ -32,7 +30,7 @@ export const useNewBookingStore = create((set, get) => ({
       }
     } catch (error) {
       if (import.meta.env.NODE_ENV !== "production") {
-        console.log("Error in getPackages:", error.message);
+        console.log("Error in getPackages:", error);
       }
       set({ packages: [] });
     }
@@ -44,15 +42,18 @@ export const useNewBookingStore = create((set, get) => ({
     try {
       set({ isCreatingBooking: true });
       const token = useNewAuthStore.getState().token;
+      const user = useNewAuthStore.getState().authUser;
+
       const res = await newAxiosInstance.post("/bookings", data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       if (res.status === 201) {
-        set((state) => ({ bookings: [res.data, ...state.bookings] }));
+        set({ bookings: res.data });
       }
-      get().getUserBookings();
+      get().getBookings(user.id);
       return res.data;
     } catch (error) {
       console.log("Error in createBooking:", error.message);
@@ -70,8 +71,7 @@ export const useNewBookingStore = create((set, get) => ({
           Authorization: `Bearer ${token} `,
         },
       });
-      console.log(res);
-
+      console.log(res.data);
       if (res.status == 200) {
         set({ bookings: res.data || [] });
       }
@@ -88,7 +88,7 @@ export const useNewBookingStore = create((set, get) => ({
     set({ total: v });
   },
   setGolfer: (v) => {
-    set({ golfer: v });
+    set({ golfer: Number(v) });
   },
   setDateAndTime: (date) => {
     set({ dateAndTime: date });
@@ -134,41 +134,15 @@ export const useNewBookingStore = create((set, get) => ({
       set({ isGettingCourse: false });
     }
   },
-  insertCancelBooking: async (data, userId) => {
-    try {
-      const res = await axiosInstance.post(
-        `/bookings/insert-cancel-booking/${userId}`,
-        data
-      );
-      if (res.status === 201) {
-        set((state) => ({
-          cancelBookings: [res.data, ...state.cancelBookings],
-        }));
-      }
-    } catch (error) {
-      console.log("Error in insertCancelBooking:", error.message);
-    }
-  },
-  getCancelBookings: async () => {
-    set({ isGettingCancelBookings: true });
-    try {
-      const res = await axiosInstance.get("/bookings/get-cancel-bookings");
-      if (res) {
-        set({ cancelBookings: res.data });
-      }
-    } catch (error) {
-      if (import.meta.env.NODE_ENV !== "production") {
-        console.log("Error in getCancelBookings:", error.message);
-      }
-    } finally {
-      set({ isGettingCancelBookings: false });
-    }
-  },
   cancelBooking: async (bookingId) => {
     set({ isCancelBooking: true });
+    const user = useNewAuthStore.getState().authUser;
+    const token = useNewAuthStore.getState().token;
     try {
-      await axiosInstance.delete(`/bookings/cancel-booking/${bookingId}`);
-      get().getUserBookings();
+      await newAxiosInstance.get(`/bookings/${bookingId}/cancel`, {
+        headers: { Authorization: `Bearer ${token} ` },
+      });
+      get().getBookings(user.id);
       return true;
     } catch (error) {
       if (import.meta.env.NODE_ENV !== "production") {
@@ -177,22 +151,6 @@ export const useNewBookingStore = create((set, get) => ({
       return false;
     } finally {
       set({ isCancelBooking: false });
-    }
-  },
-  getUserBookings: async () => {
-    set({ isGettingUserBookings: true });
-    try {
-      const res = await axiosInstance.get("/bookings/get-user-bookings");
-      if (res.status === 200) {
-        set({ userBookings: res.data || [] });
-      }
-    } catch (error) {
-      if (import.meta.env.NODE_ENV !== "production") {
-        console.log("Error in getUserBookings:", error.message);
-      }
-      set({ userBookings: [] });
-    } finally {
-      set({ isGettingUserBookings: false });
     }
   },
 }));

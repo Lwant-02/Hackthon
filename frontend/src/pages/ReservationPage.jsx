@@ -4,9 +4,7 @@ import { CircleCheckBig } from "lucide-react";
 import { CustomButton } from "../components/UI/CustomButton";
 import { NoReservation } from "../components/Reservation/NoReservation";
 import { CancelPolicy } from "../components/Reservation/CancelPolicy";
-// import { useAuthStore } from "../store/useAuthStore";
 import { ActionNeed } from "../components/UI/ActionNeed";
-import { useBookingStore } from "../store/useBookingStore";
 import { LocationPart } from "../components/UI/LocationPart";
 import { StatusTab } from "../components/Reservation/StatusTab";
 import { useUtilsStore } from "../store/useUtilsStore";
@@ -14,19 +12,24 @@ import { CustomStatus } from "../components/UI/CustomStatus";
 import { CancelCard } from "../components/Reservation/CancelCard";
 import { CancelNotFound } from "../components/Reservation/CancelNotFound";
 import { useNewAuthStore } from "../store/useNewAuthStore";
+import { useNewBookingStore } from "../store/useNewBookingStore";
+// import { useAuthStore } from "../store/useAuthStore";
+// import { useBookingStore } from "../store/useBookingStore";
 
 export const ReservationPage = () => {
-  const {
-    cancelBooking,
-    insertCancelBooking,
-    cancelBookings,
-    userBookings,
-    getUserBookings,
-    getCancelBookings,
-  } = useBookingStore();
+  // const {
+  //   cancelBooking,
+  //   insertCancelBooking,
+  //   cancelBookings,
+  //   userBookings,
+  //   getUserBookings,
+  //   getCancelBookings,
+  // } = useBookingStore();
+  const { cancelBooking, cancelBookings, bookings, getBookings } =
+    useNewBookingStore();
   const { openModal, closeModal, sentCancelEmail } = useUtilsStore();
   // const { authUser } = useAuthStore();
-  const { authUser } = useNewAuthStore();
+  const { authUser, setToken } = useNewAuthStore();
 
   const [activeTab, setActiveTab] = useState("comfirmed");
 
@@ -37,12 +40,8 @@ export const ReservationPage = () => {
     totalPrice,
     cancelDate,
   }) => {
-    await insertCancelBooking(
-      { courseName, golfPic, totalPrice, cancelDate },
-      authUser._id
-    );
     const cancelEmailInfo = {
-      userName: authUser.fullName,
+      userName: authUser.full_name,
       email: authUser.email,
       courseName: courseName,
       courseImage: golfPic,
@@ -60,9 +59,12 @@ export const ReservationPage = () => {
   };
 
   useEffect(() => {
-    getUserBookings();
-    getCancelBookings();
-  }, [getCancelBookings, getUserBookings]);
+    setToken(localStorage.getItem("authUser"));
+  }, []);
+
+  useEffect(() => {
+    getBookings(authUser?.id);
+  }, [getBookings]);
 
   return (
     <div className="py-8 sm:w-5/6 w-auto sm:px-0 px-3 flex flex-col justify-center items-center mx-auto ">
@@ -80,44 +82,40 @@ export const ReservationPage = () => {
           <h1 className="text-accent-color sm:text-3xl text-xl font-bold drop-shadow-xl w-full sm:w-4/6">
             My Bookings
           </h1>
-          <StatusTab setActiveTab={setActiveTab} activeTab={activeTab} />
+          <p className=" sm:w-4/6 flex justify-end items-end font-semibold w-full sm:text-lg text-sm">
+            All Bookings-{bookings.bookings?.length}
+          </p>
           {activeTab === "comfirmed" ? (
-            <p className=" sm:w-4/6 flex justify-end items-end font-semibold w-full sm:text-lg text-sm">
-              All Bookings-{userBookings.length}
-            </p>
-          ) : (
-            <p className=" sm:w-4/6 flex justify-end items-end font-semibold w-full sm:text-lg text-sm">
-              Cancel Booking-{cancelBookings.length}
-            </p>
-          )}
-          {activeTab === "comfirmed" ? (
-            userBookings.length === 0 ? (
+            bookings.bookings?.length === 0 ? (
               <NoReservation />
             ) : (
-              userBookings.map((booking) => (
+              bookings?.bookings?.map((booking) => (
                 <motion.div
                   className="sm:w-4/6 w-full bg-white border border-base-content/10 shadow-lg rounded-lg p-7 flex flex-col justify-start items-start gap-2"
-                  key={booking._id}
+                  key={booking.id}
                   initial={{ opacity: 0, y: 100 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1 }}
                 >
                   <div className="w-full flex justify-start items-center gap-2">
                     <h3 className=" sm:text-2xl font-bold drop-shadow-xl">
-                      {booking.bookingDate} at {booking.bookingTime}
+                      {booking.booking_date.split("T")[0]} at{" "}
+                      {booking.booking_time}
                     </h3>
-                    <div className="bg-accent-color flex justify-start items-center p-1 rounded-lg gap-1">
+                    <div className="bg-accent-color flex justify-center items-center p-1 rounded-lg gap-1 w-28">
                       <CircleCheckBig className="size-3 text-primary-color" />
                       <p className="font-semibold text-primary-color text-xs">
-                        Paid
+                        {booking.status === "confirmed"
+                          ? "Confirmed"
+                          : "Cancelled"}
                       </p>
                     </div>
                   </div>
                   <div className="w-full  flex justify-start items-center gap-8">
                     <div className="breadcrumbs text-sm">
                       <ul>
-                        <li className="text-sm">{booking.user.name}</li>
-                        <li className="text-sm">{booking.user.email}</li>
+                        <li className="text-sm">{authUser.full_name}</li>
+                        <li className="text-sm">{authUser.email}</li>
                       </ul>
                     </div>
                   </div>
@@ -130,16 +128,19 @@ export const ReservationPage = () => {
                   <div className="mt-3 flex justify-start items-center gap-3">
                     <div className="avatar">
                       <div className="w-24 rounded-xl">
-                        <img src={booking.golfPic} alt={booking.courseName} />
+                        <img
+                          src={booking.course.image_url}
+                          alt={booking.course.course_name}
+                        />
                       </div>
                     </div>
                     <div className="flex flex-col justify-start items-start gap-1">
                       <h3 className="sm:text-lg text-sm font-bold drop-shadow-xl">
-                        {booking.courseName}
+                        {booking.course.course_name}
                       </h3>
                       <LocationPart
-                        city={booking.location.city}
-                        country={booking.location.country}
+                        city={booking.location_city}
+                        country={booking.location_country}
                       />
                     </div>
                   </div>
@@ -165,7 +166,7 @@ export const ReservationPage = () => {
                         Package Name
                       </p>
                       <p className="font-semibold sm:text-base text-sm">
-                        {booking.packageType.name || "-"}
+                        {booking.packageType?.name || "-"}
                       </p>
                     </div>
                     <div className="h-8 flex justify-between items-center border-b border-base-content/10">
@@ -173,7 +174,7 @@ export const ReservationPage = () => {
                         Package Price
                       </p>
                       <p className="font-semibold sm:text-base text-sm">
-                        ฿{booking.packageType.price}
+                        ฿{booking.packageType?.price}
                       </p>
                     </div>
                     <div className="h-8 flex justify-between items-center border-b border-base-content/10">
@@ -181,7 +182,7 @@ export const ReservationPage = () => {
                         Hole Price
                       </p>
                       <p className="font-semibold sm:text-base text-sm">
-                        ฿{booking.holePrice}
+                        ฿{booking.hole_price}
                       </p>
                     </div>
                     <div className="h-8 flex justify-between items-center">
@@ -189,25 +190,27 @@ export const ReservationPage = () => {
                         Total
                       </p>
                       <p className="font-semibold sm:text-base text-sm">
-                        ฿{booking.totalPrice}
+                        ฿{booking.total_price}
                       </p>
                     </div>
                   </div>
                   <div className="w-full flex justify-end items-end mt-2 w-">
-                    <CustomButton
-                      buttonName="Cancel Booking"
-                      style="w-40"
-                      type="submitButton"
-                      onClick={() =>
-                        handleCancelBooking({
-                          bookingId: booking._id,
-                          courseName: booking.courseName,
-                          golfPic: booking.golfPic,
-                          totalPrice: booking.totalPrice,
-                          cancelDate: new Date(),
-                        })
-                      }
-                    />
+                    {booking.status === "cancelled" && (
+                      <CustomButton
+                        buttonName="Cancel Booking"
+                        style="w-40"
+                        type="submitButton"
+                        onClick={() =>
+                          handleCancelBooking({
+                            bookingId: booking.id,
+                            courseName: booking.course.course_name,
+                            golfPic: booking.course.image_url,
+                            totalPrice: booking.total_price,
+                            cancelDate: new Date(),
+                          })
+                        }
+                      />
+                    )}
                   </div>
                   <CancelPolicy />
                 </motion.div>

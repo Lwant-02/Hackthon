@@ -16,18 +16,16 @@ export const BookingContainer = () => {
   const defaultHole = hole ? hole : 9;
 
   const isBooked = (time) => {
-    const selectedBooking = bookings?.filter(
-      (booking) => booking.id === courseId
-    );
-
-    return selectedBooking.some(
-      (item) =>
-        item?.bookingDate === dateAndTime &&
-        item.holes === defaultHole &&
-        item.bookingTime === time
-    );
+    if (!Array.isArray(bookings) || bookings.length === 0) return false;
+    return bookings
+      .filter((booking) => booking.id === courseId)
+      .some(
+        (item) =>
+          item?.booking_date === dateAndTime &&
+          item.holes === defaultHole &&
+          item.booking_time === time
+      );
   };
-
   return (
     <motion.div
       className="bg-white w-full h-auto rounded-lg shadow-lg p-5 flex flex-col"
